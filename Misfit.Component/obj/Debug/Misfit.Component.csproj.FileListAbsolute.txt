@@ -1,0 +1,9 @@
+D:\Job\Dev\workplace\Misfit\Misfit.Component\obj\Debug\Misfit.Component.csprojResolveAssemblyReference.cache
+D:\Job\Dev\workplace\Misfit\Misfit.Component\bin\Debug\Misfit.Component.dll
+D:\Job\Dev\workplace\Misfit\Misfit.Component\bin\Debug\Misfit.Component.pdb
+D:\Job\Dev\workplace\Misfit\Misfit.Component\bin\Debug\Misfit.AddIn.dll
+D:\Job\Dev\workplace\Misfit\Misfit.Component\bin\Debug\Misfit.AddIn.pdb
+D:\Job\Dev\workplace\Misfit\Misfit.Component\obj\Debug\Misfit.Component.dll
+D:\Job\Dev\workplace\Misfit\Misfit.Component\obj\Debug\Misfit.Component.pdb
+D:\Job\Dev\workplace\Misfit\Bin\AddIns\Misfit.Component.dll
+D:\Job\Dev\workplace\Misfit\Bin\AddIns\Misfit.Component.pdb

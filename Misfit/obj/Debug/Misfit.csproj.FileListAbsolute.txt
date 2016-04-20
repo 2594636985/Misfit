@@ -1,0 +1,5 @@
+D:\Job\Dev\workplace\Misfit\Misfit\obj\Debug\Misfit.csprojResolveAssemblyReference.cache
+D:\Job\Dev\workplace\Misfit\Misfit\bin\Debug\Misfit.dll
+D:\Job\Dev\workplace\Misfit\Misfit\bin\Debug\Misfit.pdb
+D:\Job\Dev\workplace\Misfit\Misfit\obj\Debug\Misfit.dll
+D:\Job\Dev\workplace\Misfit\Misfit\obj\Debug\Misfit.pdb

@@ -1,0 +1,11 @@
+D:\Job\Dev\workplace\Misfit\Misfit.AddIn.Core\obj\Debug\Misfit.AddIn.Core.csprojResolveAssemblyReference.cache
+D:\Job\Dev\workplace\Misfit\Misfit.AddIn.Core\bin\Debug\Misfit.AddIn.Core.dll
+D:\Job\Dev\workplace\Misfit\Misfit.AddIn.Core\bin\Debug\Misfit.AddIn.Core.pdb
+D:\Job\Dev\workplace\Misfit\Misfit.AddIn.Core\bin\Debug\DynamicProxy.dll
+D:\Job\Dev\workplace\Misfit\Misfit.AddIn.Core\bin\Debug\Misfit.AddIn.dll
+D:\Job\Dev\workplace\Misfit\Misfit.AddIn.Core\bin\Debug\Misfit.AddIn.pdb
+D:\Job\Dev\workplace\Misfit\Misfit.AddIn.Core\obj\Debug\Misfit.AddIn.Core.dll
+D:\Job\Dev\workplace\Misfit\Misfit.AddIn.Core\obj\Debug\Misfit.AddIn.Core.pdb
+D:\Job\Dev\workplace\Misfit\Bin\Misfit.AddIn.Core.dll
+D:\Job\Dev\workplace\Misfit\Bin\Misfit.AddIn.Core.pdb
+D:\Job\Dev\workplace\Misfit\Bin\Configuration\Init.config

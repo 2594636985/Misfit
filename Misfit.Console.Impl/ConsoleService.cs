@@ -25,9 +25,6 @@ namespace Misfit.Console
         [DllImport("kernel32")]
         static extern bool AllocConsole();
 
-        public ConsoleService()
-        {
-        }
 
         public void Start()
         {

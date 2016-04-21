@@ -23,7 +23,7 @@ namespace Misfit.Console
             ConsoleAddIn.context = context;
             //shell = context.GetService<IShell>();
 
-            console = new ConsoleService(shell);
+            console = new ConsoleService();
             console.Start();
         }
 

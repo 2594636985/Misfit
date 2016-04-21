@@ -41,30 +41,23 @@
   <ItemGroup>
     <Compile Include="AddInAttribute.cs" />
     <Compile Include="AddInBase.cs" />
-    <Compile Include="BundleActivatorAttribute.cs" />
-    <Compile Include="BundleEventArgs.cs" />
-    <Compile Include="BundleEventHandler.cs" />
-    <Compile Include="BundleException.cs" />
-    <Compile Include="BundleTransition.cs" />
-    <Compile Include="Constants.cs" />
+    <Compile Include="Plugin\PluginActivatorAttribute.cs" />
+    <Compile Include="Plugin\PluginEventArgs.cs" />
+    <Compile Include="Plugin\PluginEventHandler.cs" />
+    <Compile Include="Plugin\PluginException.cs" />
+    <Compile Include="Plugin\PluginTransition.cs" />
     <Compile Include="FrameworkEventArgs.cs" />
     <Compile Include="FrameworkEventHandler.cs" />
     <Compile Include="FrameworkState.cs" />
-    <Compile Include="FrameworkUtil.cs" />
     <Compile Include="IAddIn.cs" />
-    <Compile Include="IModule.cs" />
-    <Compile Include="IMoudleActivator.cs" />
-    <Compile Include="IModuleContext.cs" />
-    <Compile Include="IBundleRepository.cs" />
-    <Compile Include="IFilter.cs" />
+    <Compile Include="Plugin\IPlugin.cs" />
+    <Compile Include="Plugin\IPluginFramework.cs" />
+    <Compile Include="Plugin\IPluginActivator.cs" />
+    <Compile Include="Plugin\IPluginContext.cs" />
     <Compile Include="InvalidSyntaxException.cs" />
-    <Compile Include="IServiceFactory.cs" />
-    <Compile Include="IServiceReference.cs" />
-    <Compile Include="IServiceRegistration.cs" />
+    <Compile Include="Plugin\PluginsCollection.cs" />
+    <Compile Include="Plugin\PluginState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ServiceEventArgs.cs" />
-    <Compile Include="ServiceEventHandler.cs" />
-    <Compile Include="ServiceState.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="TaskList.txt" />

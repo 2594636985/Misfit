@@ -7,13 +7,13 @@ namespace Misfit.AddIn
 {
     public class FrameworkEventArgs
     {
-        private IBundle bundle;
+        private IPlugin _plugin;
         private FrameworkState state;
         private Exception exception;
 
-        public IBundle Bundle
+        public IPlugin Bundle
         {
-            get { return bundle; }
+            get { return _plugin; }
         }
 
         public FrameworkState State
@@ -26,10 +26,10 @@ namespace Misfit.AddIn
             get { return exception; }
         }
 
-        public FrameworkEventArgs(IBundle bundle, FrameworkState state,
+        public FrameworkEventArgs(IPlugin plugin, FrameworkState state,
             Exception exception)
         {
-            this.bundle = bundle;
+            this._plugin = plugin;
             this.state = state;
             this.exception = exception;
         }

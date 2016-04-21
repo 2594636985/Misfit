@@ -17,14 +17,9 @@ namespace Misfit
     /// </summary>
     public class PluginFramework : IPluginFramework
     {
-        public const string AddInsFileRoot = "AddIns";
         private const string BundleExtention = ".dll";
         private PluginsCollection _pluginsCollection = new PluginsCollection();
-        private int _bundleAppDomains;
-        private int _serviceId;
-
         public event Action<PluginFramework, IPlugin> OnModuleInstalled;
-
 
         /// <summary>
         /// 安装插件
@@ -34,7 +29,7 @@ namespace Misfit
         {
             if (this._pluginsCollection.ContainsKey(module.SymbolicName))
             {
-                throw new BundleException(string.Format("{0}已经安装了.", module.SymbolicName));
+                throw new PluginException(string.Format("{0}已经安装了.", module.SymbolicName));
             }
 
             this._pluginsCollection.Add(module.SymbolicName, module);
@@ -44,6 +39,9 @@ namespace Misfit
 
         }
 
+        /// <summary>
+        /// 插件集合
+        /// </summary>
         public PluginsCollection PluginsCollection
         {
             get { return this._pluginsCollection; }
@@ -52,14 +50,14 @@ namespace Misfit
         public IPlugin StartPlugin(string symbolicName)
         {
             if (!this._pluginsCollection.ContainsKey(symbolicName))
-                throw new BundleException(String.Format("插件[{0}]没有找到.", symbolicName));
+                throw new PluginException(String.Format("插件[{0}]没有找到.", symbolicName));
 
             IPlugin plugin = this._pluginsCollection[symbolicName];
 
 
             if (plugin.PluginState != PluginState.Installed)
             {
-                throw new BundleException("Bundle 正在运行中.");
+                throw new PluginException("Bundle 正在运行中.");
             }
 
             plugin.Start();
@@ -82,7 +80,7 @@ namespace Misfit
         {
 
             if (!this._pluginsCollection.ContainsKey(symbolicName))
-                throw new BundleException(String.Format("插件[{0}]没有找到.", symbolicName));
+                throw new PluginException(String.Format("插件[{0}]没有找到.", symbolicName));
 
             IPlugin plugin = this._pluginsCollection[symbolicName];
 
@@ -95,13 +93,13 @@ namespace Misfit
         public void UninstallPlugin(string symbolicName)
         {
             if (!this._pluginsCollection.ContainsKey(symbolicName))
-                throw new BundleException(String.Format("插件[{0}]没有找到.", symbolicName));
+                throw new PluginException(String.Format("插件[{0}]没有找到.", symbolicName));
 
             IPlugin plugin = this._pluginsCollection[symbolicName];
 
             if (plugin.PluginState == PluginState.Actived)
             {
-                throw new BundleException(String.Format("插件[{0}]正在运行，请先关闭", symbolicName));
+                throw new PluginException(String.Format("插件[{0}]正在运行，请先关闭", symbolicName));
             }
 
             if (plugin.PluginState != PluginState.Stopped)
@@ -113,15 +111,11 @@ namespace Misfit
         public AppDomain CreateDomain(IPluginContext context)
         {
             AppDomainSetup info = new AppDomainSetup();
-            info.ApplicationBase = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "AddIns");
+            info.ApplicationBase = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Constants.AddInsFileRoot);
             info.ShadowCopyDirectories = Path.Combine(info.ApplicationBase, @"cache");
             info.ShadowCopyFiles = "true";
             string domainName = "Plugin-" + context.CurrentPlugin.SymbolicName;
-            AppDomain domain = AppDomain.CreateDomain(domainName, AppDomain.CurrentDomain.Evidence, info);
-
-            Interlocked.Increment(ref this._bundleAppDomains);
-
-            return domain;
+            return AppDomain.CreateDomain(domainName, AppDomain.CurrentDomain.Evidence, info);
         }
 
         public void UnloadDomain(AppDomain domain)
@@ -129,7 +123,6 @@ namespace Misfit
             if (domain != null)
             {
                 AppDomain.Unload(domain);
-                Interlocked.Decrement(ref this._bundleAppDomains);
             }
         }
 

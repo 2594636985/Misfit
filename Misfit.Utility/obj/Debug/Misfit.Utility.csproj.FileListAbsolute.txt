@@ -1,8 +1,0 @@
-D:\Job\Dev\workplace\Misfit\Misfit.Utility\bin\Debug\Misfit.Utility.dll
-D:\Job\Dev\workplace\Misfit\Misfit.Utility\bin\Debug\Misfit.Utility.pdb
-D:\Job\Dev\workplace\Misfit\Misfit.Utility\obj\Debug\Misfit.Utility.dll
-D:\Job\Dev\workplace\Misfit\Misfit.Utility\obj\Debug\Misfit.Utility.pdb
-D:\Job\Dev\workplace\Misfit\Misfit.Utility\AddIns\Misfit.Utility.dll
-D:\Job\Dev\workplace\Misfit\Misfit.Utility\AddIns\Misfit.Utility.pdb
-D:\Job\Dev\workplace\Misfit\Bin\AddIns\Misfit.Utility.dll
-D:\Job\Dev\workplace\Misfit\Bin\AddIns\Misfit.Utility.pdb

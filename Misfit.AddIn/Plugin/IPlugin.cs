@@ -46,8 +46,8 @@ namespace Misfit.AddIn
 
         IPluginActivator[] Acitvators { get; }
 
-        virtual void Start();
+        void Start();
 
-        virtual void Stop();
+        void Stop();
     }
 }

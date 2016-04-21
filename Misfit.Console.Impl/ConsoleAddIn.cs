@@ -8,7 +8,6 @@ namespace Misfit.Console
     public class ConsoleAddIn : AddInBase
     {
         static IPluginContext context = null;
-        static IBootstrapper shell = null;
 
         private ConsoleService console = null;
 
@@ -19,22 +18,13 @@ namespace Misfit.Console
                 return context;
             }
         }
-
-        public static IBootstrapper Shell
-        {
-            get
-            {
-                return shell;
-            }
-        }
-
         public override void Start(IPluginContext context)
         {
-            //ConsoleAddIn.context = context;
+            ConsoleAddIn.context = context;
             //shell = context.GetService<IShell>();
 
-            //console = new ConsoleService(shell);
-            //console.Start();
+            console = new ConsoleService(shell);
+            console.Start();
         }
 
         public override void Stop(IPluginContext context)

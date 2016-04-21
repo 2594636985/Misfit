@@ -45,17 +45,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Core\BundleLifeScope.cs" />
-    <Compile Include="Core\BundleState.cs" />
-    <Compile Include="Core\ModulesCollection.cs" />
+    <Compile Include="Constants.cs" />
     <Compile Include="Reflection\AttributeInfo.cs" />
-    <Compile Include="Core\Module.cs" />
-    <Compile Include="Core\BundleContext.cs" />
-    <Compile Include="Core\BundleRepository.cs" />
-    <Compile Include="Core\EventManager.cs" />
+    <Compile Include="Core\Plugin.cs" />
+    <Compile Include="Core\PluginContext.cs" />
     <Compile Include="Reflection\TypeInfo.cs" />
     <Compile Include="Tracker\DefaultTrace.cs" />
-    <Compile Include="Core\ModuleFramework.cs" />
+    <Compile Include="Core\PluginFramework.cs" />
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="Tracker\ITrace.cs" />
     <Compile Include="Xml\TracesProvider.cs" />

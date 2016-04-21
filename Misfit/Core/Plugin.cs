@@ -57,7 +57,7 @@ namespace Misfit.Core
         /// </summary>
         public IPluginContext BundleContext { private set; get; }
 
-        private IPluginActivator[] Acitvators { private set; get; }
+        public IPluginActivator[] Acitvators { private set; get; }
 
         /// <summary>
         /// 插件物理位置
@@ -88,12 +88,13 @@ namespace Misfit.Core
             return result;
         }
 
+        /// <summary>
+        /// 开始运行插件
+        /// </summary>
         public virtual void Start()
         {
             try
             {
-
-
                 domain = this.PluginFramework.CreateDomain(this.BundleContext);
                 AppDomain.CurrentDomain.AssemblyResolve += new ResolveEventHandler(AssemblyResolve);
                 this.Assembly = Assembly.LoadFrom(this.Location);
@@ -113,7 +114,7 @@ namespace Misfit.Core
                         }
 
                         if (activatorSet.Count <= 0)
-                            throw new BundleException("没有找到对应的IBundleActivator类。");
+                            throw new PluginException("没有找到对应的IBundleActivator类。");
 
                         this.Acitvators = new IPluginActivator[activatorSet.Count];
                         activatorSet.CopyTo(this.Acitvators);
@@ -124,7 +125,7 @@ namespace Misfit.Core
                 {
                     if (activator == null)
                     {
-                        throw new BundleException("No activator for: " + this.Location);
+                        throw new PluginException("No activator for: " + this.Location);
                     }
 
                     activator.Start(this.BundleContext);
@@ -136,14 +137,14 @@ namespace Misfit.Core
             catch (Exception ex)
             {
                 this.PluginState = PluginState.Installed;
-                throw new BundleException(ex.Message, ex);
+                throw new PluginException(ex.Message, ex);
             }
         }
 
         private static string SearchAssembly(string assemblyName)
         {
             string appRoot = AppDomain.CurrentDomain.BaseDirectory;
-            string addInsRoot = Path.Combine(appRoot, PluginFramework.AddInsFileRoot);
+            string addInsRoot = Path.Combine(appRoot, Constants.AddInsFileRoot);
 
             {
                 string[] files = Directory.GetFiles(appRoot,
@@ -179,8 +180,7 @@ namespace Misfit.Core
         {
             try
             {
-                this.PluginState = PluginState.Stopping;
-                EventManager.OnBundleChanged(new BundleEventArgs(BundleTransition.Stopping, this));
+                this.PluginState = PluginState.Stopped;
 
                 foreach (IPluginActivator activator in this.Acitvators)
                 {
@@ -196,18 +196,16 @@ namespace Misfit.Core
             }
             catch (Exception ex)
             {
-                throw new BundleException(ex.Message, ex);
+                throw new PluginException(ex.Message, ex);
             }
 
             this.PluginState = PluginState.Installed;
-            EventManager.OnBundleChanged(new BundleEventArgs(BundleTransition.Stopped, this));
         }
 
         public void Uninstall()
         {
-            this.PluginFramework.UninstallBundle(this.ModuleID);
+            this.PluginFramework.UninstallPlugin(this.SymbolicName);
             this.PluginState = PluginState.Uninstalled;
-            EventManager.OnBundleChanged(new BundleEventArgs(BundleTransition.Uninstalled, this));
         }
 
     }

@@ -12,19 +12,19 @@ namespace Misfit.Core
     /// </summary>
     public class PluginContext : IPluginContext
     {
-        public IPluginFramework ModuleFramework { private set; get; }
+        public IPluginFramework PluginFramework { private set; get; }
         public IPlugin CurrentPlugin { private set; get; }
 
         internal PluginContext(Plugin plugin)
         {
             this.CurrentPlugin = plugin;
-            this.ModuleFramework = plugin.PluginFramework;
+            this.PluginFramework = plugin.PluginFramework;
         }
 
         public IPlugin GetPlugin(string symbolicName)
         {
-            if (ModuleFramework.PluginsCollection.ContainsKey(symbolicName))
-                return ModuleFramework.PluginsCollection[symbolicName];
+            if (PluginFramework.PluginsCollection.ContainsKey(symbolicName))
+                return PluginFramework.PluginsCollection[symbolicName];
             return null;
         }
 

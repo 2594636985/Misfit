@@ -1,4 +1,5 @@
-﻿using Misfit.Core;
+﻿using Misfit.AddIn;
+using Misfit.Core;
 using Misfit.Xml;
 using System;
 using System.Collections.Generic;
@@ -10,16 +11,16 @@ namespace Misfit
 {
     public class Bootstrapper
     {
-        private string _pluginsConfigurationFilename;
-        private PluginFramework _moduleRuntimeLibrary;
+        private string _pluginConfigFilename;
+        private PluginFramework _pluginFramework;
         public event Action<Bootstrapper> OnExited;
 
         public Bootstrapper(string filename = "Plugins.xml")
         {
             if (!Path.IsPathRooted(filename))
-                this._pluginsConfigurationFilename = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, filename);
+                this._pluginConfigFilename = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, filename);
             else
-                this._pluginsConfigurationFilename = filename;
+                this._pluginConfigFilename = filename;
         }
 
         /// <summary>
@@ -27,15 +28,14 @@ namespace Misfit
         /// </summary>
         public void Initialize()
         {
-            if (!File.Exists(this._pluginsConfigurationFilename))
-                throw new FileNotFoundException(string.Format("没有找到对应的配置文件 {0}", this._pluginsConfigurationFilename));
+            if (!File.Exists(this._pluginConfigFilename))
+                throw new FileNotFoundException(string.Format("没有找到对应的配置文件 {0}", this._pluginConfigFilename));
 
-            this._moduleRuntimeLibrary = new PluginFramework();
-            this._moduleRuntimeLibrary.OnModuleInstalled += ModuleRuntime_OnModuleInstalled;
-            this._moduleRuntimeLibrary.Initialize();
+            this._pluginFramework = new PluginFramework();
+            this._pluginFramework.OnModuleInstalled += ModuleRuntime_OnModuleInstalled;
 
             PluginsDocument pDoc = new PluginsDocument();
-            pDoc.Load(this._pluginsConfigurationFilename);
+            pDoc.Load(this._pluginConfigFilename);
 
             List<Plugin> bundles = pDoc.ChildNodes.ToBundleList().OrderBy(t => t.Level).ToList();
 
@@ -43,18 +43,20 @@ namespace Misfit
             {
                 foreach (Plugin bundle in bundles)
                 {
-                    this._moduleRuntimeLibrary.InstallPlugin(bundle);
+                    this._pluginFramework.InstallPlugin(bundle);
                 }
             }
+
+            this._pluginFramework.Start();
         }
 
 
         public void Execute()
         {
- 
+
         }
 
-        private void ModuleRuntime_OnModuleInstalled(PluginFramework arg1, IModule arg2)
+        private void ModuleRuntime_OnModuleInstalled(PluginFramework pluginFramework, IPlugin plugin)
         {
 
         }

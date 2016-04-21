@@ -39,29 +39,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommandLineParser\Command.cs" />
-    <Compile Include="CommandLineParser\CommandAttribute.cs" />
-    <Compile Include="CommandLineParser\CommandLineException.cs" />
-    <Compile Include="CommandLineParser\CommandLineHelper.cs" />
-    <Compile Include="CommandLineParser\CommandLineParser.cs" />
-    <Compile Include="CommandLineParser\ICommand.cs" />
-    <Compile Include="CommandLineParser\ICommandInfo.cs" />
-    <Compile Include="CommandLineParser\OptionAttribute.cs" />
-    <Compile Include="Commands\ClearCommand.cs" />
-    <Compile Include="Commands\ExitCommand.cs" />
-    <Compile Include="Commands\HelpCommand.cs" />
-    <Compile Include="Commands\InstallCommand.cs" />
-    <Compile Include="Commands\LaunchCommand.cs" />
-    <Compile Include="Commands\ListCommand.cs" />
-    <Compile Include="Commands\ShowExCommand.cs" />
-    <Compile Include="Commands\StartCommand.cs" />
-    <Compile Include="Commands\StopCommand.cs" />
     <Compile Include="ConsoleAddIn.cs" />
     <Compile Include="ConsoleService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utility\ReflectionUtil.cs" />
-    <Compile Include="Views\HelpConsoleView.cs" />
-    <Compile Include="Views\ListConsoleView.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Misfit.AddIn\Misfit.AddIn.csproj">

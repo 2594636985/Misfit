@@ -1,5 +1,10 @@
-D:\Job\Dev\workplace\Misfit\Misfit\obj\Debug\Misfit.csprojResolveAssemblyReference.cache
 D:\Job\Dev\workplace\Misfit\Misfit\bin\Debug\Misfit.dll
 D:\Job\Dev\workplace\Misfit\Misfit\bin\Debug\Misfit.pdb
+D:\Job\Dev\workplace\Misfit\Misfit\bin\Debug\Autofac.dll
+D:\Job\Dev\workplace\Misfit\Misfit\bin\Debug\DynamicProxy.dll
+D:\Job\Dev\workplace\Misfit\Misfit\bin\Debug\Misfit.AddIn.dll
+D:\Job\Dev\workplace\Misfit\Misfit\bin\Debug\Misfit.AddIn.pdb
+D:\Job\Dev\workplace\Misfit\Misfit\bin\Debug\Autofac.xml
+D:\Job\Dev\workplace\Misfit\Misfit\obj\Debug\Misfit.csprojResolveAssemblyReference.cache
 D:\Job\Dev\workplace\Misfit\Misfit\obj\Debug\Misfit.dll
 D:\Job\Dev\workplace\Misfit\Misfit\obj\Debug\Misfit.pdb

@@ -19,9 +19,9 @@ namespace Misfit.AddIn
 
         void Start();
 
-        public void StopPlugin(string symbolicName);
+        void StopPlugin(string symbolicName);
 
-        void UninstallBundle(string symbolicName);
+        void UninstallPlugin(string symbolicName);
 
         AppDomain CreateDomain(IPluginContext context);
 

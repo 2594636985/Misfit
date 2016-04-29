@@ -10,12 +10,12 @@ namespace Misfit.Core
     /// <summary>
     /// 每一次Bunlde的上下文
     /// </summary>
-    public class PluginContext : IPluginContext
+    public class PluginContext : MarshalByRefObject, IPluginContext
     {
         public IPluginFramework PluginFramework { private set; get; }
         public IPlugin CurrentPlugin { private set; get; }
 
-        internal PluginContext(Plugin plugin)
+        public PluginContext(IPlugin plugin)
         {
             this.CurrentPlugin = plugin;
             this.PluginFramework = plugin.PluginFramework;
@@ -47,5 +47,7 @@ namespace Misfit.Core
         {
             throw new NotImplementedException();
         }
+
+
     }
 }

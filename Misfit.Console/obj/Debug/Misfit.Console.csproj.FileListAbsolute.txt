@@ -1,8 +1,9 @@
 D:\Job\Dev\workplace\Misfit\Misfit.Console\bin\Debug\Misfit.Console.dll
 D:\Job\Dev\workplace\Misfit\Misfit.Console\bin\Debug\Misfit.Console.pdb
-D:\Job\Dev\workplace\Misfit\Misfit.Console\obj\Debug\Misfit.Console.dll
-D:\Job\Dev\workplace\Misfit\Misfit.Console\obj\Debug\Misfit.Console.pdb
 D:\Job\Dev\workplace\Misfit\Misfit.Console\AddIns\Misfit.Console.dll
 D:\Job\Dev\workplace\Misfit\Misfit.Console\AddIns\Misfit.Console.pdb
-D:\Job\Dev\workplace\Misfit\Bin\AddIns\Misfit.Console.dll
-D:\Job\Dev\workplace\Misfit\Bin\AddIns\Misfit.Console.pdb
+D:\Job\Dev\workplace\Misfit\Bin\Misfit.Console.dll
+D:\Job\Dev\workplace\Misfit\Bin\Misfit.Console.pdb
+D:\Job\Dev\workplace\Misfit\Misfit.Console\obj\Debug\Misfit.Console.csprojResolveAssemblyReference.cache
+D:\Job\Dev\workplace\Misfit\Misfit.Console\obj\Debug\Misfit.Console.pdb
+D:\Job\Dev\workplace\Misfit\Misfit.Console\obj\Debug\Misfit.Console.dll

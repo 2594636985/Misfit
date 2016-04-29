@@ -22,6 +22,21 @@ namespace Misfit.Xml
             XmlElement rootXmlElement = this._xmlDocument.DocumentElement;
             if (rootXmlElement != null && rootXmlElement.HasChildNodes)
             {
+                XmlAttributeCollection xmlAttributeCollection = rootXmlElement.Attributes;
+                if (xmlAttributeCollection != null && xmlAttributeCollection.Count > 0)
+                {
+                    foreach (XmlAttribute xmlAttribute in xmlAttributeCollection)
+                    {
+                        if (string.Compare(xmlAttribute.Name, "Debug", true) == 0)
+                        {
+                            if (!string.IsNullOrWhiteSpace(xmlAttribute.Value))
+                                this._childNodes.Debug = Convert.ToBoolean(xmlAttribute.Value);
+                            else
+                                this._childNodes.Debug = false;
+                        }
+                    }
+                }
+
                 foreach (XmlNode xmlNode in rootXmlElement)
                 {
                     if (string.Compare(xmlNode.Name, "plugin", true) != 0)

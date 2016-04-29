@@ -8,7 +8,7 @@ namespace Misfit.AddIn
     /// <summary>
     /// 模块启动者
     /// </summary>
-    public interface IPluginActivator
+    public interface IPluginActivator 
     {
         void Start(IPluginContext context);
 

@@ -16,7 +16,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>..\Bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -30,11 +30,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Autofac">
-      <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
+    <Reference Include="Autofac, Version=3.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
     </Reference>
-    <Reference Include="DynamicProxy">
-      <HintPath>..\ReferanceLib\DynamicProxy\DynamicProxy.dll</HintPath>
+    <Reference Include="DynamicProxy, Version=1.0.0.0, Culture=neutral">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Libs\DynamicProxy\DynamicProxy.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -46,6 +48,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Constants.cs" />
+    <Compile Include="Core\PluginRuntime.cs" />
+    <Compile Include="Core\PluginRuntimeCollection.cs" />
     <Compile Include="Reflection\AttributeInfo.cs" />
     <Compile Include="Core\Plugin.cs" />
     <Compile Include="Core\PluginContext.cs" />
@@ -57,8 +61,8 @@
     <Compile Include="Xml\TracesProvider.cs" />
     <Compile Include="Reflection\ReflectionUtil.cs" />
     <Compile Include="Xml\PluginNode.cs" />
-    <Compile Include="Tracker\PluginNodeExtension.cs" />
-    <Compile Include="PluginNodeList.cs" />
+    <Compile Include="Xml\PluginNodeExtension.cs" />
+    <Compile Include="Xml\PluginNodeList.cs" />
     <Compile Include="Xml\PluginsDocument.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -67,9 +71,13 @@
       <Project>{a022340c-8fa1-4e70-a197-fc191ac63ae9}</Project>
       <Name>Misfit.AddIn</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Misfit.Console\Misfit.Console.csproj">
+      <Project>{a8659d3d-bc6f-4795-86db-e306c9c43f5c}</Project>
+      <Name>Misfit.Console</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <None Include="PluginApp.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

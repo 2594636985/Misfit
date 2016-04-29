@@ -39,8 +39,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddInAttribute.cs" />
-    <Compile Include="AddInBase.cs" />
+    <Compile Include="AddInActivator.cs" />
+    <Compile Include="Plugin\PluginAction.cs" />
     <Compile Include="Plugin\PluginActivatorAttribute.cs" />
     <Compile Include="Plugin\PluginEventArgs.cs" />
     <Compile Include="Plugin\PluginEventHandler.cs" />
@@ -49,13 +49,12 @@
     <Compile Include="FrameworkEventArgs.cs" />
     <Compile Include="FrameworkEventHandler.cs" />
     <Compile Include="FrameworkState.cs" />
-    <Compile Include="IAddIn.cs" />
     <Compile Include="Plugin\IPlugin.cs" />
     <Compile Include="Plugin\IPluginFramework.cs" />
     <Compile Include="Plugin\IPluginActivator.cs" />
     <Compile Include="Plugin\IPluginContext.cs" />
     <Compile Include="InvalidSyntaxException.cs" />
-    <Compile Include="Plugin\PluginsCollection.cs" />
+    <Compile Include="Plugin\PluginCollection.cs" />
     <Compile Include="Plugin\PluginState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

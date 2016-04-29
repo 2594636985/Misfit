@@ -1,4 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<Plugins>
-  <Plugin  Name ="LoggingConsole" Level="1" SymbolicName="Misfit.Console.Impl" Version="1.0.0.0" Description="日志控制台" />
-</Plugins>

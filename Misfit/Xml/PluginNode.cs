@@ -15,15 +15,13 @@ namespace Misfit.Xml
 
         public string Name { set; get; }
 
-        public int Level { set; get; }
-
-        public Version Version { set; get; }
+        public string Level { set; get; }
 
         public string Description { set; get; }
 
-        public string SymbolicName { set; get; }
+        public string Location { set; get; }
 
-        public string LifeScope { set; get; }
+        public string Action { set; get; }
 
         public static PluginNode Parse(XmlNode xmlNode)
         {
@@ -36,26 +34,21 @@ namespace Misfit.Xml
                     {
                         pluginNode.Name = xmlAttribute.Value;
                     }
-                    else if (string.Compare(xmlAttribute.Name, "SymbolicName", true) == 0)
+                    else if (string.Compare(xmlAttribute.Name, "Location", true) == 0)
                     {
-                        pluginNode.SymbolicName = xmlAttribute.Value;
+                        pluginNode.Location = xmlAttribute.Value;
                     }
                     else if (string.Compare(xmlAttribute.Name, "Description", true) == 0)
                     {
                         pluginNode.Description = xmlAttribute.Value;
                     }
-                    else if (string.Compare(xmlAttribute.Name, "LifeScope", true) == 0)
+                    else if (string.Compare(xmlAttribute.Name, "Action", true) == 0)
                     {
-                        pluginNode.LifeScope = xmlAttribute.Value;
-                    }
-                    else if (string.Compare(xmlAttribute.Name, "Version", true) == 0)
-                    {
-                        if (!string.IsNullOrWhiteSpace(xmlAttribute.Value))
-                            pluginNode.Version = new Version(xmlAttribute.Value);
+                        pluginNode.Action = xmlAttribute.Value;
                     }
                     else if (string.Compare(xmlAttribute.Name, "Level", true) == 0)
                     {
-                        pluginNode.Level = Convert.ToInt32(xmlAttribute.Value);
+                        pluginNode.Level = xmlAttribute.Value;
                     }
                 }
 

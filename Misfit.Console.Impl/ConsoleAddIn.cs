@@ -1,11 +1,10 @@
 ﻿using System;
 using Misfit.AddIn;
+using System.Threading;
 
 namespace Misfit.Console
 {
-    [Serializable]
-    [AddIn("ConsoleAddIn")]
-    public class ConsoleAddIn : AddInBase
+    public class ConsoleAddIn : Activator
     {
         static IPluginContext context = null;
 
@@ -21,10 +20,7 @@ namespace Misfit.Console
         public override void Start(IPluginContext context)
         {
             ConsoleAddIn.context = context;
-            //shell = context.GetService<IShell>();
-
-            console = new ConsoleService();
-            console.Start();
+            this.LaunchDesktop();
         }
 
         public override void Stop(IPluginContext context)
@@ -34,5 +30,23 @@ namespace Misfit.Console
                 console.Stop();
             }
         }
+        private void LaunchDesktop()
+        {
+            ThreadStart start = new ThreadStart(LaunchDesktopRun);
+            Thread uiThread = new Thread(start);
+            uiThread.SetApartmentState(ApartmentState.STA);
+            uiThread.IsBackground = false;
+            uiThread.Start();
+        }
+
+        private void LaunchDesktopRun()
+        {
+
+            //shell = context.GetService<IShell>();
+
+            console = new ConsoleService();
+            console.Start();
+        }
+
     }
 }

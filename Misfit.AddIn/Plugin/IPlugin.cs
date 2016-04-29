@@ -20,34 +20,38 @@ namespace Misfit.AddIn
         int ModuleID { set; get; }
 
         /// <summary>
-        /// 模块名
+        /// 插件内核
+        /// </summary>
+        IPluginFramework PluginFramework { set; get; }
+
+        /// <summary>
+        /// 插件名称
         /// </summary>
         string Name { set; get; }
 
         /// <summary>
-        /// 模块等级
+        /// 等级
         /// </summary>
         int Level { set; get; }
-
         /// <summary>
-        /// 模块描述
+        /// 
         /// </summary>
         string Description { set; get; }
 
-        Version Version { set; get; }
 
-        string SymbolicName { set; get; }
+        /// <summary>
+        /// 内部程序要用的名字
+        /// </summary>
+        string Location { set; get; }
 
-        PluginState PluginState { set; get; }
+        /// <summary>
+        /// 行为
+        /// </summary>
+        PluginAction Action { set; get; }
 
-        Assembly Assembly { get; }
-
-        IPluginContext BundleContext { get; }
-
-        IPluginActivator[] Acitvators { get; }
-
-        void Start();
-
-        void Stop();
+        /// <summary>
+        /// 是否为系统插件
+        /// </summary>
+        bool IsSysPlugin { set; get; }
     }
 }

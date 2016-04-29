@@ -11,5 +11,9 @@ namespace Misfit
     public class Constants
     {
         public const string AddInsFileRoot = "AddIns";
+
+        public const string PluginStartClsName = "PluginActivator";
+
+        public const string LogPluginAssemblyName = "Misfit.Console";
     }
 }

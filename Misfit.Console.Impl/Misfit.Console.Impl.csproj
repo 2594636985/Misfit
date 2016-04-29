@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="ConsoleAddIn.cs" />
     <Compile Include="ConsoleService.cs" />
+    <Compile Include="PluginActivator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

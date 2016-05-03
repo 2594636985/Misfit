@@ -7,19 +7,19 @@ using System.Text;
 namespace Misfit.AddIn
 {
     [Serializable]
-    public abstract class AddInActivator : MarshalByRefObject, IPluginActivator
+    public abstract class AddInActivator : IPluginActivator
     {
         /// <summary>
         /// 开始
         /// </summary>
         /// <param name="context"></param>
-        public abstract void Start(IPluginContext context);
+        public abstract void Start(string[] args);
 
         /// <summary>
         /// 结束
         /// </summary>
         /// <param name="context"></param>
-        public abstract void Stop(IPluginContext context);
+        public abstract void Stop(string[] args);
 
     }
 }

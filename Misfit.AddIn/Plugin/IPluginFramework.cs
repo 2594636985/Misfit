@@ -41,7 +41,7 @@ namespace Misfit.AddIn
         /// </summary>
         /// <param name="context"></param>
         /// <returns></returns>
-        AppDomain CreateDomain(IPluginContext context);
+        AppDomain CreateDomain(string location);
 
         /// <summary>
         /// 移除应用域

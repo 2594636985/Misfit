@@ -74,6 +74,7 @@ namespace Misfit
 
             PluginRuntime pluginRuntime = new PluginRuntime(plugin);
             this._pluginRuntimeCollection.Enqueue(pluginRuntime);
+
             pluginRuntime.Start();
 
             if (this.OnPluginStarted != null)
@@ -97,7 +98,6 @@ namespace Misfit
                         this.StartPlugin(plugin.Name);
                     }
                 }
-
             }
         }
 
@@ -124,16 +124,15 @@ namespace Misfit
         /// </summary>
         /// <param name="context"></param>
         /// <returns></returns>
-        public AppDomain CreateDomain(IPluginContext context)
+        public AppDomain CreateDomain(string domainName)
         {
             AppDomainSetup info = new AppDomainSetup();
-            info.ApplicationName = context.CurrentPlugin.Location;
+            info.ApplicationName = domainName;
             info.ApplicationBase = AppDomain.CurrentDomain.BaseDirectory;
             info.DisallowApplicationBaseProbing = false;
             info.PrivateBinPath = Constants.AddInsFileRoot;
             info.ShadowCopyDirectories = Path.Combine(info.ApplicationBase, @"cache");
             info.ShadowCopyFiles = "true";
-            string domainName = "Plugin-" + context.CurrentPlugin.Location;
             Evidence baseEvidence = AppDomain.CurrentDomain.Evidence;
             Evidence evidence = new Evidence(baseEvidence);
             return AppDomain.CreateDomain(domainName, evidence, info);

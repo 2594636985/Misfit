@@ -34,6 +34,10 @@ namespace Misfit.Xml
                             else
                                 this._childNodes.Debug = false;
                         }
+                        else if (string.Compare(xmlAttribute.Name, "DebugName", true) == 0)
+                        {
+                            this._childNodes.DebugName = xmlAttribute.Value ;
+                        }
                     }
                 }
 

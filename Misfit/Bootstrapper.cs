@@ -1,5 +1,4 @@
 ﻿using Misfit.AddIn;
-using Misfit.Console;
 using Misfit.Core;
 using Misfit.Xml;
 using System;
@@ -8,12 +7,15 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.ComponentModel;
+using System.Security.Policy;
+using System.Threading;
 
 namespace Misfit
 {
     public class Bootstrapper
     {
-        private ConsoleService _logConsoleService;
+        private AppDomain _debugDomain;
         private string _pluginConfigFilename;
         private PluginFramework _pluginFramework;
         public event Action<Bootstrapper> OnExited;
@@ -43,10 +45,10 @@ namespace Misfit
             //开启调试状态
             if (pDoc.ChildNodes.Debug)
             {
-                if (this._logConsoleService == null)
-                    this._logConsoleService = new ConsoleService();
-
-                this._logConsoleService.Start();
+                string debugName = pDoc.ChildNodes.DebugName ?? "MisfitConsole";
+                this._debugDomain = this._pluginFramework.CreateDomain("Sys-" + debugName);
+                this._debugDomain.SetData("DebugName", debugName);
+                this._debugDomain.DoCallBack(DebugDomainDoCallBack);
             }
 
             List<Plugin> plugins = pDoc.ChildNodes.ToPluginList().OrderBy(t => t.Level).ToList();
@@ -59,6 +61,22 @@ namespace Misfit
                 }
             }
 
+        }
+
+        /// <summary>
+        /// 用于调试 日志窗体 的入口点
+        /// </summary>
+        private static void DebugDomainDoCallBack()
+        {
+            ThreadStart debugThreadStart = new ThreadStart(() =>
+            {
+                AppDomain domain = Thread.GetDomain();
+                string debugName = Convert.ToString(domain.GetData("DebugName"));
+                domain.ExecuteAssemblyByName(debugName);
+            });
+            Thread debugThread = new Thread(debugThreadStart);
+            debugThread.SetApartmentState(ApartmentState.STA);
+            debugThread.Start();
         }
 
         /// <summary>
@@ -75,7 +93,6 @@ namespace Misfit
         public void Execute()
         {
             this._pluginFramework.Start();
-
         }
 
     }

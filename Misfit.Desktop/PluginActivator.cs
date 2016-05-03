@@ -20,32 +20,16 @@ namespace Misfit.Desktop
             }
         }
 
-        public override void Start(IPluginContext context)
-        {
-            _currentContext = context;
-
-            LaunchDesktop();
-
-        }
-
-        public override void Stop(IPluginContext context)
-        {
-
-        }
-        private void LaunchDesktop()
-        {
-            ThreadStart start = new ThreadStart(LaunchDesktopRun);
-            Thread uiThread = new Thread(start);
-            uiThread.SetApartmentState(ApartmentState.STA);
-            uiThread.IsBackground = false;
-            uiThread.Start();
-        }
-
-        private void LaunchDesktopRun()
+        public override void Start(string[] args)
         {
             App app = new App();
             app.InitializeComponent();
             app.Run();
+        }
+
+        public override void Stop(string[] args)
+        {
+
         }
     }
 }

@@ -9,5 +9,7 @@ namespace Misfit.Xml
     public class PluginNodeList : List<PluginNode>
     {
         public bool Debug { set; get; }
+
+        public string DebugName { set; get; }
     }
 }

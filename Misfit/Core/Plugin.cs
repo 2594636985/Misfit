@@ -60,6 +60,10 @@ namespace Misfit.Core
         /// </summary>
         public bool IsSysPlugin { set; get; }
 
+        /// <summary>
+        /// À©Õ¹Ãû
+        /// </summary>
+        public string Extension { set; get; }
 
         public Plugin(string name, string location, string description, int level, string action, bool isSysPlugin)
         {
@@ -73,6 +77,10 @@ namespace Misfit.Core
                 this.Action = PluginAction.Immediately;
             else
                 this.Action = PluginAction.Delay;
+            
         }
+
+
+
     }
 }

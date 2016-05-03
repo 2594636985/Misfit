@@ -53,5 +53,7 @@ namespace Misfit.AddIn
         /// 是否为系统插件
         /// </summary>
         bool IsSysPlugin { set; get; }
+
+        string Extension { set; get; }
     }
 }

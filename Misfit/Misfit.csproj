@@ -71,10 +71,6 @@
       <Project>{a022340c-8fa1-4e70-a197-fc191ac63ae9}</Project>
       <Name>Misfit.AddIn</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Misfit.Console\Misfit.Console.csproj">
-      <Project>{a8659d3d-bc6f-4795-86db-e306c9c43f5c}</Project>
-      <Name>Misfit.Console</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="PluginApp.config" />

@@ -50,6 +50,13 @@
     <Compile Include="Constants.cs" />
     <Compile Include="Core\PluginRuntime.cs" />
     <Compile Include="Core\PluginRuntimeCollection.cs" />
+    <Compile Include="Pipe\ConnectionFactory.cs" />
+    <Compile Include="Pipe\NamedPipeConnection.cs" />
+    <Compile Include="Pipe\NamedPipeServer.cs" />
+    <Compile Include="Pipe\PipeServerFactory.cs" />
+    <Compile Include="Pipe\PipeStreamReader.cs" />
+    <Compile Include="Pipe\PipeStreamWrapper.cs" />
+    <Compile Include="Pipe\PipeStreamWriter.cs" />
     <Compile Include="Reflection\AttributeInfo.cs" />
     <Compile Include="Core\Plugin.cs" />
     <Compile Include="Core\PluginContext.cs" />
@@ -75,6 +82,7 @@
   <ItemGroup>
     <None Include="PluginApp.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

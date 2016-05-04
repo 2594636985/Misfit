@@ -29,7 +29,7 @@ namespace Misfit.Pipe
                 this._serverBackgroundWorker.RunWorkerAsync();
             }
         }
-
+          
         #region 私有方法
         private void ServerBackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
         {

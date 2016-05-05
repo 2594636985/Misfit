@@ -12,6 +12,7 @@ using System.Security.Policy;
 using System.Threading;
 using Misfit.Pipe;
 using Misfit.AddIn.Pipe;
+using Misfit.Cmd;
 
 namespace Misfit
 {
@@ -24,6 +25,8 @@ namespace Misfit
         private string _pluginConfigFilename;
         private PluginFramework _pluginFramework;
         private MisfitNamedPipeServer _namedPipeServer;
+        private CommandCollection _commandCollection = new CommandCollection();
+
         public event Action<Bootstrapper> OnExited;
 
         public Bootstrapper(string filename = "Plugins.xml")
@@ -41,7 +44,7 @@ namespace Misfit
         /// </summary>
         /// <param name="arg1"></param>
         /// <param name="arg2"></param>
-        private void NamedPipeServer_OnAcceptMessage(NamedPipeConnection connection, string arg2)
+        private void NamedPipeServer_OnAcceptMessage(NamedPipeConnection connection, string message)
         {
 
         }
@@ -89,6 +92,10 @@ namespace Misfit
         {
             if (!File.Exists(this._pluginConfigFilename))
                 throw new FileNotFoundException(string.Format("没有找到对应的配置文件 {0}", this._pluginConfigFilename));
+
+
+            this._commandCollection.Add(new ExitCommand(this._pluginFramework));
+            this._commandCollection.Add(new UnLoadPluginCommand(this._pluginFramework));
 
             this._pluginFramework = new PluginFramework();
             this._pluginFramework.OnPluginInstalled += PluginFramework_OnPluginInstalled;

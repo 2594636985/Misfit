@@ -42,6 +42,7 @@
     <Compile Include="AddInActivator.cs" />
     <Compile Include="Cmd\Commands.cs" />
     <Compile Include="Cmd\CommandPacket.cs" />
+    <Compile Include="Cmd\ICommand.cs" />
     <Compile Include="Pipe\NamedPipeClient.cs" />
     <Compile Include="Pipe\NamedPipeConnection.cs">
       <SubType>Code</SubType>

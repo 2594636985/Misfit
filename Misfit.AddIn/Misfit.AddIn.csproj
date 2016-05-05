@@ -43,7 +43,9 @@
     <Compile Include="Cmd\Commands.cs" />
     <Compile Include="Cmd\CommandPacket.cs" />
     <Compile Include="Pipe\NamedPipeClient.cs" />
-    <Compile Include="Pipe\NamedPipeConnection.cs" />
+    <Compile Include="Pipe\NamedPipeConnection.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Pipe\PipeClientFactory.cs" />
     <Compile Include="Plugin\PluginAction.cs" />
     <Compile Include="Plugin\PluginActivatorAttribute.cs" />

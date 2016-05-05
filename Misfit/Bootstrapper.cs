@@ -10,14 +10,23 @@ using System.Text;
 using System.ComponentModel;
 using System.Security.Policy;
 using System.Threading;
+using Misfit.Pipe;
+using Misfit.AddIn.Pipe;
+using Misfit.Cmd;
 
 namespace Misfit
 {
+    /// <summary>
+    /// 框架调用类
+    /// </summary>
     public class Bootstrapper
     {
         private AppDomain _debugDomain;
         private string _pluginConfigFilename;
         private PluginFramework _pluginFramework;
+        private MisfitNamedPipeServer _namedPipeServer;
+        private CommandCollection _commandCollection = new CommandCollection();
+
         public event Action<Bootstrapper> OnExited;
 
         public Bootstrapper(string filename = "Plugins.xml")
@@ -28,38 +37,15 @@ namespace Misfit
                 this._pluginConfigFilename = filename;
         }
 
+
+
         /// <summary>
-        /// 初始化
+        /// 接受到AppDomain来的信息
         /// </summary>
-        public void Initialize()
+        /// <param name="arg1"></param>
+        /// <param name="arg2"></param>
+        private void NamedPipeServer_OnAcceptMessage(NamedPipeConnection connection, string message)
         {
-            if (!File.Exists(this._pluginConfigFilename))
-                throw new FileNotFoundException(string.Format("没有找到对应的配置文件 {0}", this._pluginConfigFilename));
-
-            this._pluginFramework = new PluginFramework();
-            this._pluginFramework.OnPluginInstalled += PluginFramework_OnPluginInstalled;
-
-            PluginsDocument pDoc = new PluginsDocument();
-            pDoc.Load(this._pluginConfigFilename);
-
-            //开启调试状态
-            if (pDoc.ChildNodes.Debug)
-            {
-                string debugName = pDoc.ChildNodes.DebugName ?? "MisfitConsole";
-                this._debugDomain = this._pluginFramework.CreateDomain("Sys-" + debugName);
-                this._debugDomain.SetData("DebugName", debugName);
-                this._debugDomain.DoCallBack(DebugDomainDoCallBack);
-            }
-
-            List<Plugin> plugins = pDoc.ChildNodes.ToPluginList().OrderBy(t => t.Level).ToList();
-
-            if (plugins != null && plugins.Count > 0)
-            {
-                foreach (Plugin plugin in plugins)
-                {
-                    this._pluginFramework.InstallPlugin(plugin);
-                }
-            }
 
         }
 
@@ -90,9 +76,56 @@ namespace Misfit
         }
 
 
+        /// <summary>
+        /// 执行
+        /// </summary>
+
         public void Execute()
         {
             this._pluginFramework.Start();
+        }
+
+        /// <summary>
+        /// 初始化
+        /// </summary>
+        public void Initialize()
+        {
+            if (!File.Exists(this._pluginConfigFilename))
+                throw new FileNotFoundException(string.Format("没有找到对应的配置文件 {0}", this._pluginConfigFilename));
+
+
+            this._commandCollection.Add(new ExitCommand(this._pluginFramework));
+            this._commandCollection.Add(new UnLoadPluginCommand(this._pluginFramework));
+
+            this._pluginFramework = new PluginFramework();
+            this._pluginFramework.OnPluginInstalled += PluginFramework_OnPluginInstalled;
+
+            this._namedPipeServer = new MisfitNamedPipeServer();
+            this._namedPipeServer.OnAcceptMessage += NamedPipeServer_OnAcceptMessage;
+            this._namedPipeServer.Start();
+
+            PluginsDocument pDoc = new PluginsDocument();
+            pDoc.Load(this._pluginConfigFilename);
+
+            //开启调试状态
+            if (pDoc.ChildNodes.Debug)
+            {
+                string debugName = pDoc.ChildNodes.DebugName ?? "MisfitConsole";
+                this._debugDomain = this._pluginFramework.CreateDomain("Sys-" + debugName);
+                this._debugDomain.SetData("DebugName", debugName);
+                this._debugDomain.DoCallBack(DebugDomainDoCallBack);
+            }
+
+            List<Plugin> plugins = pDoc.ChildNodes.ToPluginList().OrderBy(t => t.Level).ToList();
+
+            if (plugins != null && plugins.Count > 0)
+            {
+                foreach (Plugin plugin in plugins)
+                {
+                    this._pluginFramework.InstallPlugin(plugin);
+                }
+            }
+
         }
 
     }

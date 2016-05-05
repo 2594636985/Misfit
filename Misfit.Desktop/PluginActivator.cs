@@ -1,4 +1,6 @@
 ﻿using Misfit.AddIn;
+using Misfit.AddIn.Cmd;
+using Misfit.AddIn.Pipe;
 using Misfit.Desktop.Views;
 using System;
 using System.Collections.Generic;
@@ -22,6 +24,7 @@ namespace Misfit.Desktop
 
         public override void Start(string[] args)
         {
+            Commands.Execute();
             App app = new App();
             app.InitializeComponent();
             app.Run();

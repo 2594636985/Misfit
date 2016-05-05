@@ -19,6 +19,10 @@ namespace Misfit.WPF
             bootstrapper.Execute();
         }
 
+        /// <summary>
+        /// 退出应用程序
+        /// </summary>
+        /// <param name="obj"></param>
         static void MisfitBootstrapper_OnExited(Bootstrapper obj)
         {
             throw new NotImplementedException();

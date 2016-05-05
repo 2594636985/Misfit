@@ -14,8 +14,6 @@ namespace Misfit.Core
 {
     public class PluginRuntime
     {
-        private BackgroundWorker _pipeBackgroundWorker;
-        private readonly List<NamedPipeConnection> _connections = new List<NamedPipeConnection>();
         private int _nextPipeId;
         private volatile bool _keepRunning = true;
         /// <summary>
@@ -52,95 +50,15 @@ namespace Misfit.Core
 
         #region 私有方法
 
-        /// <summary>
-        /// 运行通信管道上的服务
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void PipeBackgroundWorker_DoWork(object sender, DoWorkEventArgs e)
-        {
-            while (this._keepRunning)
-            {
-                NamedPipeServerStream acceptPipe = null;
-                NamedPipeServerStream dataPipe = null;
-                NamedPipeConnection connection = null;
-
-                var connectionPipeName = string.Format("{0}_{1}", this.Plugin.Name, ++_nextPipeId);
-
-                try
-                {
-                    acceptPipe = PipeServerFactory.CreateAndConnectPipe(this.Plugin.Name);
-                    var acceptWrapper = new PipeStreamWrapper(acceptPipe);
-                    acceptWrapper.WriteLine(connectionPipeName);
-                    acceptWrapper.WaitForPipeDrain();
-                    acceptWrapper.Close();
-
-                    dataPipe = PipeServerFactory.CreatePipe(connectionPipeName);
-                    dataPipe.WaitForConnection();
-
-                    connection = ConnectionFactory.CreateConnection(dataPipe);
-                    connection.OnAcceptMessage += Connection_OnAcceptMessage;
-                    connection.Open();
-
-                    lock (_connections)
-                    {
-                        _connections.Add(connection);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    Console.Error.WriteLine("Named pipe is broken or disconnected: {0}", ex);
-
-                    if (acceptPipe != null)
-                    {
-                        acceptPipe.Close();
-                        acceptPipe.Dispose();
-                    }
-                    if (dataPipe != null)
-                    {
-                        dataPipe.Close();
-                        dataPipe.Dispose();
-                    }
-                }
-            }
-        }
-
-        private void Connection_OnAcceptMessage(string message)
-        {
-
-        }
-
-        /// <summary>
-        /// 读取副APPDOMAIN来的信息
-        /// </summary>
-        /// <param name="obj"></param>
-        private void NamedPipeConnection_OnReadLine(string message)
-        {
-
-        }
-
-
-        /// <summary>
-        /// 通信管道上的异常
-        /// </summary>
-        /// <param name="arg1"></param>
-        /// <param name="arg2"></param>
-
-        private void NamedPipeConnection_OnException(Exception e)
-        {
-            if (this.OnUnhandledException != null)
-                this.OnUnhandledException(this, e);
-        }
 
         /// <summary>
         /// 未处理的异常
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Domain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
+        private static void Domain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
-            if (this.OnUnhandledException != null)
-                this.OnUnhandledException(this, e.ExceptionObject as Exception);
+          
         }
 
         private static void Domain_DomainUnload(object sender, EventArgs e)
@@ -183,11 +101,6 @@ namespace Misfit.Core
         {
             try
             {
-                this._pipeBackgroundWorker = new BackgroundWorker();
-                this._pipeBackgroundWorker.WorkerSupportsCancellation = true;
-                this._pipeBackgroundWorker.DoWork += PipeBackgroundWorker_DoWork;
-                this._pipeBackgroundWorker.RunWorkerAsync();
-
                 this.Domain = this.Plugin.PluginFramework.CreateDomain("Plugin-" + this.Plugin.Location);
                 this.Domain.SetData("PluginLoaction", this.Plugin.Location);
                 this.Domain.DomainUnload += Domain_DomainUnload;

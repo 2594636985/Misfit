@@ -40,6 +40,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddInActivator.cs" />
+    <Compile Include="Cmd\Commands.cs" />
+    <Compile Include="Cmd\CommandPacket.cs" />
+    <Compile Include="Pipe\NamedPipeClient.cs" />
+    <Compile Include="Pipe\NamedPipeConnection.cs" />
+    <Compile Include="Pipe\PipeClientFactory.cs" />
     <Compile Include="Plugin\PluginAction.cs" />
     <Compile Include="Plugin\PluginActivatorAttribute.cs" />
     <Compile Include="Plugin\PluginEventArgs.cs" />

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Misfit.Pipe
 {
-    static class PipeServerFactory
+    public static class MisfitPipeServerFactory
     {
         public static NamedPipeServerStream CreateAndConnectPipe(string pipeName)
         {

@@ -12,5 +12,12 @@ namespace Misfit.Cmd
         {
             this.Add(command.CommandName, command);
         }
+
+        public ICommand FindCommand(string commandName)
+        {
+            if (this.ContainsKey(commandName))
+                return this[commandName];
+            return null;
+        }
     }
 }

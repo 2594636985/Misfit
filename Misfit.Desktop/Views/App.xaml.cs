@@ -12,5 +12,6 @@ namespace Misfit.Desktop.Views
     /// </summary>
     public partial class App : Application
     {
+
     }
 }

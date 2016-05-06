@@ -1,4 +1,5 @@
-﻿using Misfit.Core;
+﻿using Misfit.AddIn;
+using Misfit.Core;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,8 +14,16 @@ namespace Misfit.Xml
             if (pluginNode == null)
                 throw new ArgumentNullException("空对象是不能被转化的");
 
-            return new Plugin(pluginNode.Name, pluginNode.Location,
-                pluginNode.Description, Convert.ToInt32(pluginNode.Level), pluginNode.Action, false);
+            return new Plugin()
+            {
+                Action = pluginNode.Action == "Immediately" ? PluginAction.Immediately : PluginAction.Delay,
+                Activator = pluginNode.Activator,
+                Description = pluginNode.Description,
+                IsSysPlugin = false,
+                Level = Convert.ToInt32(pluginNode.Level),
+                Location = pluginNode.Location,
+                Name = pluginNode.Name,
+            };
         }
 
 

@@ -17,7 +17,7 @@ namespace Misfit.AddIn
         /// <summary>
         /// 模块ID
         /// </summary>
-        int ModuleID { set; get; }
+        int PluginID { set; get; }
 
         /// <summary>
         /// 插件内核
@@ -43,6 +43,12 @@ namespace Misfit.AddIn
         /// 内部程序要用的名字
         /// </summary>
         string Location { set; get; }
+
+
+        /// <summary>
+        /// 激活类
+        /// </summary>
+        string Activator { set; get; }
 
         /// <summary>
         /// 行为

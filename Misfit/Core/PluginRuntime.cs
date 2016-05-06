@@ -34,7 +34,7 @@ namespace Misfit.Core
         /// <summary>
         /// 插件调动者类
         /// </summary>
-        public IPluginActivator Acitvator { private set; get; }
+        public IPluginActivator PluginAcitvator { private set; get; }
 
         /// <summary>
         /// 关闭事件
@@ -58,7 +58,7 @@ namespace Misfit.Core
         /// <param name="e"></param>
         private static void Domain_UnhandledException(object sender, UnhandledExceptionEventArgs e)
         {
-          
+
         }
 
         private static void Domain_DomainUnload(object sender, EventArgs e)
@@ -66,7 +66,7 @@ namespace Misfit.Core
 
         }
 
-        private static void DomainDoCallBack()
+        private static void DomainStartDoCallBack()
         {
             ThreadStart start = new ThreadStart(() =>
             {
@@ -90,6 +90,53 @@ namespace Misfit.Core
             uiThread.IsBackground = false;
             uiThread.Start();
         }
+
+        /// <summary>
+        /// 如果加载失败之后，去搜索
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
+        /// <returns></returns>
+        private static Assembly AssemblyResolve(object sender, ResolveEventArgs args)
+        {
+            AssemblyName name = new AssemblyName(args.Name);
+            string assemblyFile = SearchAssembly(name.Name);
+            return Assembly.LoadFrom(assemblyFile);
+        }
+
+        /// <summary>
+        /// 搜索对应的程序集
+        /// </summary>
+        /// <param name="assemblyName"></param>
+        /// <returns></returns>
+        private static string SearchAssembly(string assemblyName)
+        {
+            string appRoot = AppDomain.CurrentDomain.BaseDirectory;
+            string addInsRoot = Path.Combine(appRoot, Constants.AddInsFileRoot);
+
+            {
+                string[] files = Directory.GetFiles(appRoot,
+                    assemblyName + ".dll", SearchOption.TopDirectoryOnly);
+
+                if (files != null && files.Length > 0)
+                {
+                    return files[0];
+                }
+            }
+
+            {
+                string[] files = Directory.GetFiles(addInsRoot,
+                    assemblyName + ".dll", SearchOption.TopDirectoryOnly);
+
+                if (files != null && files.Length > 0)
+                {
+                    return files[0];
+                }
+            }
+
+            return string.Empty;
+        }
+
         #endregion
 
         #region 公有方法
@@ -103,9 +150,14 @@ namespace Misfit.Core
             {
                 this.Domain = this.Plugin.PluginFramework.CreateDomain("Plugin-" + this.Plugin.Location);
                 this.Domain.SetData("PluginLoaction", this.Plugin.Location);
+                this.Domain.SetData("PluginActivator", this.Plugin.Activator);
                 this.Domain.DomainUnload += Domain_DomainUnload;
                 this.Domain.UnhandledException += Domain_UnhandledException;
-                this.Domain.DoCallBack(DomainDoCallBack);
+                AppDomain.CurrentDomain.AssemblyResolve += new ResolveEventHandler(AssemblyResolve);
+                this.PluginAcitvator = (IPluginActivator)this.Domain.CreateInstanceAndUnwrap(this.Plugin.Location, this.Plugin.Activator);
+
+                if (this.PluginAcitvator != null)
+                    this.PluginAcitvator.Start(null);
             }
             catch (Exception ex)
             {
@@ -122,8 +174,8 @@ namespace Misfit.Core
             {
                 if (this.Domain != null)
                 {
-                    if (this.Acitvator != null)
-                        this.Acitvator.Stop(null);
+                    if (this.PluginAcitvator != null)
+                        this.PluginAcitvator.Stop(null);
 
                     AppDomain.Unload(this.Domain);
                 }

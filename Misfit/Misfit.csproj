@@ -52,8 +52,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cmd\AbstractCommand.cs" />
+    <Compile Include="Cmd\ActivatePluginCommand.cs" />
     <Compile Include="Cmd\CommandCollection.cs" />
     <Compile Include="Cmd\ExitCommand.cs" />
+    <Compile Include="Cmd\TraceCommand.cs" />
     <Compile Include="Cmd\UnLoadPluginCommand.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Core\PluginRuntime.cs" />
@@ -67,6 +69,7 @@
     <Compile Include="Core\Plugin.cs" />
     <Compile Include="Core\PluginContext.cs" />
     <Compile Include="Reflection\TypeInfo.cs" />
+    <Compile Include="TaskCollection.cs" />
     <Compile Include="Tracker\DefaultTrace.cs" />
     <Compile Include="Core\PluginFramework.cs" />
     <Compile Include="Bootstrapper.cs" />

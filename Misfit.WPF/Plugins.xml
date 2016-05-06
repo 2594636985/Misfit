@@ -1,4 +1,4 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Plugins  Debug="true" DebugName="MisfitConsole">
-  <Plugin  Name ="Desktop1" Level="1" Location="Misfit.Desktop"  Description="主应用程序" Action="Immediately"  />
+  <Plugin  Name ="Desktop1" Level="1" Location="Misfit.Desktop" Activator="Misfit.Desktop.PluginActivator"  Description="主应用程序" Action="Immediately"  />
 </Plugins>

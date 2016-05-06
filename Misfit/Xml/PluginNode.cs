@@ -21,6 +21,8 @@ namespace Misfit.Xml
 
         public string Location { set; get; }
 
+        public string Activator { set; get; }
+
         public string Action { set; get; }
 
         public static PluginNode Parse(XmlNode xmlNode)
@@ -37,6 +39,10 @@ namespace Misfit.Xml
                     else if (string.Compare(xmlAttribute.Name, "Location", true) == 0)
                     {
                         pluginNode.Location = xmlAttribute.Value;
+                    }
+                    else if (string.Compare(xmlAttribute.Name, "Activator", true) == 0)
+                    {
+                        pluginNode.Activator = xmlAttribute.Value;
                     }
                     else if (string.Compare(xmlAttribute.Name, "Description", true) == 0)
                     {

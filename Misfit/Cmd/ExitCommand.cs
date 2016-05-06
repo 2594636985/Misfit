@@ -21,8 +21,9 @@ namespace Misfit.Cmd
             }
         }
 
-        public override object Execute()
+        public override object Execute(Dictionary<string, string> parameters)
         {
+            this.PluginFramework.Shutdown();
             return null;
         }
     }

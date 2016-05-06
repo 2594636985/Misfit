@@ -9,6 +9,6 @@ namespace Misfit.AddIn.Cmd
     {
         string CommandName { get; }
 
-        object Execute();
+        object Execute(Dictionary<string, string> parameters);
     }
 }

@@ -13,25 +13,69 @@ namespace Misfit.Desktop
     [Serializable]
     public class PluginActivator : AddInActivator
     {
-        private static IPluginContext _currentContext = null;
-        public static IPluginContext CurrentContext
-        {
-            get
-            {
-                return _currentContext;
-            }
-        }
-
+        public Action ApplicationClose;
         public override void Start(string[] args)
         {
-            Commands.Execute();
-            App app = new App();
-            app.InitializeComponent();
-            app.Run();
+            ThreadStart start = new ThreadStart(() =>
+            {
+                //App app = new App();
+                //app.InitializeComponent();
+                //app.ShutdownMode = System.Windows.ShutdownMode.OnMainWindowClose;
+                //Thread.GetDomain().SetData("MainWindow", app.MainWindow);
+                //System.Windows.Threading.Dispatcher.Run();
+                //app.Run();
+
+                //Console.WriteLine("aaa");
+
+            });
+
+            Thread uiThread = new Thread(start);
+            uiThread.SetApartmentState(ApartmentState.STA);
+            uiThread.IsBackground = false;
+            uiThread.Start();
         }
 
         public override void Stop(string[] args)
         {
+            try
+            {
+                //MainWindow mainWindow = (MainWindow)Thread.GetDomain().GetData("MainWindow");
+                //mainWindow.Dispatcher.Invoke(new Action(() =>
+                //{
+                //    mainWindow.Close();
+                //}));
+                System.Windows.Application.Current.Dispatcher.Invoke(new Action(() =>
+                {
+                    System.Windows.Application.Current.Shutdown();
+                }), System.Windows.Threading.DispatcherPriority.ContextIdle);
+               
+
+            }
+            catch (Exception EX)
+            {
+
+            }
+
+            //ThreadStart start = new ThreadStart(() =>
+            //{
+            //    try
+            //    {
+            //        System.Windows.Application.Current.Dispatcher.Invoke(new Action(() =>
+            //        {
+            //            System.Windows.Application.Current.MainWindow.Close();
+            //        }));
+            //    }
+            //    catch (Exception EX)
+            //    {
+
+            //    }
+
+            //});
+
+            //Thread uiThread = new Thread(start);
+            //uiThread.SetApartmentState(ApartmentState.STA);
+            //uiThread.IsBackground = false;
+            //uiThread.Start();
 
         }
     }

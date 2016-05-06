@@ -31,6 +31,8 @@ namespace Misfit
 
         public event Action<IPluginFramework, IPlugin> OnUnhandledException;
 
+        public event Action<IPluginFramework> OnShutdown;
+
         /// <summary>
         /// 安装插件
         /// </summary>

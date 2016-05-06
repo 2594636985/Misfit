@@ -1,5 +1,4 @@
 ﻿using Misfit.AddIn;
-using Misfit.AddIn.Cmd;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,20 +6,23 @@ using System.Text;
 
 namespace Misfit.Cmd
 {
-    public class UnLoadPluginCommand : AbstractCommand
+    public class ActivatePluginCommand : AbstractCommand
     {
-        public UnLoadPluginCommand(IPluginFramework pluginFramework)
+        public ActivatePluginCommand(IPluginFramework pluginFramework)
             : base(pluginFramework)
         { }
 
         public override string CommandName
         {
-            get { return "UnLoadPlugin"; }
+            get
+            {
+                return "ActivatePlugin";
+            }
         }
 
         public override object Execute(Dictionary<string, string> parameters)
         {
-            throw new NotImplementedException();
+            return null;
         }
     }
 }

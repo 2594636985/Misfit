@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Misfit.AddIn.Cmd;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -26,7 +27,7 @@ namespace Misfit.Desktop.Views
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine("this is a test");
+            Commands.Execute(Commands.Exit);
         }
     }
 }

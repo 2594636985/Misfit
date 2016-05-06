@@ -12,3 +12,4 @@ D:\Job\Dev\workplace\Misfit\Misfit.Console\obj\Debug\MisfitConsole.exe
 D:\Job\Dev\workplace\Misfit\Misfit.Console\obj\Debug\MisfitConsole.pdb
 D:\Job\Dev\workplace\Misfit\Bin\MisfitConsole.exe
 D:\Job\Dev\workplace\Misfit\Bin\MisfitConsole.pdb
+D:\Job\Dev\workplace\Misfit\Misfit.Console\obj\Debug\Misfit.Console.csprojResolveAssemblyReference.cache

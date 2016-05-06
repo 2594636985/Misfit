@@ -15,8 +15,13 @@ namespace Misfit.Cmd
             this._pluginFramework = pluginFramework;
         }
 
+        protected IPluginFramework PluginFramework
+        {
+            get { return this._pluginFramework; }
+        }
+
         public abstract string CommandName { get; }
 
-        public abstract object Execute();
+        public abstract object Execute(Dictionary<string, string> parameters);
     }
 }

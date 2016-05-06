@@ -38,6 +38,24 @@ namespace Misfit.Pipe
 
         }
 
+        public void Close()
+        {
+            if (this._keepRunning)
+            {
+                this._keepRunning = false;
+
+                NamedPipeClientStream namedPipeConnectServer = PipeClientFactory.CreateClientPipe(PipeServerName);
+                NamedPipeConnection namedPipeConnectionServer = new NamedPipeConnection(namedPipeConnectServer);
+                string dataPipeName = namedPipeConnectionServer.ReadLine();
+                namedPipeConnectionServer.Close();
+
+                NamedPipeClientStream namedPipeClientStream = PipeClientFactory.CreateClientPipe(dataPipeName);
+                NamedPipeConnection connection = new NamedPipeConnection(namedPipeClientStream);
+                connection.WriteLine(" ");
+                connection.Close();
+            }
+        }
+
         #region 私有方法
 
         private void ServerBackgroundWorker_DoWork(object sender, DoWorkEventArgs e)

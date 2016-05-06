@@ -7,7 +7,7 @@ using System.Text;
 namespace Misfit.AddIn
 {
     [Serializable]
-    public abstract class AddInActivator : IPluginActivator
+    public abstract class AddInActivator : MarshalByRefObject, IPluginActivator
     {
         /// <summary>
         /// 开始

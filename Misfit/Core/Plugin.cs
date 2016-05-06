@@ -23,7 +23,7 @@ namespace Misfit.Core
         /// <summary>
         /// 模块ID
         /// </summary>
-        public int ModuleID { set; get; }
+        public int PluginID { set; get; }
 
         /// <summary>
         /// 插件内核
@@ -39,6 +39,7 @@ namespace Misfit.Core
         /// 等级
         /// </summary>
         public int Level { set; get; }
+
         /// <summary>
         /// 
         /// </summary>
@@ -49,6 +50,11 @@ namespace Misfit.Core
         /// 内部程序要用的名字
         /// </summary>
         public string Location { set; get; }
+
+        /// <summary>
+        /// 激活类
+        /// </summary>
+        public string Activator { set; get; }
 
         /// <summary>
         /// 行为
@@ -65,19 +71,25 @@ namespace Misfit.Core
         /// </summary>
         public string Extension { set; get; }
 
-        public Plugin(string name, string location, string description, int level, string action, bool isSysPlugin)
+        public Plugin()
+        {
+
+        }
+
+        public Plugin(string name, string location, string activator, string description, int level, string action, bool isSysPlugin)
         {
             this.Name = name;
             this.Description = description;
             this.Level = level;
             this.Location = location;
+            this.Activator = activator;
             this.IsSysPlugin = isSysPlugin;
 
             if (string.Compare(action, "Immediately", true) == 0)
                 this.Action = PluginAction.Immediately;
             else
                 this.Action = PluginAction.Delay;
-            
+
         }
 
 

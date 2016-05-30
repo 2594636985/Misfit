@@ -1,0 +1,18 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="clr-namespace:Misfit.Desktop.Toolkit.Windows.Controls"
+                    xmlns:shell="http://schemas.microsoft.com/winfx/2006/xaml/presentation/shell">
+    
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="/Misfit.Desktop.Toolkit;component/Themes/BBCodeBlock.xaml" />
+        <ResourceDictionary Source="/Misfit.Desktop.Toolkit;component/Themes/ModernButton.xaml" />
+        <ResourceDictionary Source="/Misfit.Desktop.Toolkit;component/Themes/ModernDialog.xaml" />
+        <ResourceDictionary Source="/Misfit.Desktop.Toolkit;component/Themes/ModernFrame.xaml" />
+        <ResourceDictionary Source="/Misfit.Desktop.Toolkit;component/Themes/ModernMenu.xaml" />
+        <ResourceDictionary Source="/Misfit.Desktop.Toolkit;component/Themes/ModernProgressRing.xaml" />
+        <ResourceDictionary Source="/Misfit.Desktop.Toolkit;component/Themes/ModernTab.xaml" />
+        <ResourceDictionary Source="/Misfit.Desktop.Toolkit;component/Themes/ModernWindow.xaml" />
+        <ResourceDictionary Source="/Misfit.Desktop.Toolkit;component/Themes/TransitioningContentControl.xaml" />
+    </ResourceDictionary.MergedDictionaries>
+ 
+</ResourceDictionary>

@@ -9,6 +9,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading;
 using System.ComponentModel;
+using System.Threading.Tasks;
 
 namespace Misfit.Core
 {
@@ -16,6 +17,9 @@ namespace Misfit.Core
     {
         private int _nextPipeId;
         private volatile bool _keepRunning = true;
+
+        public CancellationTokenSource CancellationTokenSource { private set; get; }
+        public Task Task { private set; get; }
         /// <summary>
         /// 所属于应用域
         /// </summary>
@@ -137,6 +141,20 @@ namespace Misfit.Core
             return string.Empty;
         }
 
+        private void DoStart(object state)
+        {
+            this.Domain = this.Plugin.PluginFramework.CreateDomain("Plugin-" + this.Plugin.Location);
+            this.Domain.DomainUnload += Domain_DomainUnload;
+            this.Domain.UnhandledException += Domain_UnhandledException;
+            //AppDomain.CurrentDomain.AssemblyResolve += new ResolveEventHandler(AssemblyResolve);
+            //this.PluginAcitvator = (IPluginActivator)this.Domain.CreateInstanceAndUnwrap(this.Plugin.Location, this.Plugin.Activator);
+
+            this.Domain.ExecuteAssemblyByName("PluginShell", this.Plugin.Location, this.Plugin.Activator);
+
+            //if (this.PluginAcitvator != null)
+            //    this.PluginAcitvator.Start(null);
+        }
+
         #endregion
 
         #region 公有方法
@@ -148,22 +166,17 @@ namespace Misfit.Core
         {
             try
             {
-                this.Domain = this.Plugin.PluginFramework.CreateDomain("Plugin-" + this.Plugin.Location);
-                this.Domain.SetData("PluginLoaction", this.Plugin.Location);
-                this.Domain.SetData("PluginActivator", this.Plugin.Activator);
-                this.Domain.DomainUnload += Domain_DomainUnload;
-                this.Domain.UnhandledException += Domain_UnhandledException;
-                AppDomain.CurrentDomain.AssemblyResolve += new ResolveEventHandler(AssemblyResolve);
-                this.PluginAcitvator = (IPluginActivator)this.Domain.CreateInstanceAndUnwrap(this.Plugin.Location, this.Plugin.Activator);
-
-                if (this.PluginAcitvator != null)
-                    this.PluginAcitvator.Start(null);
+                this.CancellationTokenSource = new CancellationTokenSource();
+                this.Task = new Task(this.DoStart, null, this.CancellationTokenSource.Token, TaskCreationOptions.LongRunning);
+                this.Task.Start();
             }
             catch (Exception ex)
             {
                 throw new PluginException(ex.Message, ex);
             }
         }
+
+
 
         /// <summary>
         /// 停止插件
@@ -174,10 +187,16 @@ namespace Misfit.Core
             {
                 if (this.Domain != null)
                 {
-                    if (this.PluginAcitvator != null)
-                        this.PluginAcitvator.Stop(null);
+                    //if (this.PluginAcitvator != null)
+                    //    this.PluginAcitvator.Stop(null);
 
                     AppDomain.Unload(this.Domain);
+
+                    if (this.CancellationTokenSource != null && !this.CancellationTokenSource.IsCancellationRequested)
+                    {
+                        this.CancellationTokenSource.Cancel();
+                        this.CancellationTokenSource.Dispose();
+                    }
                 }
             }
             catch (Exception ex)

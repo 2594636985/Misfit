@@ -7,23 +7,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using System.Windows.Threading;
 
 namespace Misfit.Desktop
 {
     [Serializable]
     public class PluginActivator : AddInActivator
     {
-        public Action ApplicationClose;
+        public Dispatcher _dispatcher;
         public override void Start(string[] args)
         {
             ThreadStart start = new ThreadStart(() =>
             {
-                //App app = new App();
-                //app.InitializeComponent();
+
+                App app = new App();
+                app.InitializeComponent();
+                this._dispatcher = app.Dispatcher;
                 //app.ShutdownMode = System.Windows.ShutdownMode.OnMainWindowClose;
                 //Thread.GetDomain().SetData("MainWindow", app.MainWindow);
                 //System.Windows.Threading.Dispatcher.Run();
-                //app.Run();
+                app.Run();
 
                 //Console.WriteLine("aaa");
 
@@ -44,11 +47,12 @@ namespace Misfit.Desktop
                 //{
                 //    mainWindow.Close();
                 //}));
-                System.Windows.Application.Current.Dispatcher.Invoke(new Action(() =>
-                {
-                    System.Windows.Application.Current.Shutdown();
-                }), System.Windows.Threading.DispatcherPriority.ContextIdle);
-               
+                //System.Windows.Application.Current.Dispatcher.Invoke(new Action(() =>
+                //{
+                //    System.Windows.Application.Current.Shutdown();
+                //}), System.Windows.Threading.DispatcherPriority.ContextIdle);
+                if (this._dispatcher != null)
+                    _dispatcher.BeginInvokeShutdown(DispatcherPriority.Normal);
 
             }
             catch (Exception EX)

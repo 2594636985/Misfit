@@ -16,7 +16,6 @@ namespace Misfit.Console
             App app = new App();
             app.InitializeComponent();
             app.Run();
-          
         }
     }
 }

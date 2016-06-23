@@ -50,8 +50,12 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AomiBootstrapper.cs" />
-    <Compile Include="AomiWindow.cs" />
+    <Compile Include="AomiBootstrapper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="AomiWindow.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

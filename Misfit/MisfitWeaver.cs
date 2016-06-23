@@ -25,7 +25,7 @@ namespace Misfit
         /// </summary>
         public static void Initailize()
         {
-            AppDomain.CurrentDomain.ResourceResolve += AssemblyResolve;
+            AppDomain.CurrentDomain.AssemblyResolve += AssemblyResolve;
 
             IO.MisfitConfiguration misiftConfiguration = new IO.MisfitConfiguration();
             misiftConfiguration.Initialize();
@@ -73,7 +73,7 @@ namespace Misfit
         /// <typeparam name="TInterface"></typeparam>
         /// <param name="assemblyCatalogName"></param>
         /// <returns></returns>
-        public static TInterface GetService<TInterface>(string assemblyCatalogName) where TInterface : AddIn.Serices.IMisfitService
+        public static TInterface GetService<TInterface>(string assemblyCatalogName)
         {
             return ModuleDomainRepository.GetService<TInterface>(assemblyCatalogName);
         }

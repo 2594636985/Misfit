@@ -13,11 +13,17 @@ namespace Misfit.Desktop.Shell
         {
             base.OnStartup(e);
 
-
-
+            MisfitWeaver.Initailize();
 
             MisfitBootstrapper defaultBootstrapper = new MisfitBootstrapper(this);
             defaultBootstrapper.Run();
+        }
+
+
+        protected override void OnExit(ExitEventArgs e)
+        {
+            base.OnExit(e);
+            MisfitWeaver.Dispose();
         }
     }
 }

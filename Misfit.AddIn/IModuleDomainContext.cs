@@ -12,7 +12,7 @@ namespace Misfit.AddIn
 
         object GetService(string assemblyCatalogName, string typeName);
 
-        TInterface GetService<TInterface>(string assemblyCatalogName) where TInterface : IMisfitService;
+        TInterface GetService<TInterface>(string assemblyCatalogName);
 
     }
 }

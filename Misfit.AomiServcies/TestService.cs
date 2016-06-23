@@ -16,9 +16,9 @@ namespace Misfit.AomiServcies
 
         }
 
-        public void Test()
+        public string Hello(string name)
         {
-
+            return "hello " + name;
         }
     }
 }

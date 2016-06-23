@@ -62,7 +62,10 @@ namespace Misfit.Core
         /// </summary>
         public void Install()
         {
+
+
             this.Domain = ModuleDomainFactory.CreateDomain("Module-" + this.ModuleDomainContext.AssemlbyLocation);
+
             this.Domain.SetData("Location", this.ModuleDomainContext.AssemlbyLocation);
             this.Domain.SetData("ModuleDomainContext", this.ModuleDomainContext);
 
@@ -142,6 +145,7 @@ namespace Misfit.Core
             }
 
         }
+
 
     }
 }

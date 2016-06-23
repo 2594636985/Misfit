@@ -40,7 +40,7 @@ namespace Misfit.Core
         /// <typeparam name="TInterface"></typeparam>
         /// <param name="assemblyCatalogName"></param>
         /// <returns></returns>
-        public TInterface GetService<TInterface>(string assemblyCatalogName) where TInterface : AddIn.Serices.IMisfitService
+        public TInterface GetService<TInterface>(string assemblyCatalogName) 
         {
             return this.ModuleDomainRepository.GetService<TInterface>(assemblyCatalogName);
         }

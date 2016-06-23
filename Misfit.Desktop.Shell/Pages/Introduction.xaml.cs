@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Misfit.AomiServices.Inf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,12 @@ namespace Misfit.Desktop.Shell.Pages
         public Introduction()
         {
             InitializeComponent();
+        }
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            ITestService testService = MisfitWeaver.GetService<ITestService>("Aomi");
+            this.txtValue.Text = testService.Hello("NONO");
         }
     }
 }

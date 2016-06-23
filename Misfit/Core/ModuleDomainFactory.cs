@@ -18,7 +18,7 @@ namespace Misfit.Core
         {
             AppDomainSetup info = new AppDomainSetup();
             info.ApplicationName = domainName;
-            info.ApplicationBase = AppDomain.CurrentDomain.BaseDirectory;
+            info.ApplicationBase =AppDomain.CurrentDomain.BaseDirectory;
             info.DisallowApplicationBaseProbing = false;
             info.PrivateBinPath = Constants.AddInsFileRoot;
             info.ShadowCopyDirectories = Path.Combine(info.ApplicationBase, @"cache");

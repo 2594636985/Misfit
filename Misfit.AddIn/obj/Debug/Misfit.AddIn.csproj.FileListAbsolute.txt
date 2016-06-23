@@ -2,7 +2,5 @@ D:\Job\Dev\workplace\Misfit\Misfit.AddIn\bin\Debug\Misfit.AddIn.dll
 D:\Job\Dev\workplace\Misfit\Misfit.AddIn\bin\Debug\Misfit.AddIn.pdb
 D:\Job\Dev\workplace\Misfit\Bin\Misfit.AddIn.dll
 D:\Job\Dev\workplace\Misfit\Bin\Misfit.AddIn.pdb
-D:\Job\Dev\workplace\Misfit\Bin\AddIns\Misfit.AddIn.dll
-D:\Job\Dev\workplace\Misfit\Bin\AddIns\Misfit.AddIn.pdb
 D:\Job\Dev\workplace\Misfit\Misfit.AddIn\obj\Debug\Misfit.AddIn.dll
 D:\Job\Dev\workplace\Misfit\Misfit.AddIn\obj\Debug\Misfit.AddIn.pdb

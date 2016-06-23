@@ -13,13 +13,8 @@ namespace Misfit.Desktop.Shell
         [STAThread]
         static void Main(string[] args)
         {
-
-            //App app = new App();
-            //app.Run();
-
-            MisfitWeaver.Initailize();
-
-            MisfitWeaver.Dispose();
+            App app = new App();
+            app.Run();
         }
     }
 }

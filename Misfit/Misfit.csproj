@@ -51,21 +51,49 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Core\ModuleDomainFactory.cs" />
-    <Compile Include="Core\Constants.cs" />
-    <Compile Include="Core\MisfitDescriptor.cs" />
-    <Compile Include="Core\ModuleDescriptor.cs" />
-    <Compile Include="Core\ModuleDomain.cs" />
-    <Compile Include="Core\ModuleDomainCollection.cs" />
-    <Compile Include="Core\ModuleDomainContext.cs" />
-    <Compile Include="Core\ModuleDomainRepository.cs" />
-    <Compile Include="IO\ConnectionStringNode.cs" />
-    <Compile Include="IO\MisfitConfiguration.cs" />
-    <Compile Include="IO\MisfitNode.cs" />
-    <Compile Include="IO\MisfitDocument.cs" />
-    <Compile Include="IO\ModuleNode.cs" />
+    <Compile Include="Core\Constants.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\MisfitDescriptor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\ModuleDescriptor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\ModuleDomain.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\ModuleDomainCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\ModuleDomainContext.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\ModuleDomainFactory.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\ModuleDomainRepository.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IO\ConnectionStringNode.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IO\MisfitConfiguration.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IO\MisfitDocument.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IO\MisfitNode.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IO\ModuleNode.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MisfitWeaver.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="TaskCollection.cs" />
-    <Compile Include="MisfitWeaver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

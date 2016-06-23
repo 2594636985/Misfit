@@ -1,4 +1,4 @@
-﻿using Misfit.Desktop.Toolkit.Windows.Controls;
+﻿using MisfitThemes.Controls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,7 +29,7 @@ namespace Misfit.Desktop.Shell.Content
             // find all embedded XAML icon files
             var assembly = GetType().Assembly;
             var iconResourceNames = from name in assembly.GetManifestResourceNames()
-                                    where name.StartsWith("Misfit.Desktop.Shell.Assets.appbar.")
+                                    where name.StartsWith("Misfit.Wpf.Main.Assets.appbar.")
                                     select name;
 
 

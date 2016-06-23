@@ -2,7 +2,7 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
     <ResourceDictionary.MergedDictionaries>
-        <ResourceDictionary Source="/Misfit.Desktop.Toolkit;component/Assets/ModernUI.Light.xaml" />
+        <ResourceDictionary Source="/MisfitThemes;component/Assets/ModernUI.Light.xaml" />
     </ResourceDictionary.MergedDictionaries>
 
     <Color x:Key="AccentColor">#f472d0</Color>

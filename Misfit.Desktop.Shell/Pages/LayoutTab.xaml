@@ -3,16 +3,16 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:aomi="http://schemas.misfit.com/wpf/xaml/toolkit"
+             xmlns:mm="http://schemas.misfit.themes.com/wpf/xaml/toolkit"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid Style="{StaticResource ContentRoot}">
-        <aomi:ModernTab SelectedSource="/Content/LoremIpsum.xaml" Layout="Tab">
-            <aomi:ModernTab.Links>
-                <aomi:Link DisplayName="Basic" Source="/Content/LoremIpsum.xaml" />
-                <aomi:Link DisplayName="Split" Source="/Content/LoremIpsumSplit.xaml" />
-                <aomi:Link DisplayName="List" Source="/Content/LoremIpsumList.xaml" />
-            </aomi:ModernTab.Links>
-        </aomi:ModernTab>
+        <mm:ModernTab SelectedSource="/Content/LoremIpsum.xaml" Layout="Tab">
+            <mm:ModernTab.Links>
+                <mm:Link DisplayName="Basic" Source="/Content/LoremIpsum.xaml" />
+                <mm:Link DisplayName="Split" Source="/Content/LoremIpsumSplit.xaml" />
+                <mm:Link DisplayName="List" Source="/Content/LoremIpsumList.xaml" />
+            </mm:ModernTab.Links>
+        </mm:ModernTab>
     </Grid>
 </UserControl>

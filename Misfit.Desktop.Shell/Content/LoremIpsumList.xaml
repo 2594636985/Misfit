@@ -3,24 +3,24 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:aomi="http://schemas.misfit.com/wpf/xaml/toolkit"
+             xmlns:mm="http://schemas.misfit.themes.com/wpf/xaml/toolkit"
              xmlns:app="clr-namespace:Misfit.Desktop.Shell"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-        <aomi:ModernTab SelectedSource="/2" Layout="List">
-            <aomi:ModernTab.Links>
-                <aomi:Link DisplayName="Lorem Ipsum 1" Source="/1" />
-                <aomi:Link DisplayName="Lorem Ipsum 2" Source="/2" />
-                <aomi:Link DisplayName="Lorem Ipsum 3" Source="/3"/>
-                <aomi:Link DisplayName="Lorem Ipsum 4" Source="/4" />
-                <aomi:Link DisplayName="Lorem Ipsum 5" Source="/5"/>
-            </aomi:ModernTab.Links>
+        <mm:ModernTab SelectedSource="/2" Layout="List">
+            <mm:ModernTab.Links>
+                <mm:Link DisplayName="Lorem Ipsum 1" Source="/1" />
+                <mm:Link DisplayName="Lorem Ipsum 2" Source="/2" />
+                <mm:Link DisplayName="Lorem Ipsum 3" Source="/3"/>
+                <mm:Link DisplayName="Lorem Ipsum 4" Source="/4" />
+                <mm:Link DisplayName="Lorem Ipsum 5" Source="/5"/>
+            </mm:ModernTab.Links>
             
             <!-- ensures new LoremIpsum content is loaded for each uri -->
-            <aomi:ModernTab.ContentLoader>
+            <mm:ModernTab.ContentLoader>
                 <app:LoremIpsumLoader />
-            </aomi:ModernTab.ContentLoader>
-        </aomi:ModernTab>
+            </mm:ModernTab.ContentLoader>
+        </mm:ModernTab>
     </Grid>
 </UserControl>

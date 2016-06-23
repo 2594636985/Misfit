@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:aomi="http://schemas.misfit.com/wpf/xaml/toolkit"
+             xmlns:mm="http://schemas.misfit.themes.com/wpf/xaml/toolkit"
              xmlns:app="clr-namespace:Misfit.Desktop.Shell"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
@@ -12,12 +12,12 @@
             <RowDefinition />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <aomi:ModernTab x:Name="Tab" Layout="List" ListWidth="200">
-            <aomi:ModernTab.ContentLoader>
+        <mm:ModernTab x:Name="Tab" Layout="List" ListWidth="200">
+            <mm:ModernTab.ContentLoader>
                 <app:FlickrImageLoader />
-            </aomi:ModernTab.ContentLoader>
-        </aomi:ModernTab>
-        
-        <aomi:BBCodeBlock Grid.Row="1" BBCode="Powered by [url=http://flickr.com]Flickr[/url]" Margin="{StaticResource StatusMargin}" Foreground="{DynamicResource WindowTextReadOnly}" />
+            </mm:ModernTab.ContentLoader>
+        </mm:ModernTab>
+
+        <mm:BBCodeBlock Grid.Row="1" BBCode="Powered by [url=http://flickr.com]Flickr[/url]" Margin="{StaticResource StatusMargin}" Foreground="{DynamicResource WindowTextReadOnly}" />
     </Grid>
 </UserControl>

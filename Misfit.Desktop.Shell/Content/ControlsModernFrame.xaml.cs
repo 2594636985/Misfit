@@ -1,4 +1,4 @@
-﻿using Misfit.Desktop.Toolkit.Windows.Navigation;
+﻿using MisfitThemes.Navigation;
 using System;
 using System.Collections.Generic;
 using System.Globalization;

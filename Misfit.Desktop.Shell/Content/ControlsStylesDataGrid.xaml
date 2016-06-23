@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:core="clr-namespace:System;assembly=mscorlib"
              xmlns:local="clr-namespace:Misfit.Desktop.Shell.Content"
-             xmlns:aomi="http://schemas.misfit.com/wpf/xaml/toolkit"
+             xmlns:mm="http://schemas.misfit.themes.com/wpf/xaml/toolkit"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
@@ -22,11 +22,11 @@
             <TextBlock DockPanel.Dock="Top" Text="DATAGRID" Style="{StaticResource Heading2}" Margin="0,0,0,8" />
             <DataGrid Name="DG1" ItemsSource="{Binding}" AutoGenerateColumns="False" >
                 <DataGrid.Columns>
-                    <aomi:DataGridTextColumn Header="First Name"  Binding="{Binding FirstName}"/>
-                    <aomi:DataGridTextColumn Header="Last Name" Binding="{Binding LastName}" />
-                    <aomi:DataGridTextColumn Header="Email" Binding="{Binding Email}"/>
-                    <aomi:DataGridCheckBoxColumn Header="Member" Binding="{Binding IsMember}" />
-                    <aomi:DataGridComboBoxColumn Header="Order Status" SelectedItemBinding="{Binding Status}" ItemsSource="{Binding Source={StaticResource myEnum}}" />
+                    <mm:DataGridTextColumn Header="First Name"  Binding="{Binding FirstName}"/>
+                    <mm:DataGridTextColumn Header="Last Name" Binding="{Binding LastName}" />
+                    <mm:DataGridTextColumn Header="Email" Binding="{Binding Email}"/>
+                    <mm:DataGridCheckBoxColumn Header="Member" Binding="{Binding IsMember}" />
+                    <mm:DataGridComboBoxColumn Header="Order Status" SelectedItemBinding="{Binding Status}" ItemsSource="{Binding Source={StaticResource myEnum}}" />
                 </DataGrid.Columns>
             </DataGrid>
         </DockPanel>

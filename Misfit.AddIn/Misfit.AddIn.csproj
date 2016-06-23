@@ -16,7 +16,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\Bin\</OutputPath>
+    <OutputPath>..\Bin\AddIns\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -36,6 +36,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -43,34 +44,50 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddInActivator.cs" />
-    <Compile Include="Cmd\CommandResult.cs" />
-    <Compile Include="Cmd\Commands.cs" />
-    <Compile Include="Cmd\CommandPacket.cs" />
-    <Compile Include="Cmd\ICommand.cs" />
-    <Compile Include="Pipe\NamedPipeClient.cs" />
-    <Compile Include="Pipe\NamedPipeConnection.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Pipe\PipeClientFactory.cs" />
-    <Compile Include="Plugin\PluginAction.cs" />
-    <Compile Include="Plugin\PluginActivatorAttribute.cs" />
-    <Compile Include="Plugin\PluginEventArgs.cs" />
-    <Compile Include="Plugin\PluginEventHandler.cs" />
-    <Compile Include="Plugin\PluginException.cs" />
-    <Compile Include="Plugin\PluginTransition.cs" />
-    <Compile Include="FrameworkEventArgs.cs" />
-    <Compile Include="FrameworkEventHandler.cs" />
-    <Compile Include="FrameworkState.cs" />
-    <Compile Include="Plugin\IPlugin.cs" />
-    <Compile Include="Plugin\IPluginFramework.cs" />
-    <Compile Include="Plugin\IPluginActivator.cs" />
-    <Compile Include="Plugin\IPluginContext.cs" />
-    <Compile Include="InvalidSyntaxException.cs" />
-    <Compile Include="Plugin\PluginCollection.cs" />
-    <Compile Include="Plugin\PluginState.cs" />
+    <Compile Include="Core\CoreException.cs" />
+    <Compile Include="Core\ModuleAssembly.cs" />
+    <Compile Include="Core\ModuleType.cs" />
+    <Compile Include="Core\ServiceDescriptor.cs" />
+    <Compile Include="Core\MainifestDescriptor.cs" />
+    <Compile Include="Core\ServiceLifeScope.cs" />
+    <Compile Include="Injection\Activation\ActivationException.cs" />
+    <Compile Include="Injection\Activation\Activators\DelegateActivator.cs" />
+    <Compile Include="Injection\Activation\Activators\IActivator.cs" />
+    <Compile Include="Injection\Activation\Activators\InstanceActivator.cs" />
+    <Compile Include="Injection\Activation\Activators\ReflectionActivator.cs" />
+    <Compile Include="Injection\Activation\Components\ArgumentCollector.cs" />
+    <Compile Include="Injection\Activation\Components\ConstructorSelector.cs" />
+    <Compile Include="Injection\Activation\Components\IArgumentCollector.cs" />
+    <Compile Include="Injection\Activation\Components\IConstructorSelector.cs" />
+    <Compile Include="Injection\Activation\ResolutionContext.cs" />
+    <Compile Include="Injection\AnonymousArgument.cs" />
+    <Compile Include="Injection\MisfitContainer.cs" />
+    <Compile Include="Injection\MisfitContainerBuilder.cs" />
+    <Compile Include="Injection\Registration\CollectionsGenericExtensions.cs" />
+    <Compile Include="Injection\Registration\ObjectExtensions.cs" />
+    <Compile Include="Injection\InjectionException.cs" />
+    <Compile Include="Injection\Lifecycle\ILifecycle.cs" />
+    <Compile Include="Injection\Lifecycle\SingletonLifecycle.cs" />
+    <Compile Include="Injection\Lifecycle\TransientLifecycle.cs" />
+    <Compile Include="Injection\Registration\ArgumentContainer.cs" />
+    <Compile Include="Injection\Registration\RegistrationBuilder.cs" />
+    <Compile Include="Injection\Registration\IRegistrationBuilder.cs" />
+    <Compile Include="Injection\IMisfitContainer.cs" />
+    <Compile Include="Injection\IMisfitContainerBuilder.cs" />
+    <Compile Include="Injection\Registration\IRegistrationContainer.cs" />
+    <Compile Include="Injection\Registration\RegistrationContainer.cs" />
+    <Compile Include="Injection\Registration\RegistrationException.cs" />
+    <Compile Include="Injection\Registration\RegistrationItem.cs" />
+    <Compile Include="IO\MainifestDocument.cs" />
+    <Compile Include="IModuleDomainContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Serices\MisfitAbsService.cs" />
+    <Compile Include="Serices\IMisfitService.cs" />
+    <Compile Include="IO\AddInConfiguration.cs" />
+    <Compile Include="IO\ServiceNode.cs" />
+    <Compile Include="IO\MainifestNode.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

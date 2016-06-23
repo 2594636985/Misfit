@@ -1,5 +1,5 @@
 ﻿using Misfit.Desktop.Shell.Content;
-using Misfit.Desktop.Toolkit.Windows;
+using MisfitThemes;
 using System;
 using System.Collections.Generic;
 using System.Linq;

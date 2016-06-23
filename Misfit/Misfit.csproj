@@ -51,35 +51,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cmd\AbstractCommand.cs" />
-    <Compile Include="Cmd\ActivatePluginCommand.cs" />
-    <Compile Include="Cmd\CommandCollection.cs" />
-    <Compile Include="Cmd\ExitCommand.cs" />
-    <Compile Include="Cmd\TraceCommand.cs" />
-    <Compile Include="Cmd\UnLoadPluginCommand.cs" />
-    <Compile Include="Constants.cs" />
-    <Compile Include="Core\PluginRuntime.cs" />
-    <Compile Include="Core\PluginRuntimeCollection.cs" />
-    <Compile Include="Pipe\MisfitNamedPipe.cs" />
-    <Compile Include="Pipe\MisfitNamedPipeAcception.cs" />
-    <Compile Include="Pipe\MisfitNamedPipeAcceptionCollection.cs" />
-    <Compile Include="Pipe\MisfitNamedPipeServer.cs" />
-    <Compile Include="Pipe\MisfitPipeServerFactory.cs" />
-    <Compile Include="Reflection\AttributeInfo.cs" />
-    <Compile Include="Core\Plugin.cs" />
-    <Compile Include="Core\PluginContext.cs" />
-    <Compile Include="Reflection\TypeInfo.cs" />
+    <Compile Include="Core\ModuleDomainFactory.cs" />
+    <Compile Include="Core\Constants.cs" />
+    <Compile Include="Core\MisfitDescriptor.cs" />
+    <Compile Include="Core\ModuleDescriptor.cs" />
+    <Compile Include="Core\ModuleDomain.cs" />
+    <Compile Include="Core\ModuleDomainCollection.cs" />
+    <Compile Include="Core\ModuleDomainContext.cs" />
+    <Compile Include="Core\ModuleDomainRepository.cs" />
+    <Compile Include="IO\ConnectionStringNode.cs" />
+    <Compile Include="IO\MisfitConfiguration.cs" />
+    <Compile Include="IO\MisfitNode.cs" />
+    <Compile Include="IO\MisfitDocument.cs" />
+    <Compile Include="IO\ModuleNode.cs" />
     <Compile Include="TaskCollection.cs" />
-    <Compile Include="Tracker\DefaultTrace.cs" />
-    <Compile Include="Core\PluginFramework.cs" />
-    <Compile Include="Bootstrapper.cs" />
-    <Compile Include="Tracker\ITrace.cs" />
-    <Compile Include="Xml\TracesProvider.cs" />
-    <Compile Include="Reflection\ReflectionUtil.cs" />
-    <Compile Include="Xml\PluginNode.cs" />
-    <Compile Include="Xml\PluginNodeExtension.cs" />
-    <Compile Include="Xml\PluginNodeList.cs" />
-    <Compile Include="Xml\PluginsDocument.cs" />
+    <Compile Include="MisfitWeaver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -90,8 +76,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="PluginApp.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

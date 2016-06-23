@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:aomi="http://schemas.misfit.com/wpf/xaml/toolkit"
+             xmlns:mm="http://schemas.misfit.themes.com/wpf/xaml/toolkit"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
@@ -11,23 +11,23 @@
             <StackPanel HorizontalAlignment="Left">
                 <TextBlock Text="MODERNMENU" Style="{StaticResource Heading2}" Margin="0,0,0,8" />
 
-                <aomi:ModernMenu x:Name="Menu" Margin="0,0,0,16" SelectedSource="/link1">
-                    <aomi:ModernMenu.LinkGroups>
-                        <aomi:LinkGroup DisplayName="group 1">
-                            <aomi:LinkGroup.Links>
-                                <aomi:Link DisplayName="link 1" Source="/link1" />
-                                <aomi:Link DisplayName="link 2" Source="/link2" />
-                                <aomi:Link DisplayName="link 3" Source="/link3" />
-                            </aomi:LinkGroup.Links>
-                        </aomi:LinkGroup>
-                        <aomi:LinkGroup DisplayName="group 2">
-                            <aomi:LinkGroup.Links>
-                                <aomi:Link DisplayName="link 4" Source="/link4" />
-                                <aomi:Link DisplayName="link 5" Source="/link5" />
-                            </aomi:LinkGroup.Links>
-                        </aomi:LinkGroup>
-                    </aomi:ModernMenu.LinkGroups>
-                </aomi:ModernMenu>
+                <mm:ModernMenu x:Name="Menu" Margin="0,0,0,16" SelectedSource="/link1">
+                    <mm:ModernMenu.LinkGroups>
+                        <mm:LinkGroup DisplayName="group 1">
+                            <mm:LinkGroup.Links>
+                                <mm:Link DisplayName="link 1" Source="/link1" />
+                                <mm:Link DisplayName="link 2" Source="/link2" />
+                                <mm:Link DisplayName="link 3" Source="/link3" />
+                            </mm:LinkGroup.Links>
+                        </mm:LinkGroup>
+                        <mm:LinkGroup DisplayName="group 2">
+                            <mm:LinkGroup.Links>
+                                <mm:Link DisplayName="link 4" Source="/link4" />
+                                <mm:Link DisplayName="link 5" Source="/link5" />
+                            </mm:LinkGroup.Links>
+                        </mm:LinkGroup>
+                    </mm:ModernMenu.LinkGroups>
+                </mm:ModernMenu>
 
                 <!-- displaying the current state of the menu -->
                 <TextBlock>

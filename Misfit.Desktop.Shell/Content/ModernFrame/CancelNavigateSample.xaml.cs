@@ -1,7 +1,7 @@
 ﻿
-using Misfit.Desktop.Toolkit.Windows;
-using Misfit.Desktop.Toolkit.Windows.Controls;
-using Misfit.Desktop.Toolkit.Windows.Navigation;
+using MisfitThemes;
+using MisfitThemes.Controls;
+using MisfitThemes.Navigation;
 using System;
 using System.Collections.Generic;
 using System.Globalization;

@@ -1,6 +1,6 @@
-﻿using Misfit.Desktop.Toolkit;
-using Misfit.Desktop.Toolkit.Presentation;
-using Misfit.Desktop.Toolkit.Windows.Controls;
+﻿using MisfitThemes;
+using MisfitThemes.Presentation;
+using MisfitThemes.Controls;
 using System;
 using System.Collections.Generic;
 using System.Globalization;

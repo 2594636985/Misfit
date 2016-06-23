@@ -1,5 +1,5 @@
-﻿using Misfit.Desktop.Toolkit.Presentation;
-using Misfit.Desktop.Toolkit.Windows;
+﻿using MisfitThemes.Presentation;
+using MisfitThemes;
 using System;
 using System.Globalization;
 using System.IO;

@@ -1,4 +1,4 @@
-﻿using Misfit.Desktop.Toolkit.Windows.Controls;
+﻿using MisfitThemes.Controls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,7 +29,7 @@ namespace Misfit.Desktop.Shell.Content
         private void BlankWindow_Click(object sender, RoutedEventArgs e)
         {
             // create a blank modern window with lorem content
-            // the BlankWindow ModernWindow styles is found in the aomi assembly at Assets/ModernWindowEx.xaml
+            // the BlankWindow ModernWindow styles is found in the mm assembly at Assets/ModernWindowEx.xaml
 
             var wnd = new ModernWindow
             {

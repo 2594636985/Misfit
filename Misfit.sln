@@ -17,13 +17,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Misfit.Desktop.Shell", "Mis
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Misfit.AomiServcies", "Misfit.AomiServcies\Misfit.AomiServcies.csproj", "{BBADB2B1-01F4-4F9C-97AE-1F884956F7ED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Misfit.AomiServices.Inf", "Misfit.AomiServices.Inf\Misfit.AomiServices.Inf.csproj", "{4656DA2D-B3B9-4472-B27D-AC1E5ADFC0E6}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Themes", "Themes", "{2BF49EF0-58EE-4F9F-BC6C-7D2E24D0D5C1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MisfitThemes", "MisfitThemes\MisfitThemes.csproj", "{20AF3CD0-E096-4A28-964F-70277A696FD5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MisfitThemes.Aomi", "MisfitThemes.Aomi\MisfitThemes.Aomi.csproj", "{C94E68DA-E435-4E03-BC2F-8F7FAE46C904}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Misfit.AomiServices.Inf", "Misfit.AomiServices.Inf\Misfit.AomiServices.Inf.csproj", "{4656DA2D-B3B9-4472-B27D-AC1E5ADFC0E6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,10 +47,6 @@ Global
 		{BBADB2B1-01F4-4F9C-97AE-1F884956F7ED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BBADB2B1-01F4-4F9C-97AE-1F884956F7ED}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BBADB2B1-01F4-4F9C-97AE-1F884956F7ED}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4656DA2D-B3B9-4472-B27D-AC1E5ADFC0E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4656DA2D-B3B9-4472-B27D-AC1E5ADFC0E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4656DA2D-B3B9-4472-B27D-AC1E5ADFC0E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4656DA2D-B3B9-4472-B27D-AC1E5ADFC0E6}.Release|Any CPU.Build.0 = Release|Any CPU
 		{20AF3CD0-E096-4A28-964F-70277A696FD5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{20AF3CD0-E096-4A28-964F-70277A696FD5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{20AF3CD0-E096-4A28-964F-70277A696FD5}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -59,6 +55,10 @@ Global
 		{C94E68DA-E435-4E03-BC2F-8F7FAE46C904}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C94E68DA-E435-4E03-BC2F-8F7FAE46C904}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C94E68DA-E435-4E03-BC2F-8F7FAE46C904}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4656DA2D-B3B9-4472-B27D-AC1E5ADFC0E6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4656DA2D-B3B9-4472-B27D-AC1E5ADFC0E6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4656DA2D-B3B9-4472-B27D-AC1E5ADFC0E6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4656DA2D-B3B9-4472-B27D-AC1E5ADFC0E6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

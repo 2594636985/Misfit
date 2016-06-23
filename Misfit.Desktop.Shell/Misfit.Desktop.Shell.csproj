@@ -51,7 +51,9 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App.cs" />
+    <Compile Include="App.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="BingImage.cs" />
     <Compile Include="Content\ContentLoaderImages.xaml.cs">
       <DependentUpon>ContentLoaderImages.xaml</DependentUpon>
@@ -180,10 +182,6 @@
     <Resource Include="Assets\background.kitty.png" />
     <Resource Include="Assets\background.love.jpg" />
     <Resource Include="Assets\background.snowflakes.jpg" />
-    <Content Include="Misfit.xml">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <SubType>Designer</SubType>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Misfit.AddIn\Misfit.AddIn.csproj">
@@ -536,6 +534,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Misfit.xml">
+      <SubType>Designer</SubType>
+    </Resource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

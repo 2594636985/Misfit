@@ -44,48 +44,130 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Core\CoreException.cs" />
-    <Compile Include="Core\ModuleAssembly.cs" />
-    <Compile Include="Core\ModuleType.cs" />
-    <Compile Include="Core\ServiceDescriptor.cs" />
-    <Compile Include="Core\MainifestDescriptor.cs" />
-    <Compile Include="Core\ServiceLifeScope.cs" />
-    <Compile Include="Injection\Activation\ActivationException.cs" />
-    <Compile Include="Injection\Activation\Activators\DelegateActivator.cs" />
-    <Compile Include="Injection\Activation\Activators\IActivator.cs" />
-    <Compile Include="Injection\Activation\Activators\InstanceActivator.cs" />
-    <Compile Include="Injection\Activation\Activators\ReflectionActivator.cs" />
-    <Compile Include="Injection\Activation\Components\ArgumentCollector.cs" />
-    <Compile Include="Injection\Activation\Components\ConstructorSelector.cs" />
-    <Compile Include="Injection\Activation\Components\IArgumentCollector.cs" />
-    <Compile Include="Injection\Activation\Components\IConstructorSelector.cs" />
-    <Compile Include="Injection\Activation\ResolutionContext.cs" />
-    <Compile Include="Injection\AnonymousArgument.cs" />
-    <Compile Include="Injection\MisfitContainer.cs" />
-    <Compile Include="Injection\MisfitContainerBuilder.cs" />
-    <Compile Include="Injection\Registration\CollectionsGenericExtensions.cs" />
-    <Compile Include="Injection\Registration\ObjectExtensions.cs" />
-    <Compile Include="Injection\InjectionException.cs" />
-    <Compile Include="Injection\Lifecycle\ILifecycle.cs" />
-    <Compile Include="Injection\Lifecycle\SingletonLifecycle.cs" />
-    <Compile Include="Injection\Lifecycle\TransientLifecycle.cs" />
-    <Compile Include="Injection\Registration\ArgumentContainer.cs" />
-    <Compile Include="Injection\Registration\RegistrationBuilder.cs" />
-    <Compile Include="Injection\Registration\IRegistrationBuilder.cs" />
-    <Compile Include="Injection\IMisfitContainer.cs" />
-    <Compile Include="Injection\IMisfitContainerBuilder.cs" />
-    <Compile Include="Injection\Registration\IRegistrationContainer.cs" />
-    <Compile Include="Injection\Registration\RegistrationContainer.cs" />
-    <Compile Include="Injection\Registration\RegistrationException.cs" />
-    <Compile Include="Injection\Registration\RegistrationItem.cs" />
-    <Compile Include="IO\MainifestDocument.cs" />
-    <Compile Include="IModuleDomainContext.cs" />
+    <Compile Include="Core\CoreException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\MainifestDescriptor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\ModuleAssembly.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\ModuleType.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\ServiceDescriptor.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Core\ServiceLifeScope.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IModuleDomainContext.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Injection\Activation\ActivationException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Injection\Activation\Activators\DelegateActivator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Injection\Activation\Activators\IActivator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Injection\Activation\Activators\InstanceActivator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Injection\Activation\Activators\ReflectionActivator.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Injection\Activation\Components\ArgumentCollector.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Injection\Activation\Components\ConstructorSelector.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Injection\Activation\Components\IArgumentCollector.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Injection\Activation\Components\IConstructorSelector.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Injection\Activation\ResolutionContext.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Injection\AnonymousArgument.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Injection\IMisfitContainer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Injection\IMisfitContainerBuilder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Injection\InjectionException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Injection\Lifecycle\ILifecycle.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Injection\Lifecycle\SingletonLifecycle.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Injection\Lifecycle\TransientLifecycle.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Injection\MisfitContainer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Injection\MisfitContainerBuilder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Injection\Registration\ArgumentContainer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Injection\Registration\CollectionsGenericExtensions.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Injection\Registration\IRegistrationBuilder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Injection\Registration\IRegistrationContainer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Injection\Registration\ObjectExtensions.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Injection\Registration\RegistrationBuilder.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Injection\Registration\RegistrationContainer.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Injection\Registration\RegistrationException.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Injection\Registration\RegistrationItem.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IO\AddInConfiguration.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IO\MainifestDocument.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IO\MainifestNode.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="IO\ServiceNode.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Serices\MisfitAbsService.cs" />
-    <Compile Include="Serices\IMisfitService.cs" />
-    <Compile Include="IO\AddInConfiguration.cs" />
-    <Compile Include="IO\ServiceNode.cs" />
-    <Compile Include="IO\MainifestNode.cs" />
+    <Compile Include="Serices\IMisfitService.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Serices\MisfitAbsService.cs">
+      <SubType>Code</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Misfit>
+  <MisfitConnectString>dddddd</MisfitConnectString>
+  <Modules>
+    <Module Name="MisfitConsoleDebug"  Location="Misfit.AomiServcies" Description="日志系统" >
+      <ConnectionStrings>
+        <ConnectionString Name="asd" Value="asdfasdf"></ConnectionString>
+        <ConnectionString Name="dddd" Value="asddff"></ConnectionString>
+      </ConnectionStrings>
+    </Module>
+  </Modules>
+</Misfit>

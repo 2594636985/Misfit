@@ -49,10 +49,6 @@
       <Project>{4656da2d-b3b9-4472-b27d-ac1e5adfc0e6}</Project>
       <Name>Misfit.AomiServices.Inf</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Misfit.Modulation.AddIn\Misfit.Modulation.AddIn.csproj">
-      <Project>{1eaae8b4-9c4a-4172-8d0a-2801a4e89fe2}</Project>
-      <Name>Misfit.Modulation.AddIn</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Mainifest.xml">

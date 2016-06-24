@@ -6,6 +6,9 @@ using System.Text;
 
 namespace Misfit.Modulation.AddIn
 {
+    /// <summary>
+    /// 模块域的上下文
+    /// </summary>
     public interface IModuleDomainContext
     {
         Dictionary<string, string> ConnectionStrings { set; get; }

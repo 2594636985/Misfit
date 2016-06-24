@@ -1,8 +1,8 @@
-﻿using Misfit.AddIn.Injection.Activation.Components;
+﻿using Misfit.Modulation.AddIn.Injection.Activation.Components;
 using System;
 using System.Reflection;
 
-namespace Misfit.AddIn.Injection.Activation.Activators
+namespace Misfit.Modulation.AddIn.Injection.Activation.Activators
 {
     /// <summary>
     /// 用反射来实例

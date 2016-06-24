@@ -17,7 +17,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Misfit.Desktop.Shell.Content.ModernFrame
+namespace Misfit.Modulation.Desktop.Shell.Content.ModernFrame
 {
     /// <summary>
     /// Interaction logic for CancelNavigateSample.xaml

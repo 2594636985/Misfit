@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 
-namespace Misfit.AddIn.IO
+namespace Misfit.Modulation.AddIn.IO
 {
     public class MainifestDocument : XmlDocument
     {

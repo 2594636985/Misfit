@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 
-namespace Misfit.AddIn.Injection.Registration
+namespace Misfit.Modulation.AddIn.Injection.Registration
 {
     /// <summary>
     /// 注册容器

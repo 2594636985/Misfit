@@ -1,4 +1,4 @@
-﻿using Misfit.Desktop.Shell.Content;
+﻿using Misfit.Modulation.Desktop.Shell.Content;
 using MisfitThemes;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Misfit.Desktop.Shell
+namespace Misfit.Modulation.Desktop.Shell
 {
     /// <summary>
     /// Loads lorem ipsum content regardless the given uri.

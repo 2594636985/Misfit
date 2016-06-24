@@ -13,7 +13,7 @@ using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using System.Xml.Linq;
 
-namespace Misfit.Desktop.Shell
+namespace Misfit.Modulation.Desktop.Shell
 {
     /// <summary>
     /// Loads image content from Flickr.

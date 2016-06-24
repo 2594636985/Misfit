@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Misfit.AddIn.IO
+namespace Misfit.Modulation.AddIn.IO
 {
     public class MainifestNode
     {

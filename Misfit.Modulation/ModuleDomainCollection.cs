@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Misfit.Core
+namespace Misfit.Modulation
 {
     public class ModuleDomainCollection : List<ModuleDomain>
     {

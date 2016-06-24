@@ -1,4 +1,4 @@
-﻿using Misfit.AddIn.Serices;
+﻿using Misfit.Modulation.AddIn.Serices;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 
-namespace Misfit.AddIn.Core
+namespace Misfit.Modulation.AddIn.Core
 {
     /// <summary>
     /// 对模块程序集的封装

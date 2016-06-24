@@ -1,13 +1,13 @@
-﻿using Misfit.AddIn.Injection.Activation.Activators;
-using Misfit.AddIn.Injection.Activation.Components;
-using Misfit.AddIn.Injection.Lifecycle;
-using Misfit.AddIn.Injection.Registration;
+﻿using Misfit.Modulation.AddIn.Injection.Activation.Activators;
+using Misfit.Modulation.AddIn.Injection.Activation.Components;
+using Misfit.Modulation.AddIn.Injection.Lifecycle;
+using Misfit.Modulation.AddIn.Injection.Registration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Misfit.AddIn.Injection
+namespace Misfit.Modulation.AddIn.Injection
 {
     /// <summary>
     /// 用于建设容器的类

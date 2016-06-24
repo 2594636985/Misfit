@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="Misfit.Desktop.Shell.Content.ModernFrame.ErrorSample"
+﻿<UserControl x:Class="Misfit.Modulation.Desktop.Shell.Content.ModernFrame.ErrorSample"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 

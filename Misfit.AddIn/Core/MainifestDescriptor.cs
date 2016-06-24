@@ -1,10 +1,10 @@
-﻿using Misfit.AddIn.IO;
+﻿using Misfit.Modulation.AddIn.IO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Misfit.AddIn.Core
+namespace Misfit.Modulation.AddIn.Core
 {
     public class MainifestDescriptor
     {

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Misfit.Core
+namespace Misfit.Modulation
 {
-    class Constants
+    public class Constants
     {
         public const string AddInsFileRoot = "AddIns";
     }

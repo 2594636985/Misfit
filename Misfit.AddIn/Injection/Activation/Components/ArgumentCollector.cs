@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 
-using Misfit.AddIn.Injection.Registration;
+using Misfit.Modulation.AddIn.Injection.Registration;
 
-namespace Misfit.AddIn.Injection.Activation.Components
+namespace Misfit.Modulation.AddIn.Injection.Activation.Components
 {
     /// <summary>
     /// 参数收集器

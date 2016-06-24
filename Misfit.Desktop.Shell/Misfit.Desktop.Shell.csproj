@@ -184,13 +184,10 @@
     <Resource Include="Assets\background.snowflakes.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Misfit.AddIn\Misfit.AddIn.csproj">
-      <Project>{a022340c-8fa1-4e70-a197-fc191ac63ae9}</Project>
-      <Name>Misfit.AddIn</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Misfit.AomiServices.Inf\Misfit.AomiServices.Inf.csproj">
       <Project>{4656da2d-b3b9-4472-b27d-ac1e5adfc0e6}</Project>
       <Name>Misfit.AomiServices.Inf</Name>
+      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\MisfitThemes.Aomi\MisfitThemes.Aomi.csproj">
       <Project>{c94e68da-e435-4e03-bc2f-8f7fae46c904}</Project>

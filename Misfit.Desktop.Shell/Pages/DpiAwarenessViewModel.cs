@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace Misfit.Desktop.Shell.Pages
+namespace Misfit.Modulation.Desktop.Shell.Pages
 {
     public class DpiAwarenessViewModel
             : NotifyPropertyChanged

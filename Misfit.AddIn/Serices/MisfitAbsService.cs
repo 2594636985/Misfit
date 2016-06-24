@@ -1,12 +1,12 @@
-﻿using Misfit.AddIn.Core;
-using Misfit.AddIn.Injection;
-using Misfit.AddIn.IO;
+﻿using Misfit.Modulation.AddIn.Core;
+using Misfit.Modulation.AddIn.Injection;
+using Misfit.Modulation.AddIn.IO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Misfit.AddIn.Serices
+namespace Misfit.Modulation.AddIn.Serices
 {
     public abstract class MisfitAbsService : MarshalByRefObject, IMisfitService
     {

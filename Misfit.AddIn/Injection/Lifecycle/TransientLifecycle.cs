@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Misfit.AddIn.Injection.Lifecycle
+namespace Misfit.Modulation.AddIn.Injection.Lifecycle
 {
     /// <summary>
     /// 每一次都创建一个新的对象的生命周期

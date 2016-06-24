@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace Misfit.Desktop.Shell
+namespace Misfit.Modulation.Desktop.Shell
 {
     /// <summary>
     /// An ICommand implementation displaying a message box.

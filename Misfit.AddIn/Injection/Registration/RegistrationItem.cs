@@ -1,12 +1,12 @@
-﻿using Misfit.AddIn.Injection.Activation;
-using Misfit.AddIn.Injection.Activation.Activators;
-using Misfit.AddIn.Injection.Lifecycle;
+﻿using Misfit.Modulation.AddIn.Injection.Activation;
+using Misfit.Modulation.AddIn.Injection.Activation.Activators;
+using Misfit.Modulation.AddIn.Injection.Lifecycle;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Misfit.AddIn.Injection.Registration
+namespace Misfit.Modulation.AddIn.Injection.Registration
 {
     /// <summary>
     /// 注册对象信息

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Misfit
+namespace Misfit.Modulation
 {
     public class TaskCollection : List<TaskInfo>
     {

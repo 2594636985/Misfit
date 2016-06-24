@@ -1,8 +1,8 @@
-﻿using Misfit.AddIn.Injection.Lifecycle;
+﻿using Misfit.Modulation.AddIn.Injection.Lifecycle;
 using System;
 using System.Collections.Generic;
 
-namespace Misfit.AddIn.Injection.Registration
+namespace Misfit.Modulation.AddIn.Injection.Registration
 {
     /// <summary>
     /// 注册建立类  用于注册的时候之后的相关功能操作

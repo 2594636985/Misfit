@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Misfit.AddIn.Serices
+namespace Misfit.Modulation.AddIn.Serices
 {
     public interface IMisfitService
     {

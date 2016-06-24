@@ -9,52 +9,71 @@ using System.Security.Policy;
 using System.Threading;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
-using Misfit.Core;
+using Misfit.Modulation.IO;
 
-namespace Misfit
+namespace Misfit.Modulation
 {
     /// <summary>
     /// 框架调用类
     /// </summary>
     public class MisfitWeaver
     {
-        public static ModuleDomainRepository ModuleDomainRepository = new ModuleDomainRepository();
+        private static ModulationWorker ModulationWorker;
 
         /// <summary>
         /// 初始化
         /// </summary>
         public static void Initailize()
         {
+
             AppDomain.CurrentDomain.AssemblyResolve += AssemblyResolve;
 
-            IO.MisfitConfiguration misiftConfiguration = new IO.MisfitConfiguration();
-            misiftConfiguration.Initialize();
+            string configurationString = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Misfit.xml");
 
-            if (misiftConfiguration.MisfitDescriptor == null)
-                throw new NullReferenceException("配置初始化失败，找看一下文件是否存在");
+            if (!File.Exists(configurationString))
+                throw new FileNotFoundException("对应的配置文件Misfit.xml不存在");
 
-            MisfitDescriptor misfitDescriptor = misiftConfiguration.MisfitDescriptor;
+            MisfitDocument pluginDocument = new MisfitDocument();
+            pluginDocument.Load(configurationString);
 
-            foreach (ModuleDescriptor moduleDescriptor in misfitDescriptor.PluginDescriptors)
+            MisfitNode misfitNode = pluginDocument.MisfitNode;
+            if (misfitNode != null)
             {
+                List<Module> modules = new List<Module>();
+                string misfitConnectionString = misfitNode.MisfitConnectString;
 
-                ModuleDomainContext moduleDomainContext = new ModuleDomainContext();
-                moduleDomainContext.AssemlbyLocation = moduleDescriptor.Location;
-                moduleDomainContext.ModuleDomainRepository = ModuleDomainRepository;
-                moduleDomainContext.MisfitConnectionString = misfitDescriptor.MisfitConnectionString;
-
-                foreach (string key in moduleDescriptor.ConnectionStrings.Keys)
+                foreach (ModuleNode pluginNode in misfitNode.PluginNodes)
                 {
-                    moduleDomainContext.ConnectionStrings.Add(key, moduleDescriptor.ConnectionStrings[key]);
+                    Module module = new Module();
+                    module.Description = pluginNode.Description;
+                    module.Name = pluginNode.Name;
+                    module.Location = pluginNode.Location;
+
+                    foreach (ConnectionStringNode connectionStringNode in pluginNode.ConnectionStringNodes)
+                    {
+                        module.ConnectionStrings.Add(connectionStringNode.Name, connectionStringNode.Value);
+                    }
+
+                    modules.Add(module);
                 }
 
-                ModuleDomain moduleDomain = new ModuleDomain(moduleDomainContext);
-                moduleDomain.Install();
+                ModulationWorkerContext modulationWorkerContext = new ModulationWorkerContext()
+                {
+                    MisfitConnectionString = misfitConnectionString,
+                    Modules = modules
+                };
 
-                ModuleDomainRepository.AddModulDomain(moduleDomain);
+                ModulationWorker = new ModulationWorker(modulationWorkerContext);
 
             }
+
+            if (ModulationWorker == null)
+                throw new InvalidOperationException("模块功能初始化失败 原因：配置文件可能存在问题");
+
+            ModulationWorker.Start();
+
         }
+
 
         /// <summary>
         /// 获得相关模块域里面的对外服务
@@ -64,7 +83,10 @@ namespace Misfit
         /// <returns></returns>
         public static object GetService(string assemblyCatalogName, string typeName)
         {
-            return ModuleDomainRepository.GetService(assemblyCatalogName, typeName);
+            if (ModulationWorker == null)
+                throw new InvalidOperationException("模块功能没有初始化");
+
+            return ModulationWorker.GetService(assemblyCatalogName, typeName);
         }
 
         /// <summary>
@@ -75,14 +97,20 @@ namespace Misfit
         /// <returns></returns>
         public static TInterface GetService<TInterface>(string assemblyCatalogName)
         {
-            return ModuleDomainRepository.GetService<TInterface>(assemblyCatalogName);
+            if (ModulationWorker == null)
+                throw new InvalidOperationException("模块功能没有初始化");
+
+            return ModulationWorker.GetService<TInterface>(assemblyCatalogName);
         }
 
 
 
         public static void Dispose()
         {
-            ModuleDomainRepository.DestroyClose();
+            if (ModulationWorker == null)
+                throw new InvalidOperationException("模块功能没有初始化");
+
+            ModulationWorker.Stop();
         }
 
 

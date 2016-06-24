@@ -1,6 +1,6 @@
 using System;
 
-namespace Misfit.AddIn.Injection.Lifecycle
+namespace Misfit.Modulation.AddIn.Injection.Lifecycle
 {
     /// <summary>
     /// 对象生命周期

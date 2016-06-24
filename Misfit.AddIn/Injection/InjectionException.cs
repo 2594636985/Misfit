@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Misfit.AddIn.Injection
+namespace Misfit.Modulation.AddIn.Injection
 {
     /// <summary>
     /// Ioc异常类

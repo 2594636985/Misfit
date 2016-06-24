@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Misfit.Desktop.Shell.Content
+namespace Misfit.Modulation.Desktop.Shell.Content
 {
     /// <summary>
     /// Interaction logic for ControlsStylesButton.xaml

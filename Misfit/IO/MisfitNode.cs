@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Misfit.IO
+namespace Misfit.Modulation.IO
 {
     public class MisfitNode
     {

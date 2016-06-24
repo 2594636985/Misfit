@@ -1,11 +1,11 @@
-﻿using Misfit.AddIn.Core;
+﻿using Misfit.Modulation.AddIn.Core;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace Misfit.AddIn.IO
+namespace Misfit.Modulation.AddIn.IO
 {
     public class AddInConfiguration
     {

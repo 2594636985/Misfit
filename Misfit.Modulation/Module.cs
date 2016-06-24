@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Misfit.Core
+namespace Misfit.Modulation
 {
-    public class ModuleDescriptor
+    /// <summary>
+    /// 模块信息
+    /// </summary>
+    public class Module
     {
-        public ModuleDescriptor()
+        public Module()
         {
             this.ConnectionStrings = new Dictionary<string, string>();
         }

@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 
-namespace Misfit.IO
+namespace Misfit.Modulation.IO
 {
     public class MisfitDocument : XmlDocument
     {

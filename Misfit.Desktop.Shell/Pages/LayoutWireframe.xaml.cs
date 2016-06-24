@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Misfit.Desktop.Shell.Pages
+namespace Misfit.Modulation.Desktop.Shell.Pages
 {
     /// <summary>
     /// Interaction logic for LayoutWireframe.xaml

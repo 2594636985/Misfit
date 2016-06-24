@@ -14,7 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Misfit.Desktop.Shell.Content
+namespace Misfit.Modulation.Desktop.Shell.Content
 {
     /// <summary>
     /// Interaction logic for ControlsModernFrame.xaml

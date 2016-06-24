@@ -43,45 +43,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Core\Constants.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Core\MisfitDescriptor.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Core\ModuleDescriptor.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Core\ModuleDomain.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Core\ModuleDomainCollection.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Core\ModuleDomainContext.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Core\ModuleDomainFactory.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Core\ModuleDomainRepository.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="IO\ConnectionStringNode.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="IO\MisfitConfiguration.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="IO\MisfitDocument.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="IO\MisfitNode.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="IO\ModuleNode.cs">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="IO\ConnectionStringNode.cs" />
+    <Compile Include="IO\MisfitConfiguration.cs" />
+    <Compile Include="IO\MisfitDocument.cs" />
+    <Compile Include="IO\MisfitNode.cs" />
+    <Compile Include="IO\ModuleNode.cs" />
     <Compile Include="MisfitWeaver.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -92,10 +58,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Misfit.AddIn\Misfit.AddIn.csproj">
-      <Project>{a022340c-8fa1-4e70-a197-fc191ac63ae9}</Project>
-      <Name>Misfit.AddIn</Name>
-      <Private>False</Private>
+    <ProjectReference Include="..\Misfit.Modulation\Misfit.Modulation.csproj">
+      <Project>{2b59aa96-0078-48b8-8fe2-bd264ad5e28d}</Project>
+      <Name>Misfit.Modulation</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

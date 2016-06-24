@@ -1,5 +1,5 @@
-﻿using Misfit.AddIn;
-using Misfit.Core;
+﻿using Misfit.Modulation.AddIn;
+using Misfit.Modulation;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Security.Policy;
 using System.Text;
 
-namespace Misfit.Core
+namespace Misfit.Modulation
 {
     public class ModuleDomainRepository
     {

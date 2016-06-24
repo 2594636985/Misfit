@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Misfit.AddIn.Injection
+namespace Misfit.Modulation.AddIn.Injection
 {
     /// <summary>
     /// 存在服务的注册容器

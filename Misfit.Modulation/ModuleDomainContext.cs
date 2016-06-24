@@ -1,10 +1,10 @@
-﻿using Misfit.AddIn;
+﻿using Misfit.Modulation.AddIn;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Misfit.Core
+namespace Misfit.Modulation
 {
     /// <summary>
     /// 插件服务的上下文

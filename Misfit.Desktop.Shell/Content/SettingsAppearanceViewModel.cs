@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
 
-namespace Misfit.Desktop.Shell.Content
+namespace Misfit.Modulation.Desktop.Shell.Content
 {
     /// <summary>
     /// A simple view model for configuring theme, font and accent colors.

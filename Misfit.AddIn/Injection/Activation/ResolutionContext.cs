@@ -1,7 +1,7 @@
-﻿using Misfit.AddIn.Injection;
-using Misfit.AddIn.Injection.Registration;
+﻿using Misfit.Modulation.AddIn.Injection;
+using Misfit.Modulation.AddIn.Injection.Registration;
 
-namespace Misfit.AddIn.Injection.Activation
+namespace Misfit.Modulation.AddIn.Injection.Activation
 {
     /// <summary>
     /// 解析的上下文

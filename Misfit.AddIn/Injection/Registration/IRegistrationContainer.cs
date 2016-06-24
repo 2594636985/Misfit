@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace Misfit.AddIn.Injection.Registration
+namespace Misfit.Modulation.AddIn.Injection.Registration
 {
 
     internal interface IRegistrationContainer

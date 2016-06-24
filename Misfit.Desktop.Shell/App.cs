@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 
-namespace Misfit.Desktop.Shell
+namespace Misfit.Modulation.Desktop.Shell
 {
     public class App : MisfitApplication
     {

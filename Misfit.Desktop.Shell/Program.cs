@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Misfit.Desktop.Shell
+namespace Misfit.Modulation.Desktop.Shell
 {
     static class Program
     {

@@ -1,4 +1,4 @@
-﻿namespace Misfit.AddIn.Injection.Activation.Activators
+﻿namespace Misfit.Modulation.AddIn.Injection.Activation.Activators
 {
     internal interface IActivator
     {

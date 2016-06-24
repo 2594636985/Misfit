@@ -1,11 +1,11 @@
-﻿using Misfit.Core;
+﻿using Misfit.Modulation;
 using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
 
-namespace Misfit.IO
+namespace Misfit.Modulation.IO
 {
     public class MisfitConfiguration
     {
@@ -37,7 +37,7 @@ namespace Misfit.IO
 
                 foreach (ModuleNode pluginNode in misfitNode.PluginNodes)
                 {
-                    ModuleDescriptor pluginDescriptor = new ModuleDescriptor();
+                    Module pluginDescriptor = new Module();
                     pluginDescriptor.Description = pluginNode.Description;
                     pluginDescriptor.Name = pluginNode.Name;
                     pluginDescriptor.Location = pluginNode.Location;

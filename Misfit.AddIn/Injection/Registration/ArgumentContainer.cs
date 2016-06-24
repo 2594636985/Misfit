@@ -3,7 +3,7 @@ using System.Linq;
 using System.Reflection;
 
 
-namespace Misfit.AddIn.Injection.Registration
+namespace Misfit.Modulation.AddIn.Injection.Registration
 {
     internal class ArgumentContainer
     {

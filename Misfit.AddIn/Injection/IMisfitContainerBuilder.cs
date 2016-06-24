@@ -1,10 +1,10 @@
-﻿using Misfit.AddIn.Injection.Registration;
+﻿using Misfit.Modulation.AddIn.Injection.Registration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Misfit.AddIn.Injection
+namespace Misfit.Modulation.AddIn.Injection
 {
     public interface IMisfitContainerBuilder
     {

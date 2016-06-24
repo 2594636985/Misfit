@@ -1,7 +1,7 @@
-﻿using Misfit.AddIn.Injection;
+﻿using Misfit.Modulation.AddIn.Injection;
 using System;
 
-namespace Misfit.AddIn.Injection.Activation.Activators
+namespace Misfit.Modulation.AddIn.Injection.Activation.Activators
 {
     /// <summary>
     /// 委托激活

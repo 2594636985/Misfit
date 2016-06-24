@@ -47,6 +47,7 @@ namespace Misfit.Modulation.AddIn.Injection
 
             return container;
         }
+
         /// <summary>
         /// 通过一个实例来注册
         /// </summary>

@@ -78,6 +78,12 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Misfit.Modulation.AddIn\Misfit.Modulation.AddIn.csproj">
+      <Project>{1eaae8b4-9c4a-4172-8d0a-2801a4e89fe2}</Project>
+      <Name>Misfit.Modulation.AddIn</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

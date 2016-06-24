@@ -44,7 +44,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IO\ConnectionStringNode.cs" />
-    <Compile Include="IO\MisfitConfiguration.cs" />
     <Compile Include="IO\MisfitDocument.cs" />
     <Compile Include="IO\MisfitNode.cs" />
     <Compile Include="IO\ModuleNode.cs" />
@@ -56,6 +55,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Misfit.Modulation\Misfit.Modulation.csproj">
+      <Project>{2b59aa96-0078-48b8-8fe2-bd264ad5e28d}</Project>
+      <Name>Misfit.Modulation</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

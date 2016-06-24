@@ -49,9 +49,6 @@
     <Compile Include="IModulationWorker.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="MisfitDescriptor.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="ModulationWorker.cs">
       <SubType>Code</SubType>
     </Compile>

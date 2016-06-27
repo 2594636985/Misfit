@@ -8,6 +8,9 @@ using System.Text;
 
 namespace Misfit.Modulation
 {
+    /// <summary>
+    /// 模块域工厂
+    /// </summary>
     public class ModuleDomainFactory
     {
         /// <summary>
@@ -20,6 +23,13 @@ namespace Misfit.Modulation
             return CreateAppDomain(domainName, Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Constants.AddInsFileRoot), string.Empty);
         }
 
+        /// <summary>
+        /// 创建新的应用域
+        /// </summary>
+        /// <param name="domainName"></param>
+        /// <param name="applicationBase"></param>
+        /// <param name="privateBinPath"></param>
+        /// <returns></returns>
         public static AppDomain CreateAppDomain(string domainName, string applicationBase, string privateBinPath)
         {
             AppDomainSetup info = new AppDomainSetup();

@@ -43,7 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IO\ConnectionStringNode.cs" />
+    <Compile Include="IO\ArgumentNode.cs" />
     <Compile Include="IO\MisfitDocument.cs" />
     <Compile Include="IO\MisfitNode.cs" />
     <Compile Include="IO\ModuleNode.cs" />

@@ -11,7 +11,7 @@ namespace Misfit.Modulation.AddIn.IO
     {
         public ModuleAssembly ModuleAssembly { private set; get; }
 
-        public MainifestDescriptor MainifestDescriptor { private set; get; }
+        public Mainifest MainifestDescriptor { private set; get; }
 
         public AddInConfiguration(ModuleAssembly moduleAssembly)
         {
@@ -30,7 +30,7 @@ namespace Misfit.Modulation.AddIn.IO
             MainifestNode mainifestNode = mainifestDocument.MainifestNode;
             if (mainifestNode != null)
             {
-                this.MainifestDescriptor = new MainifestDescriptor();
+                this.MainifestDescriptor = new Mainifest();
                 this.MainifestDescriptor.Name = mainifestNode.Name;
                 this.MainifestDescriptor.ConnectString = mainifestNode.ConnectString;
 

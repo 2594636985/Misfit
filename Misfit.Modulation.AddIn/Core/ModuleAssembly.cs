@@ -1,4 +1,5 @@
-﻿using Misfit.Modulation.AddIn.Serices;
+﻿using Misfit.Modulation.AddIn.IO;
+using Misfit.Modulation.AddIn.Serices;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,6 +14,7 @@ namespace Misfit.Modulation.AddIn.Core
     /// </summary>
     public class ModuleAssembly
     {
+        private Mainifest _mainifest;
         private List<ModuleServiceType> _moduleServiceTypes;
 
         public Assembly Assembly { private set; get; }
@@ -46,10 +48,59 @@ namespace Misfit.Modulation.AddIn.Core
             }
         }
 
+        public Version Version
+        {
+            get
+            {
+                return this.Assembly.GetName().Version;
+            }
+        }
+
+        public Mainifest Mainifest
+        {
+            get
+            {
+                if (this._mainifest == null)
+                {
+                    Stream fileStream = this.OpenMainifest();
+                    if (fileStream == null)
+                        throw new NullReferenceException("没有找到服务配置文件Mainifest.xml 或是不存程序集的根目录下");
+
+                    MainifestDocument mainifestDocument = new MainifestDocument();
+                    mainifestDocument.Load(fileStream);
+                    fileStream.Close();
+
+                    MainifestNode mainifestNode = mainifestDocument.MainifestNode;
+
+                    if (mainifestNode != null)
+                    {
+                        this._mainifest = new Mainifest();
+                        this._mainifest.Name = mainifestNode.Name;
+                        this._mainifest.ConnectString = mainifestNode.ConnectString;
+
+                        foreach (ServiceNode beanNode in mainifestNode.ServiceNodes)
+                        {
+                            ServiceDescriptor serviceDescriptor = new ServiceDescriptor();
+
+                            serviceDescriptor.Name = beanNode.Name;
+                            serviceDescriptor.ClassName = beanNode.ClassName;
+
+                            this._mainifest.ServiceDescriptors.Add(serviceDescriptor);
+                        }
+
+                    }
+                }
+              
+                return _mainifest;
+            }
+        }
+
         public ModuleAssembly(Assembly assembly)
         {
             this.Assembly = assembly;
         }
+
+
 
         public Stream OpenMainifest()
         {

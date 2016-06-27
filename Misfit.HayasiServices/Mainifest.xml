@@ -2,6 +2,6 @@
 <Mainifest>
   <Name>Aomi</Name>
   <Servcies>
-    <Service Name="TestService" ClassName="Misfit.AomiServcies.TestService"></Service>
+    <Service Name="TestService" ClassName="Misfit.HayasiServices.TestService"></Service>
   </Servcies>
 </Mainifest>

@@ -1,12 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Misfit>
-  <MisfitConnectString>dddddd</MisfitConnectString>
+  <Arguments>
+    <Argument Name="asd" Value="asdfasdf" />
+    <Argument Name="dddd" Value="asddff" />
+  </Arguments>
   <Modules>
-    <Module Name="MisfitConsoleDebug"  Location="Misfit.AomiServcies" Description="日志系统" >
-      <ConnectionStrings>
-        <ConnectionString Name="asd" Value="asdfasdf"></ConnectionString>
-        <ConnectionString Name="dddd" Value="asddff"></ConnectionString>
-      </ConnectionStrings>
+    <Module Name="MisfitConsoleDebug"  Location="Misfit.HayasiServices" Description="日志系统" >
+      <DownloadUrl></DownloadUrl>
+      <Arguments>
+        <Argument Name="asd" Value="asdfasdf" />
+        <Argument Name="dddd" Value="asddff" />
+      </Arguments>
     </Module>
   </Modules>
 </Misfit>

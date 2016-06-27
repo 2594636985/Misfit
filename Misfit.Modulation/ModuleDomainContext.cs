@@ -7,20 +7,29 @@ using System.Text;
 namespace Misfit.Modulation
 {
     /// <summary>
-    /// 插件服务的上下文
+    /// 模块域的上下文
     /// </summary>
     public class ModuleDomainContext : MarshalByRefObject, IModuleDomainContext
     {
         public string ModuleDomainName { set; get; }
-        public string MisfitConnectionString { set; get; }
+        /// <summary>
+        /// 程序集的所在的位置
+        /// </summary>
         public string AssemlbyLocation { set; get; }
-        public ModuleDomainRepository ModuleDomainRepository { set; get; }
+        /// <summary>
+        /// 框架参数
+        /// </summary>
+        public Dictionary<string, string> MisfitArguments { set; get; }
 
-        public Dictionary<string, string> ConnectionStrings { set; get; }
+        public ModuleDomainRepository ModuleDomainRepository { set; get; }
+        /// <summary>
+        /// 参数
+        /// </summary>
+        public Dictionary<string, string> Arguments { set; get; }
 
         public ModuleDomainContext()
         {
-            this.ConnectionStrings = new Dictionary<string, string>();
+            this.Arguments = new Dictionary<string, string>();
         }
 
         /// <summary>
@@ -40,7 +49,7 @@ namespace Misfit.Modulation
         /// <typeparam name="TInterface"></typeparam>
         /// <param name="assemblyCatalogName"></param>
         /// <returns></returns>
-        public TInterface GetService<TInterface>(string assemblyCatalogName) 
+        public TInterface GetService<TInterface>(string assemblyCatalogName)
         {
             return this.ModuleDomainRepository.GetService<TInterface>(assemblyCatalogName);
         }

@@ -10,7 +10,9 @@ namespace Misfit.Modulation
     /// </summary>
     public class ModulationWorkerContext
     {
-        public string MisfitConnectionString { set; get; }
+
+        public Dictionary<string, string> Arguments { set; get; }
+
         public List<Module> Modules { set; get; }
 
     }

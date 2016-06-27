@@ -9,7 +9,7 @@ using System.Security.Policy;
 using System.Threading;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
-using Misfit.Modulation.IO;
+using Misfit.IO;
 
 namespace Misfit.Modulation
 {
@@ -19,6 +19,8 @@ namespace Misfit.Modulation
     public class MisfitWeaver
     {
         private static ModulationWorker ModulationWorker;
+
+        public static Action<>
 
         /// <summary>
         /// 初始化
@@ -40,7 +42,12 @@ namespace Misfit.Modulation
             if (misfitNode != null)
             {
                 List<Module> modules = new List<Module>();
-                string misfitConnectionString = misfitNode.MisfitConnectString;
+                Dictionary<string, string> misfitArguments = new Dictionary<string, string>();
+
+                foreach (ArgumentNode argumentNode in misfitNode.ArgumentNodes)
+                {
+                    misfitArguments.Add(argumentNode.Name, argumentNode.Value);
+                }
 
                 foreach (ModuleNode pluginNode in misfitNode.PluginNodes)
                 {
@@ -49,9 +56,9 @@ namespace Misfit.Modulation
                     module.Name = pluginNode.Name;
                     module.Location = pluginNode.Location;
 
-                    foreach (ConnectionStringNode connectionStringNode in pluginNode.ConnectionStringNodes)
+                    foreach (ArgumentNode connectionStringNode in pluginNode.ConnectionStringNodes)
                     {
-                        module.ConnectionStrings.Add(connectionStringNode.Name, connectionStringNode.Value);
+                        module.Arguments.Add(connectionStringNode.Name, connectionStringNode.Value);
                     }
 
                     modules.Add(module);
@@ -59,12 +66,12 @@ namespace Misfit.Modulation
 
                 ModulationWorkerContext modulationWorkerContext = new ModulationWorkerContext()
                 {
-                    MisfitConnectionString = misfitConnectionString,
+                    Arguments = misfitArguments,
                     Modules = modules
                 };
 
                 ModulationWorker = new ModulationWorker(modulationWorkerContext);
-
+                ModulationWorker.Initialize();
             }
 
             if (ModulationWorker == null)

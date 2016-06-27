@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BBADB2B1-01F4-4F9C-97AE-1F884956F7ED}</ProjectGuid>
+    <ProjectGuid>{53BB73FB-B003-4A98-8AB1-B8BFE1A9D3C8}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Misfit.AomiServcies</RootNamespace>
-    <AssemblyName>Misfit.AomiServcies</AssemblyName>
+    <RootNamespace>Misfit.HayasiServices</RootNamespace>
+    <AssemblyName>Misfit.HayasiServices</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -39,10 +39,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="TestService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestService.cs">
-      <SubType>Code</SubType>
-    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Mainifest.xml">
+      <SubType>Designer</SubType>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Misfit.AomiServices.Inf\Misfit.AomiServices.Inf.csproj">
@@ -53,12 +57,6 @@
       <Project>{1eaae8b4-9c4a-4172-8d0a-2801a4e89fe2}</Project>
       <Name>Misfit.Modulation.AddIn</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Mainifest.xml">
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

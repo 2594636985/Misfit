@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 
-namespace Misfit.Modulation.IO
+namespace Misfit.IO
 {
     public class MisfitDocument : XmlDocument
     {
@@ -18,11 +18,42 @@ namespace Misfit.Modulation.IO
                 {
                     MisfitNode misfitNode = new MisfitNode();
 
-                    foreach (XmlNode xmlNode in rootXmlElement)
+                    foreach (XmlNode xmlNode in rootXmlElement.ChildNodes)
                     {
-                        if (string.Compare(xmlNode.Name, "MisfitConnectString", true) == 0)
+                        if (string.Compare(xmlNode.Name, "Arguments", true) == 0)
                         {
-                            misfitNode.MisfitConnectString = xmlNode.InnerText;
+                            if (xmlNode.HasChildNodes)
+                            {
+                                foreach (XmlNode moduleChildXmlNode in xmlNode.ChildNodes)
+                                {
+                                    if (string.Compare(moduleChildXmlNode.Name, "Arguments", true) == 0 && moduleChildXmlNode.HasChildNodes)
+                                    {
+                                        foreach (XmlNode ConnectionStringXmlNode in moduleChildXmlNode.ChildNodes)
+                                        {
+                                            ArgumentNode argumentNode = new ArgumentNode();
+
+                                            XmlAttributeCollection connStrXmlAttrCollection = ConnectionStringXmlNode.Attributes;
+
+                                            if (connStrXmlAttrCollection != null && connStrXmlAttrCollection.Count > 0)
+                                            {
+                                                foreach (XmlAttribute connStrXmlAttr in connStrXmlAttrCollection)
+                                                {
+                                                    if (string.Compare(connStrXmlAttr.Name, "Name", true) == 0)
+                                                    {
+                                                        argumentNode.Name = connStrXmlAttr.Value;
+                                                    }
+                                                    else if (string.Compare(connStrXmlAttr.Name, "Value", true) == 0)
+                                                    {
+                                                        argumentNode.Value = connStrXmlAttr.Value;
+                                                    }
+                                                }
+                                            }
+
+                                            misfitNode.ArgumentNodes.Add(argumentNode);
+                                        }
+                                    }
+                                }
+                            }
                         }
                         else if (string.Compare(xmlNode.Name, "Modules", true) == 0 && xmlNode.HasChildNodes)
                         {
@@ -54,11 +85,11 @@ namespace Misfit.Modulation.IO
                                 {
                                     foreach (XmlNode moduleChildXmlNode in moduleXmlNode.ChildNodes)
                                     {
-                                        if (string.Compare(moduleChildXmlNode.Name, "ConnectionStrings", true) == 0 && moduleChildXmlNode.HasChildNodes)
+                                        if (string.Compare(moduleChildXmlNode.Name, "Arguments", true) == 0 && moduleChildXmlNode.HasChildNodes)
                                         {
                                             foreach (XmlNode ConnectionStringXmlNode in moduleChildXmlNode.ChildNodes)
                                             {
-                                                ConnectionStringNode connectionStringNode = new ConnectionStringNode();
+                                                ArgumentNode connectionStringNode = new ArgumentNode();
 
                                                 XmlAttributeCollection connStrXmlAttrCollection = ConnectionStringXmlNode.Attributes;
 

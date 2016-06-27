@@ -9,6 +9,9 @@ using System.Text;
 
 namespace Misfit.Modulation
 {
+    /// <summary>
+    /// 模块域的库存
+    /// </summary>
     public class ModuleDomainRepository
     {
         public ModuleDomainCollection ModuleDomainCollection { private set; get; }
@@ -20,8 +23,8 @@ namespace Misfit.Modulation
 
         public void AddModulDomain(ModuleDomain moduleDomain)
         {
-            if (this.ModuleDomainCollection.IsInstalled(moduleDomain.ModuleName))
-                throw new InvalidDataException(string.Format("已经存在一个相同的{0}模块域", moduleDomain.ModuleName));
+            if (this.ModuleDomainCollection.IsInstalled(moduleDomain.ModuleDomainName))
+                throw new InvalidDataException(string.Format("已经存在一个相同的{0}模块域", moduleDomain.ModuleDomainName));
 
             this.ModuleDomainCollection.Add(moduleDomain);
         }
@@ -54,7 +57,10 @@ namespace Misfit.Modulation
             return (TInterface)this.GetService(assemblyCatalogName, typeof(TInterface).Name);
         }
 
-        public void DestroyClose()
+        /// <summary>
+        /// 清楚库存
+        /// </summary>
+        public void Clear()
         {
             if (this.ModuleDomainCollection.Any())
             {

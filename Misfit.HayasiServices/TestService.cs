@@ -1,12 +1,12 @@
-﻿using Misfit.Modulation.AddIn.Injection;
+﻿using Misfit.AomiServices.Inf;
+using Misfit.Modulation.AddIn.Injection;
 using Misfit.Modulation.AddIn.Serices;
-using Misfit.AomiServices.Inf;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Misfit.AomiServcies
+namespace Misfit.HayasiServices
 {
     public class TestService : MisfitAbsService, ITestService
     {
@@ -18,7 +18,7 @@ namespace Misfit.AomiServcies
 
         public string Hello(string name)
         {
-            return "hello aomi" + name;
+            return "hello hayasi " + name;
         }
     }
 }

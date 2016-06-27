@@ -6,9 +6,9 @@ using System.Text;
 
 namespace Misfit.Modulation.AddIn.Core
 {
-    public class MainifestDescriptor
+    public class Mainifest
     {
-        public MainifestDescriptor()
+        public Mainifest()
         {
             this.ServiceDescriptors = new List<ServiceDescriptor>();
         }

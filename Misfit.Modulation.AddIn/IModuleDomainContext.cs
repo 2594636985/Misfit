@@ -11,7 +11,7 @@ namespace Misfit.Modulation.AddIn
     /// </summary>
     public interface IModuleDomainContext
     {
-        Dictionary<string, string> ConnectionStrings { set; get; }
+        Dictionary<string, string> Arguments { set; get; }
 
         object GetService(string assemblyCatalogName, string typeName);
 

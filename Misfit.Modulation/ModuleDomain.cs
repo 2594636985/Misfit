@@ -18,6 +18,7 @@ namespace Misfit.Modulation
     /// </summary>
     public class ModuleDomain
     {
+
         /// <summary>
         /// 模块域的哉名
         /// </summary>
@@ -26,7 +27,12 @@ namespace Misfit.Modulation
         /// <summary>
         /// 模块域的名称
         /// </summary>
-        public string ModuleName { private set; get; }
+        public string ModuleDomainName { private set; get; }
+
+        /// <summary>
+        /// 模块域的版本号
+        /// </summary>
+        public Version ModuleDomainVersion { private set; get; }
 
         /// <summary>
         /// 模块域上下文
@@ -49,6 +55,21 @@ namespace Misfit.Modulation
         /// </summary>
         public Dictionary<string, object> ModuleDomainServices { private set; get; }
 
+        /// <summary>
+        /// 初始化的时候发生
+        /// </summary>
+        public event Action<ModuleDomain> OnInitialized;
+
+        /// <summary>
+        /// 安装成功的时候发生
+        /// </summary>
+        public event Action<ModuleDomain> OnInstalled;
+
+        /// <summary>
+        /// 在关闭卸载的时候发生
+        /// </summary>
+        public event Action<ModuleDomain> OnClosed;
+
 
         public ModuleDomain(ModuleDomainContext moduleDomainContext)
         {
@@ -58,9 +79,9 @@ namespace Misfit.Modulation
         }
 
         /// <summary>
-        /// 安装
+        /// 初始化模块域
         /// </summary>
-        public void Install()
+        public void Initialize()
         {
             this.Domain = ModuleDomainFactory.CreateModuleAppDomain("Module-" + this.ModuleDomainContext.AssemlbyLocation);
 
@@ -69,10 +90,27 @@ namespace Misfit.Modulation
 
             this.Domain.DoCallBack(ModuleDomainInitailize.Initailize);
 
-            this.ModuleName = this.Domain.GetData("ModuleDomainName") as string;
+            this.ModuleDomainName = this.Domain.GetData("ModuleDomainName") as string;
+            this.ModuleDomainVersion = new Version(Convert.ToString(this.Domain.GetData("ModuleDomainVersion")));
+
+            if (this.OnInitialized != null)
+                this.OnInitialized(this);
+        }
+
+
+        /// <summary>
+        /// 安装
+        /// </summary>
+        public void Install()
+        {
+            this.Domain.DoCallBack(ModuleDomainInitailize.Start);
+
             this.ModuleDomainServices = this.Domain.GetData("ModuleDomainServcies") as Dictionary<string, object>;
 
             this.Installed = true;
+
+            if (this.OnInstalled != null)
+                this.OnInstalled(this);
 
         }
 
@@ -88,6 +126,9 @@ namespace Misfit.Modulation
                 AppDomain.Unload(this.Domain);
 
             this.Installed = false;
+
+            if (this.OnClosed != null)
+                this.OnClosed(this);
         }
 
 

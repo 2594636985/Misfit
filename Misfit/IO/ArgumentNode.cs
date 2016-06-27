@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Misfit.Modulation.IO
+namespace Misfit.IO
 {
-    public class ConnectionStringNode
+    public class ArgumentNode
     {
         public string Name { set; get; }
 

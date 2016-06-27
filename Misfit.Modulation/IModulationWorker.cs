@@ -5,6 +5,9 @@ using System.Text;
 
 namespace Misfit.Modulation
 {
+    /// <summary>
+    /// 模块工作者接口
+    /// </summary>
     public interface IModulationWorker
     {
         /// <summary>

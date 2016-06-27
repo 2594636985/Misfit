@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Misfit.Modulation.IO
+namespace Misfit.IO
 {
     public class ModuleNode
     {
         public ModuleNode()
         {
-            this.ConnectionStringNodes = new List<ConnectionStringNode>();
+            this.ConnectionStringNodes = new List<ArgumentNode>();
         }
         public string Name { set; get; }
 
@@ -17,6 +17,6 @@ namespace Misfit.Modulation.IO
 
         public string Description { set; get; }
 
-        public List<ConnectionStringNode> ConnectionStringNodes { set; get; }
+        public List<ArgumentNode> ConnectionStringNodes { set; get; }
     }
 }

@@ -15,6 +15,7 @@ namespace Misfit.Modulation.AddIn
     /// </summary>
     public class ModuleDomainInitailize
     {
+        private static ModuleAssembly ModuleAssembly;
         /// <summary>
         /// 模块初始化
         /// </summary>
@@ -24,14 +25,21 @@ namespace Misfit.Modulation.AddIn
             string location = AppDomain.CurrentDomain.GetData("Location") as string;
 
             Assembly callingAssembly = AppDomain.CurrentDomain.Load(location);
-            ModuleAssembly moduleAssembly = new ModuleAssembly(callingAssembly);
+            ModuleAssembly = new ModuleAssembly(callingAssembly);
 
-            AddInConfiguration addInConfiguration = new AddInConfiguration(moduleAssembly);
+            AddInConfiguration addInConfiguration = new AddInConfiguration(ModuleAssembly);
             addInConfiguration.Initialize();
 
+            AppDomain.CurrentDomain.SetData("ModuleDomainName", ModuleAssembly.Mainifest.Name);
+            AppDomain.CurrentDomain.SetData("ModuleDomainVersion", ModuleAssembly.Version.ToString());
+
+        }
+
+        public static void Start()
+        {
             MisfitContainerBuilder builder = new MisfitContainerBuilder();
 
-            List<ModuleServiceType> moduleServiceTypes = moduleAssembly.ModuleServiceTypes;
+            List<ModuleServiceType> moduleServiceTypes = ModuleAssembly.ModuleServiceTypes;
             foreach (ModuleServiceType moduleServiceType in moduleServiceTypes)
             {
                 if (moduleServiceType.InterfaceType == null)
@@ -42,15 +50,12 @@ namespace Misfit.Modulation.AddIn
 
             IMisfitContainer misfitContainer = builder.Build();
 
-            MainifestDescriptor mainifestDescriptor = addInConfiguration.MainifestDescriptor;
-
-            if (mainifestDescriptor != null)
+            if (ModuleAssembly.Mainifest != null)
             {
-                AppDomain.CurrentDomain.SetData("ModuleDomainName", mainifestDescriptor.Name);
 
                 Dictionary<string, object> moduleDomainServces = new Dictionary<string, object>();
 
-                foreach (ServiceDescriptor beanDescriptor in mainifestDescriptor.ServiceDescriptors)
+                foreach (ServiceDescriptor beanDescriptor in ModuleAssembly.Mainifest.ServiceDescriptors)
                 {
                     ModuleServiceType boundaryModuleServiceType = moduleServiceTypes.FirstOrDefault(t => t.ImplementType.FullName == beanDescriptor.ClassName);
                     if (boundaryModuleServiceType == null)
@@ -66,7 +71,6 @@ namespace Misfit.Modulation.AddIn
 
                 AppDomain.CurrentDomain.SetData("ModuleDomainServcies", moduleDomainServces);
             }
-
         }
 
     }

@@ -17,5 +17,6 @@ namespace Misfit.Modulation.AddIn
 
         TInterface GetService<TInterface>(string assemblyCatalogName);
 
+
     }
 }

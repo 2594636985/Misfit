@@ -30,6 +30,8 @@ namespace Misfit.Modulation
         /// </summary>
         public event Action<IModulationWorker, ModuleDomain> OnModuleDomainInstalled;
 
+        public event Action<IModulationWorker, ModulationException> OnModulationException;
+
         public ModulationWorker(ModulationWorkerContext modulationContext)
         {
             this.ModuleDomainRepository = new ModuleDomainRepository();
@@ -60,11 +62,14 @@ namespace Misfit.Modulation
                 moduleDomain.OnInitialized += ModuleDomain_OnInitialized;
                 moduleDomain.OnInstalled += ModuleDomain_OnInstalled;
                 moduleDomain.OnClosed += ModuleDomain_OnClosed;
+                moduleDomain.OnException += ModuleDomain_OnException;
                 moduleDomain.Initialize();
 
                 ModuleDomainRepository.AddModulDomain(moduleDomain);
             }
         }
+
+
 
         /// <summary>
         /// 开始工作
@@ -130,7 +135,7 @@ namespace Misfit.Modulation
         /// <param name="domain"></param>
         private void ModuleDomain_OnClosed(ModuleDomain domain)
         {
-          
+
         }
 
         /// <summary>
@@ -141,6 +146,17 @@ namespace Misfit.Modulation
         {
             if (this.OnModuleDomainInstalled != null)
                 this.OnModuleDomainInstalled(this, domain);
+        }
+
+        /// <summary>
+        /// 发生异常
+        /// </summary>
+        /// <param name="domain"></param>
+        /// <param name="mex"></param>
+        private void ModuleDomain_OnException(ModuleDomain domain, ModuleException mex)
+        {
+            if (this.OnModulationException != null)
+                this.OnModulationException(this, mex);
         }
 
         #endregion

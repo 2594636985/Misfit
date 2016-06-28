@@ -28,7 +28,7 @@ namespace Misfit.Modulation.Desktop.Shell.Pages
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            ITestService testService = MisfitWeaver.GetService<ITestService>("Aomi");
+            ITestService testService = App.MisfitWeaver.GetService<ITestService>("Aomi");
             this.txtValue.Text = testService.Hello("NONO");
         }
     }

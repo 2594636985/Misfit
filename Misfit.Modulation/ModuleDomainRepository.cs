@@ -21,6 +21,10 @@ namespace Misfit.Modulation
             this.ModuleDomainCollection = new ModuleDomainCollection();
         }
 
+        /// <summary>
+        /// 增加模块域
+        /// </summary>
+        /// <param name="moduleDomain"></param>
         public void AddModulDomain(ModuleDomain moduleDomain)
         {
             if (this.ModuleDomainCollection.IsInstalled(moduleDomain.ModuleDomainName))

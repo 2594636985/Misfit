@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddInException.cs" />
     <Compile Include="Core\CoreException.cs" />
     <Compile Include="Core\MainifestDescriptor.cs" />
     <Compile Include="Core\ModuleAssembly.cs" />

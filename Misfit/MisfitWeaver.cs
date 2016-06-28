@@ -18,27 +18,47 @@ namespace Misfit.Modulation
     /// </summary>
     public class MisfitWeaver
     {
-        private static ModulationWorker ModulationWorker;
+        private ModulationWorker _modulationWorker;
+        public string ConfigurationString { private set; get; }
 
-        public static Action<>
+
+        public event Action<Exception> OnMisfitException;
+
+        public MisfitWeaver()
+            : this("Misfit.xml")
+        {
+
+        }
+
+        public MisfitWeaver(string configurationString)
+        {
+            this.ConfigurationString = configurationString;
+        }
 
         /// <summary>
         /// 初始化
         /// </summary>
-        public static void Initailize()
+        public void Initailize()
         {
-
             AppDomain.CurrentDomain.AssemblyResolve += AssemblyResolve;
 
-            string configurationString = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Misfit.xml");
-
-            if (!File.Exists(configurationString))
+            string configurationDirectory = string.Empty;
+            if (Path.IsPathRooted(this.ConfigurationString))
+            {
+                configurationDirectory = this.ConfigurationString;
+            }
+            else
+            {
+                configurationDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, this.ConfigurationString);
+            }
+            if (!File.Exists(configurationDirectory))
                 throw new FileNotFoundException("对应的配置文件Misfit.xml不存在");
 
-            MisfitDocument pluginDocument = new MisfitDocument();
-            pluginDocument.Load(configurationString);
+            MisfitDocument misfitDocument = new MisfitDocument();
+            misfitDocument.Load(configurationDirectory);
 
-            MisfitNode misfitNode = pluginDocument.MisfitNode;
+            MisfitNode misfitNode = misfitDocument.MisfitNode;
+
             if (misfitNode != null)
             {
                 List<Module> modules = new List<Module>();
@@ -70,15 +90,22 @@ namespace Misfit.Modulation
                     Modules = modules
                 };
 
-                ModulationWorker = new ModulationWorker(modulationWorkerContext);
-                ModulationWorker.Initialize();
+                _modulationWorker = new ModulationWorker(modulationWorkerContext);
+                _modulationWorker.OnModulationException += ModulationWorker_OnModulationException;
+                _modulationWorker.Initialize();
             }
 
-            if (ModulationWorker == null)
+            if (_modulationWorker == null)
                 throw new InvalidOperationException("模块功能初始化失败 原因：配置文件可能存在问题");
 
-            ModulationWorker.Start();
+            _modulationWorker.Start();
 
+        }
+
+        private void ModulationWorker_OnModulationException(IModulationWorker mWorker, ModulationException mex)
+        {
+            if (this.OnMisfitException != null)
+                this.OnMisfitException(mex);
         }
 
 
@@ -88,12 +115,12 @@ namespace Misfit.Modulation
         /// <param name="assemblyCatalogName"></param>
         /// <param name="typeName"></param>
         /// <returns></returns>
-        public static object GetService(string assemblyCatalogName, string typeName)
+        public object GetService(string assemblyCatalogName, string typeName)
         {
-            if (ModulationWorker == null)
+            if (_modulationWorker == null)
                 throw new InvalidOperationException("模块功能没有初始化");
 
-            return ModulationWorker.GetService(assemblyCatalogName, typeName);
+            return _modulationWorker.GetService(assemblyCatalogName, typeName);
         }
 
         /// <summary>
@@ -102,22 +129,22 @@ namespace Misfit.Modulation
         /// <typeparam name="TInterface"></typeparam>
         /// <param name="assemblyCatalogName"></param>
         /// <returns></returns>
-        public static TInterface GetService<TInterface>(string assemblyCatalogName)
+        public TInterface GetService<TInterface>(string assemblyCatalogName)
         {
-            if (ModulationWorker == null)
+            if (_modulationWorker == null)
                 throw new InvalidOperationException("模块功能没有初始化");
 
-            return ModulationWorker.GetService<TInterface>(assemblyCatalogName);
+            return _modulationWorker.GetService<TInterface>(assemblyCatalogName);
         }
 
 
 
-        public static void Dispose()
+        public void Dispose()
         {
-            if (ModulationWorker == null)
+            if (_modulationWorker == null)
                 throw new InvalidOperationException("模块功能没有初始化");
 
-            ModulationWorker.Stop();
+            _modulationWorker.Stop();
         }
 
 

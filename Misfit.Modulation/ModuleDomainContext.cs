@@ -11,6 +11,9 @@ namespace Misfit.Modulation
     /// </summary>
     public class ModuleDomainContext : MarshalByRefObject, IModuleDomainContext
     {
+        /// <summary>
+        /// 模块域的名称
+        /// </summary>
         public string ModuleDomainName { set; get; }
         /// <summary>
         /// 程序集的所在的位置
@@ -20,7 +23,9 @@ namespace Misfit.Modulation
         /// 框架参数
         /// </summary>
         public Dictionary<string, string> MisfitArguments { set; get; }
-
+        /// <summary>
+        /// 模块域的库存
+        /// </summary>
         public ModuleDomainRepository ModuleDomainRepository { set; get; }
         /// <summary>
         /// 参数

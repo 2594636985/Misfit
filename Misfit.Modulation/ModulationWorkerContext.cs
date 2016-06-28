@@ -10,9 +10,14 @@ namespace Misfit.Modulation
     /// </summary>
     public class ModulationWorkerContext
     {
-
+        /// <summary>
+        /// 参数
+        /// </summary>
         public Dictionary<string, string> Arguments { set; get; }
 
+        /// <summary>
+        /// 模块信息集合
+        /// </summary>
         public List<Module> Modules { set; get; }
 
     }

@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Misfit.Modulation.AddIn.Core
+namespace Misfit.Modulation
 {
-    public class CoreException : AddInException
+    public class ModuleException : ModulationException
     {
-        public CoreException(string message)
+        public ModuleException(string message)
             : base(message)
         {
 

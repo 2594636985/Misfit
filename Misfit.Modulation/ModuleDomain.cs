@@ -10,6 +10,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using Misfit.Modulation.Aspect;
 
 namespace Misfit.Modulation
 {
@@ -70,13 +71,22 @@ namespace Misfit.Modulation
         /// </summary>
         public event Action<ModuleDomain> OnClosed;
 
+        /// <summary>
+        /// 发生异常的时候 发生
+        /// </summary>
+
+        public event Action<ModuleDomain, ModuleException> OnException;
+
 
         public ModuleDomain(ModuleDomainContext moduleDomainContext)
         {
             this.ModuleDomainContext = moduleDomainContext;
             this.DomainName = moduleDomainContext.ModuleDomainName;
+            this.ModuleDomainServices = new Dictionary<string, object>();
             this.Installed = false;
         }
+
+        #region 公有方法
 
         /// <summary>
         /// 初始化模块域
@@ -105,7 +115,16 @@ namespace Misfit.Modulation
         {
             this.Domain.DoCallBack(ModuleDomainInitailize.Start);
 
-            this.ModuleDomainServices = this.Domain.GetData("ModuleDomainServcies") as Dictionary<string, object>;
+            Dictionary<string, object> registerModuleDoaminServices = this.Domain.GetData("ModuleDomainServcies") as Dictionary<string, object>;
+
+            if (registerModuleDoaminServices != null && registerModuleDoaminServices.Count > 0)
+            {
+                foreach (string registerKey in registerModuleDoaminServices.Keys)
+                {
+                    object domainService = DynamicProxyFactory.Instance.CreateProxy(registerModuleDoaminServices[registerKey], new InvocationDelegate(InvocationHandler), true);
+                    this.ModuleDomainServices.Add(registerKey, domainService);
+                }
+            }
 
             this.Installed = true;
 
@@ -113,6 +132,7 @@ namespace Misfit.Modulation
                 this.OnInstalled(this);
 
         }
+
 
         /// <summary>
         /// 卸载
@@ -131,7 +151,35 @@ namespace Misfit.Modulation
                 this.OnClosed(this);
         }
 
+        #endregion
 
+        #region 私有方法
+
+        /// <summary>
+        /// 模块域里面的服务都会经过里面，AOP思想
+        /// </summary>
+        /// <param name="target"></param>
+        /// <param name="method"></param>
+        /// <param name="parameters"></param>
+        /// <returns></returns>
+        private object InvocationHandler(object target, MethodBase method, object[] parameters)
+        {
+            try
+            {
+                Console.WriteLine("Before: " + method.Name);
+                object result = method.Invoke(target, parameters);
+                Console.WriteLine("After: " + method.Name);
+                return result;
+            }
+            catch (Exception ex)
+            {
+                if (OnException != null)
+                    this.OnException(this, new ModuleException(ex.Message));
+            }
+            return null;
+        }
+
+        #endregion
 
     }
 }

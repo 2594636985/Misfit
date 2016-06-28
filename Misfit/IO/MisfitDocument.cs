@@ -108,13 +108,13 @@ namespace Misfit.IO
                                                     }
                                                 }
 
-                                                moduleNode.ConnectionStringNodes.Add(connectionStringNode);
+                                                moduleNode.ArgumentNodes.Add(connectionStringNode);
                                             }
                                         }
                                     }
                                 }
 
-                                misfitNode.PluginNodes.Add(moduleNode);
+                                misfitNode.ModuleNodes.Add(moduleNode);
                             }
                         }
                     }

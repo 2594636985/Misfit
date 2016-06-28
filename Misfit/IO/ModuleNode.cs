@@ -9,7 +9,7 @@ namespace Misfit.IO
     {
         public ModuleNode()
         {
-            this.ConnectionStringNodes = new List<ArgumentNode>();
+            this.ArgumentNodes = new List<ArgumentNode>();
         }
         public string Name { set; get; }
 
@@ -17,6 +17,6 @@ namespace Misfit.IO
 
         public string Description { set; get; }
 
-        public List<ArgumentNode> ConnectionStringNodes { set; get; }
+        public List<ArgumentNode> ArgumentNodes { set; get; }
     }
 }

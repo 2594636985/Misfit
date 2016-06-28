@@ -10,11 +10,11 @@ namespace Misfit.IO
         public MisfitNode()
         {
             this.ArgumentNodes = new List<ArgumentNode>();
-            this.PluginNodes = new List<ModuleNode>();
+            this.ModuleNodes = new List<ModuleNode>();
         }
 
         public List<ArgumentNode> ArgumentNodes { set; get; }
 
-        public List<ModuleNode> PluginNodes { set; get; }
+        public List<ModuleNode> ModuleNodes { set; get; }
     }
 }

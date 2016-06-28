@@ -69,14 +69,14 @@ namespace Misfit.Modulation
                     misfitArguments.Add(argumentNode.Name, argumentNode.Value);
                 }
 
-                foreach (ModuleNode pluginNode in misfitNode.PluginNodes)
+                foreach (ModuleNode pluginNode in misfitNode.ModuleNodes)
                 {
                     Module module = new Module();
                     module.Description = pluginNode.Description;
                     module.Name = pluginNode.Name;
                     module.Location = pluginNode.Location;
 
-                    foreach (ArgumentNode connectionStringNode in pluginNode.ConnectionStringNodes)
+                    foreach (ArgumentNode connectionStringNode in pluginNode.ArgumentNodes)
                     {
                         module.Arguments.Add(connectionStringNode.Name, connectionStringNode.Value);
                     }

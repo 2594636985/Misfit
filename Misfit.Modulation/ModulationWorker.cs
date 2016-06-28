@@ -39,7 +39,9 @@ namespace Misfit.Modulation
         }
 
         #region 公有方法
-
+        /// <summary>
+        /// 初始化
+        /// </summary>
         public void Initialize()
         {
             foreach (Module module in this.ModulationWorkerContext.Modules)

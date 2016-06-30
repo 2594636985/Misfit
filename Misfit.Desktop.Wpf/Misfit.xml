@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Misfit Debug="true">
+  <Modules>
+    <Arguments>
+      <Argument Name="asd" Value="asdfasdf" />
+      <Argument Name="dddd" Value="asddff" />
+    </Arguments>
+    <Module Name="MisfitConsoleDebug"  Location="Misfit.AomiServcies" Description="日志系统" >
+      <TrackerTarget></TrackerTarget>
+      <DownloadUrl></DownloadUrl>
+      <Arguments>
+        <Argument Name="asd" Value="asdfasdf" />
+        <Argument Name="dddd" Value="asddff" />
+      </Arguments>
+    </Module>
+  </Modules>
+</Misfit>

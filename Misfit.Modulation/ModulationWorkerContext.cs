@@ -11,6 +11,10 @@ namespace Misfit.Modulation
     public class ModulationWorkerContext
     {
         /// <summary>
+        /// 是否为调试态
+        /// </summary>
+        public bool IsDebug { set; get; }
+        /// <summary>
         /// 参数
         /// </summary>
         public Dictionary<string, string> Arguments { set; get; }

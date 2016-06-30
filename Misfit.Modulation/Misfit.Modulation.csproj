@@ -80,6 +80,8 @@
     </Compile>
     <Compile Include="ModuleException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tracking\Tracker.cs" />
+    <Compile Include="Tracking\TrackerSetup.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Misfit.Modulation.AddIn\Misfit.Modulation.AddIn.csproj">

@@ -44,6 +44,13 @@ namespace Misfit.Modulation
         /// </summary>
         public void Initialize()
         {
+
+            if (this.ModulationWorkerContext.IsDebug)
+            {
+                Tracking.TrackerSetup.Setup();
+            }
+
+
             foreach (Module module in this.ModulationWorkerContext.Modules)
             {
                 ModuleDomainContext moduleDomainContext = new ModuleDomainContext();

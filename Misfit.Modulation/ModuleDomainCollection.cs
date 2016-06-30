@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 
@@ -8,7 +9,7 @@ namespace Misfit.Modulation
     /// <summary>
     /// 模块域的集合
     /// </summary>
-    public class ModuleDomainCollection : List<ModuleDomain>
+    public class ModuleDomainCollection : Collection<ModuleDomain>
     {
         /// <summary>
         /// 根据模块域的模块名来获得模块域

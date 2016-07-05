@@ -78,7 +78,9 @@
     <Compile Include="ModuleException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tracking\ConsoleTarget.cs" />
-    <Compile Include="Tracking\DebugTarget.cs" />
+    <Compile Include="Tracking\DebugTarget.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Tracking\FileTarget.cs" />
     <Compile Include="Tracking\ITarget.cs" />
     <Compile Include="Tracking\LayoutTarget.cs" />

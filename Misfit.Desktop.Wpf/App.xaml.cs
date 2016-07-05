@@ -18,7 +18,7 @@ namespace Misfit.Desktop.Wpf
         {
             base.OnStartup(e);
             MisfitWeaver.OnMisfitException += MisfitWeaver_OnMisfitException;
-            MisfitWeaver.Initailize();
+            MisfitWeaver.Initailize("Misfit.xml");
         }
 
         private void MisfitWeaver_OnMisfitException(Exception ex)

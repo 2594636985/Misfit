@@ -11,12 +11,15 @@ namespace Misfit.Modulation.AddIn
     /// </summary>
     public interface IModuleDomainContext
     {
-        Dictionary<string, string> Arguments { set; get; }
+
+        string AddInsRoot { set; get; }
+        Dictionary<string, string> Variables { set; get; }
+
+        Dictionary<string, string> Parameters { set; get; }
 
         object GetService(string assemblyCatalogName, string typeName);
 
         TInterface GetService<TInterface>(string assemblyCatalogName);
-
 
     }
 }

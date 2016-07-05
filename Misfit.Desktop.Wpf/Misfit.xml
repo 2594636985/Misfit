@@ -1,17 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<Misfit Debug="true">
+<Misfit>
+  <AddInRoot Value="AddIns" />
+  <Variables>
+    <Variable Name="asd" Value="asdfasdf" />
+    <Variable Name="dddd" Value="asddff" />
+  </Variables>
   <Modules>
-    <Arguments>
-      <Argument Name="asd" Value="asdfasdf" />
-      <Argument Name="dddd" Value="asddff" />
-    </Arguments>
-    <Module Name="MisfitConsoleDebug"  Location="Misfit.AomiServcies" Description="日志系统" >
-      <TrackerTarget></TrackerTarget>
-      <DownloadUrl></DownloadUrl>
-      <Arguments>
-        <Argument Name="asd" Value="asdfasdf" />
-        <Argument Name="dddd" Value="asddff" />
-      </Arguments>
+    <Module Name="MisfitConsoleDebug"  Location="Misfit.AomiServcies" Description="日志系统" Debug="true">
+      <Tracker Value="Debug" />
+      <Uri Value="" />
+      <Parameters>
+        <Parameter Key="asd" Value="asdfasdf" />
+        <Parameter Key="dddd" Value="asddff" />
+      </Parameters>
     </Module>
   </Modules>
 </Misfit>

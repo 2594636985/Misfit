@@ -9,7 +9,9 @@ using System.Security.Policy;
 using System.Threading;
 using Newtonsoft.Json;
 using System.Threading.Tasks;
-using Misfit.IO;
+using Misfit.Configuration;
+using Misfit.Configuration.Elements;
+using Misfit.Modulation.Tracking;
 
 namespace Misfit.Modulation
 {
@@ -19,21 +21,10 @@ namespace Misfit.Modulation
     public class MisfitWeaver
     {
         private ModulationWorker _modulationWorker;
-        public string ConfigurationString { private set; get; }
-
 
         public event Action<Exception> OnMisfitException;
 
-        public MisfitWeaver()
-            : this("Misfit.xml")
-        {
-
-        }
-
-        public MisfitWeaver(string configurationString)
-        {
-            this.ConfigurationString = configurationString;
-        }
+        #region 公有方法
 
         /// <summary>
         /// 初始化
@@ -42,72 +33,22 @@ namespace Misfit.Modulation
         {
             AppDomain.CurrentDomain.AssemblyResolve += AssemblyResolve;
 
-            string configurationDirectory = string.Empty;
-            if (Path.IsPathRooted(this.ConfigurationString))
-            {
-                configurationDirectory = this.ConfigurationString;
-            }
-            else
-            {
-                configurationDirectory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, this.ConfigurationString);
-            }
-            if (!File.Exists(configurationDirectory))
-                throw new FileNotFoundException("对应的配置文件Misfit.xml不存在");
+            MisfitConfiguration misfitConfiguration = new MisfitConfiguration();
 
-            MisfitDocument misfitDocument = new MisfitDocument();
-            misfitDocument.Load(configurationDirectory);
-
-            MisfitNode misfitNode = misfitDocument.MisfitNode;
-
-            if (misfitNode != null)
-            {
-                List<Module> modules = new List<Module>();
-                Dictionary<string, string> misfitArguments = new Dictionary<string, string>();
-
-                foreach (ArgumentNode argumentNode in misfitNode.ArgumentNodes)
-                {
-                    misfitArguments.Add(argumentNode.Name, argumentNode.Value);
-                }
-
-                foreach (ModuleNode pluginNode in misfitNode.ModuleNodes)
-                {
-                    Module module = new Module();
-                    module.Description = pluginNode.Description;
-                    module.Name = pluginNode.Name;
-                    module.Location = pluginNode.Location;
-
-                    foreach (ArgumentNode connectionStringNode in pluginNode.ArgumentNodes)
-                    {
-                        module.Arguments.Add(connectionStringNode.Name, connectionStringNode.Value);
-                    }
-
-                    modules.Add(module);
-                }
-
-                ModulationWorkerContext modulationWorkerContext = new ModulationWorkerContext()
-                {
-                    Arguments = misfitArguments,
-                    Modules = modules
-                };
-
-                _modulationWorker = new ModulationWorker(modulationWorkerContext);
-                _modulationWorker.OnModulationException += ModulationWorker_OnModulationException;
-                _modulationWorker.Initialize();
-            }
-
-            if (_modulationWorker == null)
-                throw new InvalidOperationException("模块功能初始化失败 原因：配置文件可能存在问题");
-
-            _modulationWorker.Start();
-
+            this.DoInitailize(misfitConfiguration.SectionHandler);
         }
 
-        private void ModulationWorker_OnModulationException(IModulationWorker mWorker, ModulationException mex)
+        /// <summary>
+        /// 根据配置文件来初始化
+        /// </summary>
+        public void Initailize(string configurationFile)
         {
-            if (this.OnMisfitException != null)
-                this.OnMisfitException(mex);
-        }
+            AppDomain.CurrentDomain.AssemblyResolve += AssemblyResolve;
 
+            MisfitConfiguration misfitConfiguration = new MisfitConfiguration(MisfitSectionHandler.DefaultSectionName, configurationFile);
+
+            this.DoInitailize(misfitConfiguration.SectionHandler);
+        }
 
         /// <summary>
         /// 获得相关模块域里面的对外服务
@@ -117,10 +58,10 @@ namespace Misfit.Modulation
         /// <returns></returns>
         public object GetService(string assemblyCatalogName, string typeName)
         {
-            if (_modulationWorker == null)
+            if (this._modulationWorker == null)
                 throw new InvalidOperationException("模块功能没有初始化");
 
-            return _modulationWorker.GetService(assemblyCatalogName, typeName);
+            return this._modulationWorker.GetService(assemblyCatalogName, typeName);
         }
 
         /// <summary>
@@ -131,22 +72,75 @@ namespace Misfit.Modulation
         /// <returns></returns>
         public TInterface GetService<TInterface>(string assemblyCatalogName)
         {
-            if (_modulationWorker == null)
+            if (this._modulationWorker == null)
                 throw new InvalidOperationException("模块功能没有初始化");
 
-            return _modulationWorker.GetService<TInterface>(assemblyCatalogName);
+            return this._modulationWorker.GetService<TInterface>(assemblyCatalogName);
         }
 
 
 
         public void Dispose()
         {
-            if (_modulationWorker == null)
+            if (this._modulationWorker == null)
                 throw new InvalidOperationException("模块功能没有初始化");
 
-            _modulationWorker.Stop();
+            this._modulationWorker.Stop();
+        }
+        #endregion
+        #region 私有方法
+        private void DoInitailize(MisfitSectionHandler sectionHandler)
+        {
+            List<Module> modules = new List<Module>();
+            Dictionary<string, string> variables = new Dictionary<string, string>();
+
+            foreach (VariableElement variableElement in sectionHandler.Variables)
+            {
+                variables.Add(variableElement.Name, variableElement.Value);
+            }
+
+            foreach (ModuleElement moduleElement in sectionHandler.Modules)
+            {
+                Module module = new Module();
+                module.Description = moduleElement.Description;
+                module.Name = moduleElement.Name;
+                module.Location = moduleElement.Location;
+                module.IsDebug = moduleElement.Debug && sectionHandler.Debug;
+                module.Uri = moduleElement.Uri.Value;
+                module.TrackerTarget = (TrackerTarget)Enum.Parse(typeof(TrackerTarget), moduleElement.Tracker.Value, true);
+
+                foreach (ParameterElement parameterElement in moduleElement.Parameters)
+                {
+                    module.Arguments.Add(parameterElement.Key, parameterElement.Value);
+                }
+
+                modules.Add(module);
+            }
+
+            ModulationWorkerContext modulationWorkerContext = new ModulationWorkerContext();
+
+            modulationWorkerContext.Variables = variables;
+            modulationWorkerContext.Modules = modules;
+            modulationWorkerContext.AddInsRoot = sectionHandler.AddInRoot.Value;
+
+            this._modulationWorker = new ModulationWorker(modulationWorkerContext);
+            this._modulationWorker.OnModulationException += ModulationWorker_OnModulationException;
+            this._modulationWorker.Initialize();
+
+            if (this._modulationWorker == null)
+                throw new InvalidOperationException("模块功能初始化失败 原因：配置文件可能存在问题");
+
+            this._modulationWorker.Start();
         }
 
+
+
+
+        private void ModulationWorker_OnModulationException(IModulationWorker mWorker, ModulationException mex)
+        {
+            if (this.OnMisfitException != null)
+                this.OnMisfitException(mex);
+        }
 
         /// <summary>
         /// 如果加载失败之后，去搜索
@@ -192,5 +186,6 @@ namespace Misfit.Modulation
 
             return string.Empty;
         }
+        #endregion
     }
 }

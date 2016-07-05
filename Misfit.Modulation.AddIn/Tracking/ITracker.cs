@@ -7,5 +7,8 @@ namespace Misfit.Modulation.AddIn.Tracking
 {
     public interface ITracker
     {
+        void Info(string message);
+
+        void Error(string message);
     }
 }

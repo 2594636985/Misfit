@@ -13,14 +13,25 @@ namespace Misfit.Modulation
     /// </summary>
     public class ModuleDomainFactory
     {
+
         /// <summary>
         /// 创建新的模块的应用域
         /// </summary>
         /// <param name="context"></param>
         /// <returns></returns>
-        public static AppDomain CreateModuleAppDomain(string domainName)
+        public static AppDomain CreateModuleAppDomain(string domainName, string applicationBase)
         {
-            return CreateAppDomain(domainName, Path.Combine(AppDomain.CurrentDomain.BaseDirectory, Constants.AddInsFileRoot), string.Empty);
+            return CreateAppDomain(domainName, applicationBase, string.Empty);
+        }
+
+        /// <summary>
+        /// 创建新的模块的应用域
+        /// </summary>
+        /// <param name="context"></param>
+        /// <returns></returns>
+        public static AppDomain CreateAppDomain(string domainName)
+        {
+            return CreateAppDomain(domainName, AppDomain.CurrentDomain.BaseDirectory, string.Empty);
         }
 
         /// <summary>

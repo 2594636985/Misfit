@@ -10,6 +10,17 @@ namespace Misfit.Modulation
     /// </summary>
     public class ModulationWorkerContext
     {
+
+        public ModulationWorkerContext()
+        {
+            this.Variables = new Dictionary<string, string>();
+        }
+
+        /// <summary>
+        /// 模块的目标位置名称
+        /// </summary>
+        public string AddInsRoot { set; get; }
+
         /// <summary>
         /// 是否为调试态
         /// </summary>
@@ -17,7 +28,7 @@ namespace Misfit.Modulation
         /// <summary>
         /// 参数
         /// </summary>
-        public Dictionary<string, string> Arguments { set; get; }
+        public Dictionary<string, string> Variables { set; get; }
 
         /// <summary>
         /// 模块信息集合

@@ -11,6 +11,8 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using Misfit.Modulation.Aspect;
+using Misfit.Modulation.AddIn.Tracking;
+using Misfit.Modulation.Tracking;
 
 namespace Misfit.Modulation
 {
@@ -19,6 +21,8 @@ namespace Misfit.Modulation
     /// </summary>
     public class ModuleDomain
     {
+        #region 公有公员
+        public Tracker Tracker { private set; get; }
 
         /// <summary>
         /// 模块域的哉名
@@ -55,7 +59,9 @@ namespace Misfit.Modulation
         /// 模块域的对外服务
         /// </summary>
         public Dictionary<string, object> ModuleDomainServices { private set; get; }
+        #endregion
 
+        #region 公有事件
         /// <summary>
         /// 初始化的时候发生
         /// </summary>
@@ -77,13 +83,29 @@ namespace Misfit.Modulation
 
         public event Action<ModuleDomain, ModuleException> OnException;
 
-
+        #endregion
         public ModuleDomain(ModuleDomainContext moduleDomainContext)
         {
             this.ModuleDomainContext = moduleDomainContext;
             this.DomainName = moduleDomainContext.ModuleDomainName;
             this.ModuleDomainServices = new Dictionary<string, object>();
             this.Installed = false;
+            this.Tracker = new Tracker(this.DomainName);
+
+            if (moduleDomainContext.IsDebug)
+            {
+                if (moduleDomainContext.TrackerTarget == TrackerTarget.File)
+                    this.Tracker.Target = new FileTarget();
+                else if (moduleDomainContext.TrackerTarget == TrackerTarget.Console)
+                    this.Tracker.Target = new ConsoleTarget();
+                else
+                    this.Tracker.Target = new DebugTarget();
+            }
+            else
+            {
+                this.Tracker.Target = new NullTarget();
+            }
+
         }
 
         #region 公有方法
@@ -93,8 +115,11 @@ namespace Misfit.Modulation
         /// </summary>
         public void Initialize()
         {
-            this.Domain = ModuleDomainFactory.CreateModuleAppDomain("Module-" + this.ModuleDomainContext.AssemlbyLocation);
+            this.Tracker.Info(string.Format("开始初始化{0}的模块域", this.DomainName));
 
+            this.Domain = ModuleDomainFactory.CreateModuleAppDomain("Module-" + this.ModuleDomainContext.AssemlbyLocation, Path.Combine(AppDomain.CurrentDomain.BaseDirectory, this.ModuleDomainContext.AddInsRoot));
+
+            this.Domain.SetData("ModuleDomainTracker", this.Tracker);
             this.Domain.SetData("Location", this.ModuleDomainContext.AssemlbyLocation);
             this.Domain.SetData("ModuleDomainContext", this.ModuleDomainContext);
 
@@ -105,6 +130,8 @@ namespace Misfit.Modulation
 
             if (this.OnInitialized != null)
                 this.OnInitialized(this);
+
+            this.Tracker.Info(string.Format("结束{0}模块域初始化", this.DomainName));
         }
 
 
@@ -113,6 +140,8 @@ namespace Misfit.Modulation
         /// </summary>
         public void Install()
         {
+            this.Tracker.Info(string.Format("开始安装{0}模块域的服务", this.DomainName));
+
             this.Domain.DoCallBack(ModuleDomainInitailize.Start);
 
             Dictionary<string, object> registerModuleDoaminServices = this.Domain.GetData("ModuleDomainServcies") as Dictionary<string, object>;
@@ -130,6 +159,8 @@ namespace Misfit.Modulation
 
             if (this.OnInstalled != null)
                 this.OnInstalled(this);
+
+            this.Tracker.Info(string.Format("结束安装{0}模块域的服务", this.DomainName));
 
         }
 

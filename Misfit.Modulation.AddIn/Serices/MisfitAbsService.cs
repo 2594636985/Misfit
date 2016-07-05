@@ -1,6 +1,7 @@
 ﻿using Misfit.Modulation.AddIn.Core;
 using Misfit.Modulation.AddIn.Injection;
 using Misfit.Modulation.AddIn.IO;
+using Misfit.Modulation.AddIn.Tracking;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace Misfit.Modulation.AddIn.Serices
     public abstract class MisfitAbsService : MarshalByRefObject, IMisfitService
     {
         private IMisfitContainer Container { set; get; }
-
+        public ITracker Tracker { get { return AppDomain.CurrentDomain.GetData("ModuleDomainTracker") as ITracker; } }
         public IModuleDomainContext ModuleDomainContext { get { return AppDomain.CurrentDomain.GetData("ModuleDomainContext") as IModuleDomainContext; } }
 
         public MisfitAbsService(IMisfitContainer container)

@@ -44,27 +44,25 @@ namespace Misfit.Modulation
         /// </summary>
         public void Initialize()
         {
-
-            if (this.ModulationWorkerContext.IsDebug)
-            {
-                Tracking.TrackerSetup.Setup();
-            }
-
-
             foreach (Module module in this.ModulationWorkerContext.Modules)
             {
-                ModuleDomainContext moduleDomainContext = new ModuleDomainContext();
-                moduleDomainContext.AssemlbyLocation = module.Location;
-                moduleDomainContext.ModuleDomainRepository = ModuleDomainRepository;
 
-                foreach (string key in ModulationWorkerContext.Arguments.Keys)
+                ModuleDomainContext moduleDomainContext = new ModuleDomainContext();
+                moduleDomainContext.AddInsRoot = this.ModulationWorkerContext.AddInsRoot;
+                moduleDomainContext.IsDebug = module.IsDebug;
+                moduleDomainContext.TrackerTarget = module.TrackerTarget;
+                moduleDomainContext.AssemlbyLocation = module.Location;
+                moduleDomainContext.ModuleDomainName = module.Name;
+                moduleDomainContext.ModuleDomainRepository = this.ModuleDomainRepository;
+
+                foreach (string key in ModulationWorkerContext.Variables.Keys)
                 {
-                    moduleDomainContext.MisfitArguments.Add(key, module.Arguments[key]);
+                    moduleDomainContext.Variables.Add(key, module.Arguments[key]);
                 }
 
                 foreach (string key in module.Arguments.Keys)
                 {
-                    moduleDomainContext.Arguments.Add(key, module.Arguments[key]);
+                    moduleDomainContext.Parameters.Add(key, module.Arguments[key]);
                 }
 
                 ModuleDomain moduleDomain = new ModuleDomain(moduleDomainContext);
@@ -74,7 +72,7 @@ namespace Misfit.Modulation
                 moduleDomain.OnException += ModuleDomain_OnException;
                 moduleDomain.Initialize();
 
-                ModuleDomainRepository.AddModulDomain(moduleDomain);
+                this.ModuleDomainRepository.AddModulDomain(moduleDomain);
             }
         }
 

@@ -47,9 +47,6 @@
     <Compile Include="Aspect\DynamicProxyImpl.cs" />
     <Compile Include="Aspect\IDynamicProxy.cs" />
     <Compile Include="Aspect\InvocationDelegate.cs" />
-    <Compile Include="Constants.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="IModulationWorker.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -80,8 +77,15 @@
     </Compile>
     <Compile Include="ModuleException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tracking\ConsoleTarget.cs" />
+    <Compile Include="Tracking\DebugTarget.cs" />
+    <Compile Include="Tracking\FileTarget.cs" />
+    <Compile Include="Tracking\ITarget.cs" />
+    <Compile Include="Tracking\LayoutTarget.cs" />
+    <Compile Include="Tracking\NullTarget.cs" />
     <Compile Include="Tracking\Tracker.cs" />
-    <Compile Include="Tracking\TrackerSetup.cs" />
+    <Compile Include="Tracking\TrackerLevel.cs" />
+    <Compile Include="Tracking\TrackerTarget.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Misfit.Modulation.AddIn\Misfit.Modulation.AddIn.csproj">

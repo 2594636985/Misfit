@@ -5,11 +5,8 @@ using System.Text;
 
 namespace Misfit.Modulation.Tracking
 {
-    public class TrackerSetup
+    public class FileTarget : LayoutTarget
     {
-        public static void Setup()
-        {
- 
-        }
+
     }
 }

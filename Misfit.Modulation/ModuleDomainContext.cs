@@ -1,4 +1,5 @@
 ﻿using Misfit.Modulation.AddIn;
+using Misfit.Modulation.Tracking;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,20 @@ namespace Misfit.Modulation
     public class ModuleDomainContext : MarshalByRefObject, IModuleDomainContext
     {
         /// <summary>
+        /// 模块的目标位置名称
+        /// </summary>
+        public string AddInsRoot { set; get; }
+        /// <summary>
+        /// 是否为调试状态
+        /// </summary>
+        public bool IsDebug { set; get; }
+
+        /// <summary>
+        /// 用追踪的方式
+        /// </summary>
+        public TrackerTarget TrackerTarget { set; get; }
+
+        /// <summary>
         /// 模块域的名称
         /// </summary>
         public string ModuleDomainName { set; get; }
@@ -20,9 +35,9 @@ namespace Misfit.Modulation
         /// </summary>
         public string AssemlbyLocation { set; get; }
         /// <summary>
-        /// 框架参数
+        /// 框架变量
         /// </summary>
-        public Dictionary<string, string> MisfitArguments { set; get; }
+        public Dictionary<string, string> Variables { set; get; }
         /// <summary>
         /// 模块域的库存
         /// </summary>
@@ -30,11 +45,12 @@ namespace Misfit.Modulation
         /// <summary>
         /// 参数
         /// </summary>
-        public Dictionary<string, string> Arguments { set; get; }
+        public Dictionary<string, string> Parameters { set; get; }
 
         public ModuleDomainContext()
         {
-            this.Arguments = new Dictionary<string, string>();
+            this.Variables = new Dictionary<string, string>();
+            this.Parameters = new Dictionary<string, string>();
         }
 
         /// <summary>

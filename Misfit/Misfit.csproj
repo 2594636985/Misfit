@@ -44,19 +44,48 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configuration\Elements\AddInRootElement.cs" />
-    <Compile Include="Configuration\Elements\ConfigurationElementCollection.cs" />
-    <Compile Include="Configuration\Elements\TrackerElement.cs" />
-    <Compile Include="Configuration\Elements\UriElement.cs" />
-    <Compile Include="Configuration\Elements\ModuleElement.cs" />
-    <Compile Include="Configuration\Elements\ModuleElementCollection.cs" />
-    <Compile Include="Configuration\Elements\NamedConfigurationElementCollection.cs" />
-    <Compile Include="Configuration\Elements\VariableElementCollection.cs" />
-    <Compile Include="Configuration\Elements\VariableElement.cs" />
-    <Compile Include="Configuration\Elements\ParameterElement.cs" />
-    <Compile Include="Configuration\Elements\ParameterElementCollection.cs" />
-    <Compile Include="Configuration\MisfitConfiguration.cs" />
-    <Compile Include="Configuration\MisfitSectionHandler.cs" />
+    <Compile Include="Configuration\ConfigurationHelper.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Configuration\Elements\AddInRootElement.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Configuration\Elements\ConfigurationElementCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Configuration\Elements\ModuleElement.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Configuration\Elements\ModuleElementCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Configuration\Elements\NamedConfigurationElementCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Configuration\Elements\ParameterElement.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Configuration\Elements\ParameterElementCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Configuration\Elements\TrackerElement.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Configuration\Elements\UriElement.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Configuration\Elements\VariableElement.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Configuration\Elements\VariableElementCollection.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Configuration\MisfitConfiguration.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Configuration\MisfitSectionHandler.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="MisfitWeaver.cs">
       <SubType>Code</SubType>
     </Compile>

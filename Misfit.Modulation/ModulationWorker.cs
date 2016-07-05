@@ -8,7 +8,7 @@ namespace Misfit.Modulation
     /// <summary>
     /// 模块工作者
     /// </summary>
-    public class ModulationWorker : IModulationWorker
+    public class ModulationWorker : MarshalByRefObject, IModulationWorker
     {
         /// <summary>
         /// 模块域的库存
@@ -57,12 +57,12 @@ namespace Misfit.Modulation
 
                 foreach (string key in ModulationWorkerContext.Variables.Keys)
                 {
-                    moduleDomainContext.Variables.Add(key, module.Arguments[key]);
+                    moduleDomainContext.Variables.Add(key, module.Parameters[key]);
                 }
 
-                foreach (string key in module.Arguments.Keys)
+                foreach (string key in module.Parameters.Keys)
                 {
-                    moduleDomainContext.Parameters.Add(key, module.Arguments[key]);
+                    moduleDomainContext.Parameters.Add(key, module.Parameters[key]);
                 }
 
                 ModuleDomain moduleDomain = new ModuleDomain(moduleDomainContext);

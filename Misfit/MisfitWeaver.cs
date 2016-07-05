@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Reflection;
 using System.Text;
 using System.ComponentModel;
 using System.Security.Policy;
@@ -12,8 +11,9 @@ using System.Threading.Tasks;
 using Misfit.Configuration;
 using Misfit.Configuration.Elements;
 using Misfit.Modulation.Tracking;
+using Misfit.Modulation;
 
-namespace Misfit.Modulation
+namespace Misfit
 {
     /// <summary>
     /// 框架调用类
@@ -29,7 +29,7 @@ namespace Misfit.Modulation
         /// <summary>
         /// 初始化
         /// </summary>
-        public void Initailize()
+        public void Initialize()
         {
             AppDomain.CurrentDomain.AssemblyResolve += AssemblyResolve;
 
@@ -41,7 +41,7 @@ namespace Misfit.Modulation
         /// <summary>
         /// 根据配置文件来初始化
         /// </summary>
-        public void Initailize(string configurationFile)
+        public void Initialize(string configurationFile)
         {
             AppDomain.CurrentDomain.AssemblyResolve += AssemblyResolve;
 
@@ -111,7 +111,7 @@ namespace Misfit.Modulation
 
                 foreach (ParameterElement parameterElement in moduleElement.Parameters)
                 {
-                    module.Arguments.Add(parameterElement.Key, parameterElement.Value);
+                    module.Parameters.Add(parameterElement.Key, parameterElement.Value);
                 }
 
                 modules.Add(module);
@@ -148,11 +148,11 @@ namespace Misfit.Modulation
         /// <param name="sender"></param>
         /// <param name="args"></param>
         /// <returns></returns>
-        private static Assembly AssemblyResolve(object sender, ResolveEventArgs args)
+        private static System.Reflection.Assembly AssemblyResolve(object sender, ResolveEventArgs args)
         {
-            AssemblyName name = new AssemblyName(args.Name);
+            System.Reflection.AssemblyName name = new System.Reflection.AssemblyName(args.Name);
             string assemblyFile = SearchAssembly(name.Name);
-            return Assembly.LoadFrom(assemblyFile);
+            return System.Reflection.Assembly.LoadFrom(assemblyFile);
         }
 
         /// <summary>

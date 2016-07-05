@@ -25,11 +25,11 @@ namespace Misfit.Modulation
         }
 
         /// <summary>
-        /// 创建新的模块的应用域
+        /// 创建新的模块的应用域 根目标是在主应用域的目录
         /// </summary>
         /// <param name="context"></param>
         /// <returns></returns>
-        public static AppDomain CreateAppDomain(string domainName)
+        public static AppDomain CreateModuleAppDomain(string domainName)
         {
             return CreateAppDomain(domainName, AppDomain.CurrentDomain.BaseDirectory, string.Empty);
         }
@@ -41,7 +41,7 @@ namespace Misfit.Modulation
         /// <param name="applicationBase"></param>
         /// <param name="privateBinPath"></param>
         /// <returns></returns>
-        public static AppDomain CreateAppDomain(string domainName, string applicationBase, string privateBinPath)
+        private static AppDomain CreateAppDomain(string domainName, string applicationBase, string privateBinPath)
         {
             AppDomainSetup info = new AppDomainSetup();
             info.ApplicationName = domainName;

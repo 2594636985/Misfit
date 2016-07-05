@@ -19,9 +19,9 @@ namespace Misfit.Modulation
     /// <summary>
     /// 模块域
     /// </summary>
-    public class ModuleDomain
+    public class ModuleDomain : MarshalByRefObject
     {
-        #region 公有公员
+        #region 公有成员
         public Tracker Tracker { private set; get; }
 
         /// <summary>

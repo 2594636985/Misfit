@@ -12,7 +12,7 @@ namespace Misfit.Modulation
     /// <summary>
     /// 模块域的库存
     /// </summary>
-    public class ModuleDomainRepository
+    public class ModuleDomainRepository : MarshalByRefObject
     {
         public ModuleDomainCollection ModuleDomainCollection { private set; get; }
 
@@ -56,7 +56,7 @@ namespace Misfit.Modulation
         /// <typeparam name="TInterface"></typeparam>
         /// <param name="assemblyCatalogName"></param>
         /// <returns></returns>
-        public TInterface GetService<TInterface>(string assemblyCatalogName) 
+        public TInterface GetService<TInterface>(string assemblyCatalogName)
         {
             return (TInterface)this.GetService(assemblyCatalogName, typeof(TInterface).Name);
         }

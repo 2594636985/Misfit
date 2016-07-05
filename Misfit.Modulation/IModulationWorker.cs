@@ -10,6 +10,14 @@ namespace Misfit.Modulation
     /// </summary>
     public interface IModulationWorker
     {
+
+        event Action<IModulationWorker, ModulationException> OnModulationException;
+
+        /// <summary>
+        /// 初始化模块域
+        /// </summary>
+        void Initialize();
+
         /// <summary>
         /// 开始工作
         /// </summary>

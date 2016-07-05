@@ -1,4 +1,4 @@
-﻿using Misfit.Modulation;
+﻿using Misfit;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -18,7 +18,7 @@ namespace Misfit.Desktop.Wpf
         {
             base.OnStartup(e);
             MisfitWeaver.OnMisfitException += MisfitWeaver_OnMisfitException;
-            MisfitWeaver.Initailize("Misfit.xml");
+            MisfitWeaver.Initialize("Misfit.xml");
         }
 
         private void MisfitWeaver_OnMisfitException(Exception ex)

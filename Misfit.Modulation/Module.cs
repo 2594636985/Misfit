@@ -12,7 +12,7 @@ namespace Misfit.Modulation
     {
         public Module()
         {
-            this.Arguments = new Dictionary<string, string>();
+            this.Parameters = new Dictionary<string, string>();
         }
 
         /// <summary>
@@ -49,6 +49,6 @@ namespace Misfit.Modulation
         /// <summary>
         /// 数据连接字符串
         /// </summary>
-        public Dictionary<string, string> Arguments { set; get; }
+        public Dictionary<string, string> Parameters { set; get; }
     }
 }

@@ -17,7 +17,6 @@ namespace Misfit.Modulation
             : base(message, inner)
         {
 
-
         }
     }
 }

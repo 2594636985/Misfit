@@ -22,6 +22,8 @@ namespace Misfit
     {
         private ModulationWorker _modulationWorker;
 
+        public MisfitConfiguration MisfitConfiguration { private set; get; }
+
         public event Action<Exception> OnMisfitException;
 
         #region 公有方法
@@ -31,11 +33,7 @@ namespace Misfit
         /// </summary>
         public void Initialize()
         {
-            AppDomain.CurrentDomain.AssemblyResolve += AssemblyResolve;
-
-            MisfitConfiguration misfitConfiguration = new MisfitConfiguration();
-
-            this.DoInitailize(misfitConfiguration.SectionHandler);
+            this.Initialize(null);
         }
 
         /// <summary>
@@ -45,9 +43,56 @@ namespace Misfit
         {
             AppDomain.CurrentDomain.AssemblyResolve += AssemblyResolve;
 
-            MisfitConfiguration misfitConfiguration = new MisfitConfiguration(MisfitSectionHandler.DefaultSectionName, configurationFile);
+            if (string.IsNullOrWhiteSpace(configurationFile))
+                this.MisfitConfiguration = new MisfitConfiguration();
+            else
+                this.MisfitConfiguration = new MisfitConfiguration(configurationFile);
 
-            this.DoInitailize(misfitConfiguration.SectionHandler);
+
+            string addInsRoot = this.MisfitConfiguration.SectionHandler.AddInsRoot.Value;
+            if (!string.IsNullOrWhiteSpace(addInsRoot))
+                AppDomain.CurrentDomain.SetData("AddInsRoot", addInsRoot);
+
+            List<Module> modules = new List<Module>();
+            Dictionary<string, string> variables = new Dictionary<string, string>();
+
+            foreach (VariableElement variableElement in this.MisfitConfiguration.SectionHandler.Variables)
+            {
+                variables.Add(variableElement.Name, variableElement.Value);
+            }
+
+            foreach (ModuleElement moduleElement in this.MisfitConfiguration.SectionHandler.Modules)
+            {
+                Module module = new Module();
+                module.Description = moduleElement.Description;
+                module.Name = moduleElement.Name;
+                module.Location = moduleElement.Location;
+                module.IsDebug = moduleElement.Debug && this.MisfitConfiguration.SectionHandler.Debug;
+                module.Uri = moduleElement.Uri.Value;
+                module.TrackerTarget = (TrackerTarget)Enum.Parse(typeof(TrackerTarget), moduleElement.Tracker.Value, true);
+
+                foreach (ParameterElement parameterElement in moduleElement.Parameters)
+                {
+                    module.Parameters.Add(parameterElement.Key, parameterElement.Value);
+                }
+
+                modules.Add(module);
+            }
+
+            ModulationWorkerContext modulationWorkerContext = new ModulationWorkerContext();
+
+            modulationWorkerContext.Variables = variables;
+            modulationWorkerContext.Modules = modules;
+            modulationWorkerContext.AddInsRoot = this.MisfitConfiguration.SectionHandler.AddInsRoot.Value;
+
+            this._modulationWorker = new ModulationWorker(modulationWorkerContext);
+            this._modulationWorker.OnModulationException += ModulationWorker_OnModulationException;
+            this._modulationWorker.Initialize();
+
+            if (this._modulationWorker == null)
+                throw new InvalidOperationException("模块功能初始化失败 原因：配置文件可能存在问题");
+
+            this._modulationWorker.Start();
         }
 
         /// <summary>
@@ -89,52 +134,6 @@ namespace Misfit
         }
         #endregion
         #region 私有方法
-        private void DoInitailize(MisfitSectionHandler sectionHandler)
-        {
-            List<Module> modules = new List<Module>();
-            Dictionary<string, string> variables = new Dictionary<string, string>();
-
-            foreach (VariableElement variableElement in sectionHandler.Variables)
-            {
-                variables.Add(variableElement.Name, variableElement.Value);
-            }
-
-            foreach (ModuleElement moduleElement in sectionHandler.Modules)
-            {
-                Module module = new Module();
-                module.Description = moduleElement.Description;
-                module.Name = moduleElement.Name;
-                module.Location = moduleElement.Location;
-                module.IsDebug = moduleElement.Debug && sectionHandler.Debug;
-                module.Uri = moduleElement.Uri.Value;
-                module.TrackerTarget = (TrackerTarget)Enum.Parse(typeof(TrackerTarget), moduleElement.Tracker.Value, true);
-
-                foreach (ParameterElement parameterElement in moduleElement.Parameters)
-                {
-                    module.Parameters.Add(parameterElement.Key, parameterElement.Value);
-                }
-
-                modules.Add(module);
-            }
-
-            ModulationWorkerContext modulationWorkerContext = new ModulationWorkerContext();
-
-            modulationWorkerContext.Variables = variables;
-            modulationWorkerContext.Modules = modules;
-            modulationWorkerContext.AddInsRoot = sectionHandler.AddInRoot.Value;
-
-            this._modulationWorker = new ModulationWorker(modulationWorkerContext);
-            this._modulationWorker.OnModulationException += ModulationWorker_OnModulationException;
-            this._modulationWorker.Initialize();
-
-            if (this._modulationWorker == null)
-                throw new InvalidOperationException("模块功能初始化失败 原因：配置文件可能存在问题");
-
-            this._modulationWorker.Start();
-        }
-
-
-
 
         private void ModulationWorker_OnModulationException(IModulationWorker mWorker, ModulationException mex)
         {
@@ -163,7 +162,7 @@ namespace Misfit
         private static string SearchAssembly(string assemblyName)
         {
             string appRoot = AppDomain.CurrentDomain.BaseDirectory;
-            string addInsRoot = Path.Combine(appRoot, "AddIns");
+            string addInsRoot = Path.Combine(appRoot, Convert.ToString(AppDomain.CurrentDomain.GetData("AddInsRoot")));
             {
                 string[] files = Directory.GetFiles(appRoot,
                     assemblyName + ".dll", SearchOption.TopDirectoryOnly);

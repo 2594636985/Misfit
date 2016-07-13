@@ -14,26 +14,16 @@ namespace Misfit.Configuration
         public MisfitSectionHandler SectionHandler { private set; get; }
 
         public MisfitConfiguration()
-            : this(MisfitSectionHandler.DefaultSectionName)
         {
-
-        }
-
-        public MisfitConfiguration(string sectionName)
-        {
-            if (sectionName == null)
-                throw new ArgumentNullException("sectionName");
-
-            this.SectionHandler = (MisfitSectionHandler)ConfigurationManager.GetSection(sectionName);
+            this.SectionHandler = (MisfitSectionHandler)ConfigurationManager.GetSection(MisfitSectionHandler.DefaultSectionName);
 
             if (this.SectionHandler == null)
-                throw new ConfigurationErrorsException(String.Format("没有到对应的配置元素节点{0}", sectionName));
+                throw new ConfigurationErrorsException(String.Format("没有到对应的配置元素节点{0}", MisfitSectionHandler.DefaultSectionName));
         }
 
-
-        public MisfitConfiguration(string sectionName, string configurationFile)
+        public MisfitConfiguration(string configurationFile)
         {
-            this.SectionHandler = MisfitSectionHandler.Deserialize(configurationFile, sectionName);
+            this.SectionHandler = MisfitSectionHandler.Deserialize(configurationFile);
         }
     }
 }

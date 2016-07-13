@@ -18,10 +18,9 @@ namespace Misfit.Configuration
         private const string DebugPropertyName = "Debug";
         private const string ModulesPropertyName = "Modules";
         private const string VariablesPropertyName = "Variables";
-        private const string AddInRootPropertyName = "AddInRoot";
+        private const string AddInsRootPropertyName = "AddInsRoot";
 
         public const string DefaultSectionName = "Misfit";
-
 
         /// <summary>
         /// 模块域集合
@@ -62,12 +61,12 @@ namespace Misfit.Configuration
         /// <summary>
         /// 子目录文件
         /// </summary>
-        [ConfigurationProperty(AddInRootPropertyName, IsRequired = true)]
-        public AddInRootElement AddInRoot
+        [ConfigurationProperty(AddInsRootPropertyName, IsRequired = true)]
+        public AddInRootElement AddInsRoot
         {
             get
             {
-                return (AddInRootElement)this[AddInRootPropertyName];
+                return (AddInRootElement)this[AddInsRootPropertyName];
             }
         }
 
@@ -98,12 +97,8 @@ namespace Misfit.Configuration
         /// <param name="configurationFile"></param>
         /// <param name="configurationSection"></param>
         /// <returns></returns>
-        public static MisfitSectionHandler Deserialize(string configurationFile, string sectionName)
+        public static MisfitSectionHandler Deserialize(string configurationFile)
         {
-
-            if (String.IsNullOrWhiteSpace(sectionName))
-                throw new ArgumentNullException("sectionName");
-
             if (string.IsNullOrWhiteSpace(configurationFile))
                 throw new ArgumentNullException("configurationFile");
 
@@ -133,11 +128,11 @@ namespace Misfit.Configuration
                     return MisfitSectionHandler.Deserialize(reader);
                 }
             }
-            var handler = (MisfitSectionHandler)configuration.GetSection(sectionName);
+            var handler = (MisfitSectionHandler)configuration.GetSection(DefaultSectionName);
 
             if (handler == null)
             {
-                throw new ConfigurationErrorsException(String.Format("没有找到对应的{0}", sectionName));
+                throw new ConfigurationErrorsException(string.Format("没有找到对应的 {0} 根节点", DefaultSectionName));
             }
             return handler;
         }

@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Mainifest>
+  <Name>Aomi</Name>
+  <Servcies>
+    <Service Name="TestService" ClassName="Misfit.Plugins.AomiServices.TestService"></Service>
+  </Servcies>
+</Mainifest>

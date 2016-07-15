@@ -10,8 +10,7 @@ using Newtonsoft.Json;
 using System.Threading.Tasks;
 using Misfit.Configuration;
 using Misfit.Configuration.Elements;
-using Misfit.Modulation.Tracking;
-using Misfit.Modulation;
+using Misfit.Domain;
 
 namespace Misfit
 {
@@ -20,8 +19,7 @@ namespace Misfit
     /// </summary>
     public class MisfitWeaver
     {
-        private ModulationWorker _modulationWorker;
-
+        private PluginDomainFramework _pluginDomainFramework;
         public MisfitConfiguration MisfitConfiguration { private set; get; }
 
         public event Action<Exception> OnMisfitException;
@@ -48,12 +46,11 @@ namespace Misfit
             else
                 this.MisfitConfiguration = new MisfitConfiguration(configurationFile);
 
-
             string addInsRoot = this.MisfitConfiguration.SectionHandler.AddInsRoot.Value;
             if (!string.IsNullOrWhiteSpace(addInsRoot))
                 AppDomain.CurrentDomain.SetData("AddInsRoot", addInsRoot);
 
-            List<Module> modules = new List<Module>();
+            List<Plugin> plugins = new List<Plugin>();
             Dictionary<string, string> variables = new Dictionary<string, string>();
 
             foreach (VariableElement variableElement in this.MisfitConfiguration.SectionHandler.Variables)
@@ -61,38 +58,31 @@ namespace Misfit
                 variables.Add(variableElement.Name, variableElement.Value);
             }
 
-            foreach (ModuleElement moduleElement in this.MisfitConfiguration.SectionHandler.Modules)
+            foreach (PluginElement moduleElement in this.MisfitConfiguration.SectionHandler.Modules)
             {
-                Module module = new Module();
+                Plugin module = new Plugin();
                 module.Description = moduleElement.Description;
                 module.Name = moduleElement.Name;
-                module.Location = moduleElement.Location;
+                module.AssemblyLocation = moduleElement.Location;
                 module.IsDebug = moduleElement.Debug && this.MisfitConfiguration.SectionHandler.Debug;
                 module.Uri = moduleElement.Uri.Value;
-                module.TrackerTarget = (TrackerTarget)Enum.Parse(typeof(TrackerTarget), moduleElement.Tracker.Value, true);
 
                 foreach (ParameterElement parameterElement in moduleElement.Parameters)
                 {
                     module.Parameters.Add(parameterElement.Key, parameterElement.Value);
                 }
 
-                modules.Add(module);
+                plugins.Add(module);
             }
 
-            ModulationWorkerContext modulationWorkerContext = new ModulationWorkerContext();
+            this._pluginDomainFramework = new PluginDomainFramework(plugins, variables, addInsRoot);
+            this._pluginDomainFramework.OnModulationException += ModulationWorker_OnModulationException;
+            this._pluginDomainFramework.Initialize();
 
-            modulationWorkerContext.Variables = variables;
-            modulationWorkerContext.Modules = modules;
-            modulationWorkerContext.AddInsRoot = this.MisfitConfiguration.SectionHandler.AddInsRoot.Value;
-
-            this._modulationWorker = new ModulationWorker(modulationWorkerContext);
-            this._modulationWorker.OnModulationException += ModulationWorker_OnModulationException;
-            this._modulationWorker.Initialize();
-
-            if (this._modulationWorker == null)
+            if (this._pluginDomainFramework == null)
                 throw new InvalidOperationException("模块功能初始化失败 原因：配置文件可能存在问题");
 
-            this._modulationWorker.Start();
+            this._pluginDomainFramework.Start();
         }
 
         /// <summary>
@@ -103,10 +93,10 @@ namespace Misfit
         /// <returns></returns>
         public object GetService(string assemblyCatalogName, string typeName)
         {
-            if (this._modulationWorker == null)
+            if (this._pluginDomainFramework == null)
                 throw new InvalidOperationException("模块功能没有初始化");
 
-            return this._modulationWorker.GetService(assemblyCatalogName, typeName);
+            return this._pluginDomainFramework.GetService(assemblyCatalogName, typeName);
         }
 
         /// <summary>
@@ -117,25 +107,25 @@ namespace Misfit
         /// <returns></returns>
         public TInterface GetService<TInterface>(string assemblyCatalogName)
         {
-            if (this._modulationWorker == null)
+            if (this._pluginDomainFramework == null)
                 throw new InvalidOperationException("模块功能没有初始化");
 
-            return this._modulationWorker.GetService<TInterface>(assemblyCatalogName);
+            return this._pluginDomainFramework.GetService<TInterface>(assemblyCatalogName);
         }
 
 
 
         public void Dispose()
         {
-            if (this._modulationWorker == null)
+            if (this._pluginDomainFramework == null)
                 throw new InvalidOperationException("模块功能没有初始化");
 
-            this._modulationWorker.Stop();
+            this._pluginDomainFramework.Stop();
         }
         #endregion
         #region 私有方法
 
-        private void ModulationWorker_OnModulationException(IModulationWorker mWorker, ModulationException mex)
+        private void ModulationWorker_OnModulationException(IPluginDomainFramework mWorker, PluginDomainException mex)
         {
             if (this.OnMisfitException != null)
                 this.OnMisfitException(mex);

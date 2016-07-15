@@ -16,7 +16,7 @@ namespace Misfit.Configuration
     {
 
         private const string DebugPropertyName = "Debug";
-        private const string ModulesPropertyName = "Modules";
+        private const string PluginsPropertyName = "Plugins";
         private const string VariablesPropertyName = "Variables";
         private const string AddInsRootPropertyName = "AddInsRoot";
 
@@ -49,12 +49,12 @@ namespace Misfit.Configuration
         /// <summary>
         /// 模块域集合
         /// </summary>
-        [ConfigurationProperty(ModulesPropertyName, IsRequired = false)]
-        public ModuleElementCollection Modules
+        [ConfigurationProperty(PluginsPropertyName, IsRequired = false)]
+        public PluginElementCollection Modules
         {
             get
             {
-                return (ModuleElementCollection)this[ModulesPropertyName];
+                return (PluginElementCollection)this[PluginsPropertyName];
             }
         }
 

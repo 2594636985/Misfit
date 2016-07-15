@@ -44,6 +44,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Aspect\DynamicProxyFactory.cs" />
+    <Compile Include="Aspect\DynamicProxyImpl.cs" />
+    <Compile Include="Aspect\IDynamicProxy.cs" />
+    <Compile Include="Aspect\InvocationDelegate.cs" />
     <Compile Include="Configuration\ConfigurationHelper.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -53,10 +57,10 @@
     <Compile Include="Configuration\Elements\ConfigurationElementCollection.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Configuration\Elements\ModuleElement.cs">
+    <Compile Include="Configuration\Elements\PluginElement.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Configuration\Elements\ModuleElementCollection.cs">
+    <Compile Include="Configuration\Elements\PluginElementCollection.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Configuration\Elements\NamedConfigurationElementCollection.cs">
@@ -86,18 +90,32 @@
     <Compile Include="Configuration\MisfitSectionHandler.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Domain\IPluginDomainFramework.cs" />
+    <Compile Include="Domain\PluginDomainException.cs" />
+    <Compile Include="Domain\PluginDomainFramework.cs" />
+    <Compile Include="Domain\Plugin.cs" />
+    <Compile Include="Domain\PluginDomain.cs" />
+    <Compile Include="Domain\PluginDomainCollection.cs" />
+    <Compile Include="Domain\PluginDomainContext.cs" />
+    <Compile Include="Domain\PluginDomainFactory.cs" />
+    <Compile Include="Domain\PluginDomainManager.cs" />
+    <Compile Include="Domain\PluginDomainMonitor.cs" />
+    <Compile Include="Extension\DictionaryExtnesion.cs" />
     <Compile Include="MisfitWeaver.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Misfit.Modulation\Misfit.Modulation.csproj">
-      <Project>{2b59aa96-0078-48b8-8fe2-bd264ad5e28d}</Project>
-      <Name>Misfit.Modulation</Name>
+    <Folder Include="Cache\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Misfit.Plugins\Misfit.Plugins.csproj">
+      <Project>{35f1d4d2-e980-45ef-a744-68ad16a7d885}</Project>
+      <Name>Misfit.Plugins</Name>
+      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

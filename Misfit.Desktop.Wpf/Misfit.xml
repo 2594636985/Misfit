@@ -1,18 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Misfit>
-  <AddInRoot Value="AddIns" />
+  <AddInsRoot Value="AddIns" />
   <Variables>
     <Variable Name="asd" Value="asdfasdf" />
     <Variable Name="dddd" Value="asddff" />
   </Variables>
-  <Modules>
-    <Module Name="MisfitConsoleDebug"  Location="Misfit.AomiServcies" Description="日志系统" Debug="true">
+  <Plugins>
+    <Plugin Name="MisfitAomiServices"  Location="Misfit.Plugins.AomiServices" Description="日志系统" Debug="true">
       <Tracker Value="Debug" />
       <Uri Value="" />
       <Parameters>
         <Parameter Key="asd" Value="asdfasdf" />
         <Parameter Key="dddd" Value="asddff" />
       </Parameters>
-    </Module>
-  </Modules>
+    </Plugin>
+  </Plugins>
 </Misfit>

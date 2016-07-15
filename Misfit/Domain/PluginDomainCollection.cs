@@ -7,12 +7,12 @@ using System.Text;
 namespace Misfit.Domain
 {
     /// <summary>
-    /// 模块域的集合
+    /// 插件域的集合
     /// </summary>
     public class PluginDomainCollection : Collection<PluginDomain>
     {
         /// <summary>
-        /// 根据模块域的模块名来获得模块域
+        /// 根据插件域的插件名来获得插件域
         /// </summary>
         /// <param name="moduleName"></param>
         /// <returns></returns>

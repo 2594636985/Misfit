@@ -6,7 +6,7 @@ using System.Text;
 namespace Misfit.Configuration.Elements
 {
     /// <summary>
-    /// 模块集合类
+    /// 插件集合类
     /// </summary>
     public class PluginElementCollection : ConfigurationElementCollection<PluginElement>
     {

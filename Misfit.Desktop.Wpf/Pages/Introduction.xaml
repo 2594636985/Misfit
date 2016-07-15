@@ -10,7 +10,7 @@
     <Grid Style="{StaticResource ContentRoot}">
         <ScrollViewer>
             <StackPanel >
-                <TextBlock Text="这是一个UI模块化框架" Style="{StaticResource Heading1}" Margin="0,0,0,8"/>
+                <TextBlock Text="这是一个UI插件化框架" Style="{StaticResource Heading1}" Margin="0,0,0,8"/>
                 <mm:BBCodeBlock BBCode="[b]Modern UI for WPF[/b], a set of controls and styles converting your WPF application into a great looking Modern UI app.&#13;&#10;&#13;&#10;This open source project is a spin-off of [url=http://xamlspy.com]XAML Spy[/url], the visual runtime inspector for Silverlight, Windows Phone, Windows Store and WPF.&#13;&#10;&#13;&#10;See the [url=http://mm.codeplex.com]online documentation[/url] to learn more about how to incorporate [b]Modern UI for WPF[/b] into your applications." Margin="0,0,0,32" />
                 <TextBlock Text="APPEARANCE" Style="{StaticResource Heading2}" />
                 <TextBlock x:Name="txtValue" Text="APPEARANCE" Style="{StaticResource Heading2}" />

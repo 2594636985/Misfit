@@ -7,7 +7,7 @@ using System.Text;
 namespace Misfit.Domain
 {
     /// <summary>
-    /// 模块工作者
+    /// 插件工作者
     /// </summary>
     public class PluginDomainFramework : MarshalByRefObject, IPluginDomainFramework
     {
@@ -19,12 +19,12 @@ namespace Misfit.Domain
         public string AddInsRoot { private set; get; }
 
         /// <summary>
-        /// 有新的模块域初始化时，发生
+        /// 有新的插件域初始化时，发生
         /// </summary>
         public event Action<IPluginDomainFramework, PluginDomain> OnModuleDomainInitialized;
 
         /// <summary>
-        /// 有新的模块域安装时，发生
+        /// 有新的插件域安装时，发生
         /// </summary>
         public event Action<IPluginDomainFramework, PluginDomain> OnModuleDomainInstalled;
 
@@ -78,7 +78,7 @@ namespace Misfit.Domain
         }
 
         /// <summary>
-        /// 获得相关模块域里面的对外服务
+        /// 获得相关插件域里面的对外服务
         /// </summary>
         /// <param name="assemblyCatalogName"></param>
         /// <param name="typeName"></param>
@@ -95,7 +95,7 @@ namespace Misfit.Domain
         }
 
         /// <summary>
-        /// 获得相关模块域里面的对外服务
+        /// 获得相关插件域里面的对外服务
         /// </summary>
         /// <typeparam name="TInterface"></typeparam>
         /// <param name="assemblyCatalogName"></param>
@@ -126,7 +126,7 @@ namespace Misfit.Domain
         #region 私有方法
 
         /// <summary>
-        /// 模块域的初化始事件
+        /// 插件域的初化始事件
         /// </summary>
         /// <param name="domain"></param>
         private void ModuleDomain_OnInitialized(PluginDomain domain)
@@ -136,7 +136,7 @@ namespace Misfit.Domain
         }
 
         /// <summary>
-        /// 模块域的关闭事件
+        /// 插件域的关闭事件
         /// </summary>
         /// <param name="domain"></param>
         private void ModuleDomain_OnClosed(PluginDomain domain)
@@ -145,7 +145,7 @@ namespace Misfit.Domain
         }
 
         /// <summary>
-        /// 模块域的安装事件
+        /// 插件域的安装事件
         /// </summary>
         /// <param name="domain"></param>
         private void ModuleDomain_OnInstalled(PluginDomain domain)

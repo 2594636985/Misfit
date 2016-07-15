@@ -9,13 +9,13 @@ using System.Text;
 namespace Misfit.Domain
 {
     /// <summary>
-    /// 模块域工厂
+    /// 插件域工厂
     /// </summary>
     public class PluginDomainFactory
     {
 
         /// <summary>
-        /// 创建新的模块的应用域
+        /// 创建新的插件的应用域
         /// </summary>
         /// <param name="context"></param>
         /// <returns></returns>

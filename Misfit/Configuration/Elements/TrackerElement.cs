@@ -7,7 +7,7 @@ using System.Text;
 namespace Misfit.Configuration.Elements
 {
     /// <summary>
-    /// 模块日志追踪元素
+    /// 插件日志追踪元素
     /// </summary>
     public class TrackerElement : ConfigurationElement
     {

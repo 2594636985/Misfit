@@ -23,7 +23,7 @@ namespace Misfit.Configuration
         public const string DefaultSectionName = "Misfit";
 
         /// <summary>
-        /// 模块域集合
+        /// 插件域集合
         /// </summary>
         [ConfigurationProperty(DebugPropertyName, IsRequired = false, DefaultValue = "true")]
         public bool Debug
@@ -35,7 +35,7 @@ namespace Misfit.Configuration
         }
 
         /// <summary>
-        /// 模块域集合
+        /// 插件域集合
         /// </summary>
         [ConfigurationProperty(VariablesPropertyName, IsRequired = false)]
         public VariableElementCollection Variables
@@ -47,7 +47,7 @@ namespace Misfit.Configuration
         }
 
         /// <summary>
-        /// 模块域集合
+        /// 插件域集合
         /// </summary>
         [ConfigurationProperty(PluginsPropertyName, IsRequired = false)]
         public PluginElementCollection Modules

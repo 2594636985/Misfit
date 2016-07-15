@@ -6,7 +6,7 @@ using System.Text;
 namespace Misfit.Domain
 {
     /// <summary>
-    /// 模块信息
+    /// 插件信息
     /// </summary>
     public class Plugin
     {
@@ -16,7 +16,7 @@ namespace Misfit.Domain
         }
 
         /// <summary>
-        /// 是否模块是否开启调试状态
+        /// 是否插件是否开启调试状态
         /// </summary>
         public bool IsDebug { set; get; }
 

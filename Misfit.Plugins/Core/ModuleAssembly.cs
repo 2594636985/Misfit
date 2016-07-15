@@ -10,7 +10,7 @@ using System.Text;
 namespace Misfit.Plugins.Core
 {
     /// <summary>
-    /// 对模块程序集的封装
+    /// 对插件程序集的封装
     /// </summary>
     public class PluginAssembly
     {

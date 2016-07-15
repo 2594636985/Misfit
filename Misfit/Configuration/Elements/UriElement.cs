@@ -7,7 +7,7 @@ using System.Text;
 namespace Misfit.Configuration.Elements
 {
     /// <summary>
-    /// 模块URI元素
+    /// 插件URI元素
     /// </summary>
     public class UriElement : ConfigurationElement
     {

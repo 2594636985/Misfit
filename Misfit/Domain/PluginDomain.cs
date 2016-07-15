@@ -12,14 +12,14 @@ using System.Text;
 namespace Misfit.Domain
 {
     /// <summary>
-    /// 模块域
+    /// 插件域
     /// </summary>
     public class PluginDomain
     {
         #region 公有成员
 
         /// <summary>
-        /// 模块域的名称
+        /// 插件域的名称
         /// </summary>
         public string PluginDomainName { private set; get; }
 
@@ -29,7 +29,7 @@ namespace Misfit.Domain
         public Dictionary<string, string> Parameters { private set; get; }
 
         /// <summary>
-        /// 模块域的版本号
+        /// 插件域的版本号
         /// </summary>
         public Version PluginDomainVersion { private set; get; }
 
@@ -37,7 +37,7 @@ namespace Misfit.Domain
         public PluginDomainFramework PluginDomainFramework { private set; get; }
 
         /// <summary>
-        /// 模块域上下文
+        /// 插件域上下文
         /// </summary>
         public PluginDomainContext PluginDomainContext { private set; get; }
 
@@ -61,7 +61,7 @@ namespace Misfit.Domain
         public bool Debug { private set; get; }
 
         /// <summary>
-        /// 模块域的对外服务
+        /// 插件域的对外服务
         /// </summary>
         public Dictionary<string, object> PluginDomainServices { private set; get; }
 
@@ -154,7 +154,7 @@ namespace Misfit.Domain
         #region 私有方法
 
         /// <summary>
-        /// 模块域里面的服务都会经过里面，AOP思想
+        /// 插件域里面的服务都会经过里面，AOP思想
         /// </summary>
         /// <param name="target"></param>
         /// <param name="method"></param>

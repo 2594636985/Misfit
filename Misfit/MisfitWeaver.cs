@@ -80,13 +80,13 @@ namespace Misfit
             this._pluginDomainFramework.Initialize();
 
             if (this._pluginDomainFramework == null)
-                throw new InvalidOperationException("模块功能初始化失败 原因：配置文件可能存在问题");
+                throw new InvalidOperationException("插件功能初始化失败 原因：配置文件可能存在问题");
 
             this._pluginDomainFramework.Start();
         }
 
         /// <summary>
-        /// 获得相关模块域里面的对外服务
+        /// 获得相关插件域里面的对外服务
         /// </summary>
         /// <param name="assemblyCatalogName"></param>
         /// <param name="typeName"></param>
@@ -94,13 +94,13 @@ namespace Misfit
         public object GetService(string assemblyCatalogName, string typeName)
         {
             if (this._pluginDomainFramework == null)
-                throw new InvalidOperationException("模块功能没有初始化");
+                throw new InvalidOperationException("插件功能没有初始化");
 
             return this._pluginDomainFramework.GetService(assemblyCatalogName, typeName);
         }
 
         /// <summary>
-        /// 获得相关模块域里面的对外服务
+        /// 获得相关插件域里面的对外服务
         /// </summary>
         /// <typeparam name="TInterface"></typeparam>
         /// <param name="assemblyCatalogName"></param>
@@ -108,7 +108,7 @@ namespace Misfit
         public TInterface GetService<TInterface>(string assemblyCatalogName)
         {
             if (this._pluginDomainFramework == null)
-                throw new InvalidOperationException("模块功能没有初始化");
+                throw new InvalidOperationException("插件功能没有初始化");
 
             return this._pluginDomainFramework.GetService<TInterface>(assemblyCatalogName);
         }
@@ -118,7 +118,7 @@ namespace Misfit
         public void Dispose()
         {
             if (this._pluginDomainFramework == null)
-                throw new InvalidOperationException("模块功能没有初始化");
+                throw new InvalidOperationException("插件功能没有初始化");
 
             this._pluginDomainFramework.Stop();
         }

@@ -7,7 +7,7 @@ using System.Text;
 namespace Misfit.Configuration.Elements
 {
     /// <summary>
-    /// 模块付带的参数元素
+    /// 插件付带的参数元素
     /// </summary>
     public class ParameterElement : ConfigurationElement
     {

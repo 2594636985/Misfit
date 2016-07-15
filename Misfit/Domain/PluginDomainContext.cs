@@ -7,7 +7,7 @@ using System.Text;
 namespace Misfit.Domain
 {
     /// <summary>
-    /// 模块域的上下文
+    /// 插件域的上下文
     /// </summary>
     public class PluginDomainContext : MarshalByRefObject, IPluginDomainContext
     {
@@ -35,7 +35,7 @@ namespace Misfit.Domain
         }
 
         /// <summary>
-        /// 获得相关模块域里面的对外服务
+        /// 获得相关插件域里面的对外服务
         /// </summary>
         /// <param name="assemblyCatalogName"></param>
         /// <param name="typeName"></param>
@@ -46,7 +46,7 @@ namespace Misfit.Domain
         }
 
         /// <summary>
-        /// 获得相关模块域里面的对外服务
+        /// 获得相关插件域里面的对外服务
         /// </summary>
         /// <typeparam name="TInterface"></typeparam>
         /// <param name="assemblyCatalogName"></param>

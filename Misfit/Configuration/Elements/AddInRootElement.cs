@@ -7,7 +7,7 @@ using System.Text;
 namespace Misfit.Configuration.Elements
 {
     /// <summary>
-    /// 模块存在的目标
+    /// 插件存在的目标
     /// </summary>
     public class AddInRootElement : ConfigurationElement
     {

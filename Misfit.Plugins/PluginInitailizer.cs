@@ -11,7 +11,7 @@ using System.Text;
 namespace Misfit.Plugins
 {
     /// <summary>
-    /// 用于初始化模块的类
+    /// 用于初始化插件的类
     /// </summary>
     public class PluginInitailizer
     {

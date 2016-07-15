@@ -7,7 +7,7 @@ using System.Text;
 namespace Misfit.Plugins
 {
     /// <summary>
-    /// 模块域的上下文
+    /// 插件域的上下文
     /// </summary>
     public interface IPluginDomainContext
     {

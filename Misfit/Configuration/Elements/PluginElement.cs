@@ -7,7 +7,7 @@ using System.Text;
 namespace Misfit.Configuration.Elements
 {
     /// <summary>
-    /// 模块元素
+    /// 插件元素
     /// </summary>
     public class PluginElement : ConfigurationElement
     {
@@ -20,7 +20,7 @@ namespace Misfit.Configuration.Elements
         public const string TrackerElementName = "Tracker";
 
         /// <summary>
-        /// 模块域的名称
+        /// 插件域的名称
         /// </summary>
         [ConfigurationProperty(NameAttributeName, IsRequired = true)]
         public string Name
@@ -44,7 +44,7 @@ namespace Misfit.Configuration.Elements
         }
 
         /// <summary>
-        /// 模块的说明
+        /// 插件的说明
         /// </summary>
         [ConfigurationProperty(DescriptionAttributeName, IsRequired = false)]
         public string Description

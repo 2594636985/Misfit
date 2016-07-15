@@ -6,7 +6,7 @@ using System.Text;
 namespace Misfit.Plugins.Core
 {
     /// <summary>
-    /// 模块中的对外类型信息
+    /// 插件中的对外类型信息
     /// </summary>
     public class ModuleServiceType
     {

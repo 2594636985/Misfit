@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Misfit.Plugins.Core
+namespace Misfit.Plugins
 {
-    public class CoreException : PluginException
+    public class PluginException : Exception
     {
-        public CoreException(string message)
+        public PluginException(string message)
             : base(message)
         {
 

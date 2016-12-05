@@ -100,6 +100,23 @@
     <Compile Include="Domain\PluginDomainFactory.cs" />
     <Compile Include="Domain\PluginDomainManager.cs" />
     <Compile Include="Domain\PluginDomainMonitor.cs" />
+    <Compile Include="Environment\AddIns\ActionMapping.cs" />
+    <Compile Include="Environment\AddIns\AssemblyLocator.cs" />
+    <Compile Include="Environment\AddIns\Module.cs" />
+    <Compile Include="Environment\AddIns\ModuleXmlInfo.cs" />
+    <Compile Include="Environment\AddIns\TypeAccessor.cs" />
+    <Compile Include="Environment\Dispatcher.cs" />
+    <Compile Include="Environment\Metadata\DirMetadataItem.cs" />
+    <Compile Include="Environment\Metadata\DllMetadataItem.cs" />
+    <Compile Include="Environment\Metadata\FileMetadataItem.cs" />
+    <Compile Include="Environment\Metadata\IMetadataItem.cs" />
+    <Compile Include="Environment\Metadata\MetadataItem.cs" />
+    <Compile Include="Environment\Metadata\MetadataTree.cs" />
+    <Compile Include="Environment\Metadata\MetadataTreeBuilder.cs" />
+    <Compile Include="Environment\Metadata\MetadataType.cs" />
+    <Compile Include="Environment\Metadata\XmlMetadataItem.cs" />
+    <Compile Include="Environment\AddIns\AssemblyInfo.cs" />
+    <Compile Include="Environment\AddIns\ModuleAnalyzer.cs" />
     <Compile Include="Extension\DictionaryExtnesion.cs" />
     <Compile Include="MisfitWeaver.cs">
       <SubType>Code</SubType>
@@ -108,6 +125,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Cache\" />
+    <Folder Include="NewFolder1\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Misfit.Plugins\Misfit.Plugins.csproj">
